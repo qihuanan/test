@@ -1,0 +1,21 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+
+  <view class="btn-area">
+    <navigator url="/pages/list/list" hover-class="navigator-hover">列表页面  </navigator>
+    <navigator url="/pages/home/home" hover-class="navigator-hover">home页面  </navigator>
+    <navigator url="/pages/listtest/list" hover-class="navigator-hover">列表页面2  </navigator>
+    <!--
+    <navigator url="/pages/list/list" open-type="redirect" hover-class="other-navigator-hover">在当前页打开        </navigator>
+    -->
+   
+  </view>
+
+</view>
