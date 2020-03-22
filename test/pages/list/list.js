@@ -7,22 +7,7 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    actvielist: [
-      {
-        imgurl: '/pages/images/1.png',
-        activeTitle: '活动标题',
-        activeTitleSubName: '活动点名称',
-        activeTitleSubNum: '5',
-        activeTitleSubLeng: '2km',
-    }, 
-      {
-        imgurl: '/pages/images/1.png',
-        activeTitle: '活动标题',
-        activeTitleSubName: '活动点名称',
-        activeTitleSubNum: '5',
-        activeTitleSubLeng: '2km',
-      }, 
-    ],
+    actvielist: [],
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
@@ -32,32 +17,28 @@ Page({
     })
   },
   onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
+    var that = this
+    //this.getLineList(that)
+    wx.request({
+      url: 'https://jd.yousheng.tech/qihntest/wx/getLineList',
+      header: { 'content-type': 'application/json' },
+      data: {
+        code: 1
+      }, success(res2) {
+        console.log("login getLineList " + res2.data)
+        console.log("login getLineList2 " + res2.data.data)
+        //that.actvielist = res2.data.data
+        that.setData({
+          actvielist: res2.data.data,
           hasUserInfo: true
         })
       }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
+    })
+    
+  },
+  getLineList: function(obj){
+    
+
   },
   getUserInfo: function(e) {
     console.log(e)

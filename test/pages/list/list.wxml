@@ -1,15 +1,15 @@
 
 <block wx:for="{{actvielist }}" >
     <view >
-      <text class="active-title">{{item.activeTitle + index}}</text>
+      <text class="active-title">{{item.name + index}}</text>
       <view class="active" class="weui-flex">
           <view class="weui-flex__item ">
-              <image src="{{item.imgurl}}" class="active-image" ></image>
+              <image src="https://jd.yousheng.tech/qihntest/wx/showimg?filename={{item.picture1}}" class="active-image" ></image>
           </view>
           <view class="weui-flex__item active-text-view">
-              <label class="labelclass">{{item.activeTitleSubName + index}}</label>
-              <label class="labelclass">签到点： {{item.activeTitleSubNum + index}}</label>
-              <label class="labelclass">长度： {{item.activeTitleSubLeng + index}}</label>
+              <label class="labelclass">{{item.description + index}}</label>
+              <label class="labelclass">签到点： {{item.jingdu + index}}</label>
+              <label class="labelclass">长度： {{item.weidu + index}}</label>
           </view>
       </view>
     </view>
