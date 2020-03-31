@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "mp-icon": "/pages/components/icon/icon"
+  },
+  "navigationBarTitleText": "定向闯关-我"
 }

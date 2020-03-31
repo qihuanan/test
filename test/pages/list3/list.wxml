@@ -1,24 +1,20 @@
 
-<block wx:for="{{actvielist }}" wx:for-index="index" wx:for-item="item" wx:key="t1">    
+<block wx:for="{{actvielist }}" wx:for-index="i" wx:for-item="item" wx:key="t1">    
 <view class="active" class="weui-flex">
+  <block wx:for="{{3}}" wx:for-index="k" wx:for-item="item_k" wx:key="t2">
   
-    <view  class="weui-flex__item view-item">
-        <image class="active-image" src="https://jd.yousheng.tech/qihntest/wx/showimg?filename={{item.picture1}}" data-lineid="{{item.id}}" bindtap="todetail" class="active-image" >
+  
+    <view wx:if="{{actvielist[i+item_k] != null && i%3 == 0 }}" class="weui-flex__item view-item">
+    <!--<text class="active-title">{{i }} ,{{ k}} , {{i + k}},{{item_k}}</text>  -->
+     
+  
+        <image class="active-image" src="https://jd.yousheng.tech/qihntest/wx/showimg?filename={{actvielist[i+item_k].picture1}}" data-lineid="{{actvielist[i+item_k].id}}" bindtap="todetail" class="active-image" >
         </image>
-        
-        <view class="item-text">
-          <view class="active-title">
-            {{item.name}}
-            <mp-icon wx:if="{{index % 2 == 1}}" class="active-title-like" icon="like" type="outline" color="white" size="{{40}}"></mp-icon>
-            <mp-icon wx:if="{{index % 2 == 0}}" class="active-title-like" icon="like" type="field" color="#FFBB4C" size="{{40}}"></mp-icon>
-          </view>
-          <view class="active-titlesub">
-            <text class="active-titlesub-text">5km</text>
-            <text class="active-titlesub-text">10点</text>
-            <text class="active-titlesub-text">20积分</text>
-          </view>
-        </view>
+      
     </view>
+    
+    
+  </block>
 
 </view>  
 </block>

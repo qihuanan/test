@@ -1,0 +1,18 @@
+.item-liuyanban{
+  color:white;
+  padding: 25rpx;
+  margin: 0 20rpx;
+  border-radius: 20rpx;
+  background-color:  #8FC400;
+  text-align: center;
+}
+
+.bottom-view{
+  margin-top: 50rpx;
+  margin-bottom: 50rpx;
+  /*
+  position: fixed;
+  display: flex;
+  justify-content: end;
+  */
+}

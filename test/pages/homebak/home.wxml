@@ -1,18 +1,17 @@
 <!--index.wxml-->
 <view class="container">
   <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <button class="userinfobtn" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 微信登录 </button>
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      <text class="userinfo-nickname">积分：{{score}}</text>
     </block>
   </view>
+</view>
 
-  <view class="btn-area">
+<view class="btn-area">
     <navigator url="/pages/list/list" hover-class="navigator-hover">列表页面  </navigator>
     <navigator url="/pages/home/home" hover-class="navigator-hover">home页面  </navigator>
     <navigator url="/pages/listtest/list" hover-class="navigator-hover">列表页面2 </navigator>
-
-  </view>
-
 </view>

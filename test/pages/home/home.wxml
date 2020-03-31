@@ -1,13 +1,86 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+<view class="weui-flex">
+  <view class="weui-flex__item item-top-login">
+    <block wx:if="{{!hasUserInfo && canIUse && score == 0 }}">
+    <view class="item-title">欢迎</view>
+    <view class="item-title">
+      <image class="logoimg" src="/pages/images/logo.png" mode="cover"></image>
+    </view>
+    <button class="userinfobtn" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 微信登录 </button>
+    </block>
     <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-      <text class="userinfo-nickname">积分：{{score}}</text>
+      <view class="weui-flex item-top-logon">
+        <view class="weui-flex__item ">
+          <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        </view>
+        <view class="weui-flex__item weui-flex__item2">
+          <view>
+            <text >{{userInfo.nickName}}</text>
+            <text class="jifen">积分：{{score}}</text>
+          </view>
+          <view>
+            <text class="mobile">手机号：138*******</text>
+            <text class="mobile2 mobile">更改电话</text>
+          </view>
+        </view>
+      </view>
     </block>
   </view>
+  
+</view>
+
+<!-- 导航 -->
+<view class="weui-flex daohang">
+  <view class="weui-flex__item {{showpanel == 1 ? 'iconunderline' : '' }}" data-panel="1"  bindtap="showmyactive">
+    <mp-icon  class="" icon="camera"  size="{{35}}" type="outline" color="{{showpanel == 1 ? '#8FC400' : '' }}" ></mp-icon>
+  </view>
+  <view class="weui-flex__item {{showpanel == 2 ? 'iconunderline' : '' }}" bindtap="showmyactive" data-panel="2"  >
+    <mp-icon  class="" icon="like"  size="{{35}}" color="{{showpanel == 2 ? '#8FC400' : '' }}" type="outline"></mp-icon>
+  </view>
+</view>
+
+<!-- 相册 -->
+<block wx:if="{{showpanel == 1 }}">
+<block wx:for="{{2 }}" wx:for-index="index" wx:for-item="item" wx:key="t1">
+<view class="weui-flex ">
+  <view class="weui-flex__item ">
+      <view class="weui-flex item-top-logon">
+        <view class="weui-flex__item ">
+          <image class="userinfo-avatar xiangche-img" src="{{userInfo.avatarUrl}}" ></image>
+        </view>
+        <view class="weui-flex__item weui-flex__item5">
+          <view>
+            <text >{{userInfo.nickName}}</text>
+          </view>
+        </view>
+      </view>
+  </view>
+</view>
+<view class="img-view">
+  <image class="xiangche-img-2" src="https://jd.yousheng.tech/qihntest/download?filename=2020-03-24/0fe95fe2-ee4a-4e82-ab38-4e249ba2cbae_timg.jpg"></image>
+</view>
+</block>
+</block>
+<!-- 我参与的喜欢的活动列表 -->
+<block wx:if="{{showpanel == 2 }}">
+<block wx:for="{{2 }}" wx:for-index="index" wx:for-item="item" wx:key="t1">
+<view class="img-view-active ">
+  <image class="xiangche-img-active" src="https://jd.yousheng.tech/qihntest/download?filename=2020-03-28/33d19a10-183d-4e2d-8e6c-e885043ce4e4_badaling.jpg"></image>
+  <view class="item-text">
+    <view class="active-title">
+      线路名称{{index}}
+    </view>
+    <view class="active-titlesub">
+      <text class="active-titlesub-text">10个点</text>
+    </view>
+  </view>
+</view>
+</block>
+</block>
 
 
+
+<view class="btn-area">
+    <navigator url="/pages/list/list" hover-class="navigator-hover">列表页面  </navigator>
+    <navigator url="/pages/home/home" hover-class="navigator-hover">home页面  </navigator>
+    <navigator url="/pages/listtest/list" hover-class="navigator-hover">列表页面2 </navigator>
 </view>

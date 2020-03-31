@@ -1,17 +1,26 @@
 {
   "pages": [
-    
-    "pages/index/index",
     "pages/list/list",
     "pages/home/home",
+    "pages/index/index",
+    
+    "pages/message/message",
+    "pages/detail/detail",
+    
+    
+    
+    
+    
     "pages/listtest/list",
+    "pages/list3/list",
+    "pages/homebak/home",
     
     "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "定向闯关",
     "navigationBarTextStyle": "black"
   },
   "style": "v2",

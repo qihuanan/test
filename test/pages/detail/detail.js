@@ -1,14 +1,23 @@
-//index.js
-//获取应用实例
 const app = getApp()
 
 Page({
   data: {
     motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    actvielist: [],
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    
+    pointlist: [{
+      id:1,
+      name:'签到点1',
+      jingdu:'33.33',
+      weidu: '66.66',
+      img: 'url'
+    }, {
+        id: 1,
+        name: '签到点1',
+        jingdu: '33.33',
+        weidu: '66.66',
+        img: 'url'
+      }]
+    
   },
   //事件处理函数
   bindViewTap: function() {
@@ -16,7 +25,13 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function () {
+  onShow: function (options){
+    wx.setNavigationBarTitle({
+      title: '线路名称1'
+    })
+  },
+  onLoad: function (options) {
+    console.log("onLoad"+ options.lineid)
     var that = this
     //this.getLineList(that)
     wx.request({
@@ -35,21 +50,7 @@ Page({
       }
     })
     
-  },
-  getLineList: function(obj){
-  },
-  todetail: function(e){
-    console.log('todetail-'+ e.target.dataset.lineid)
-    wx.navigateTo({
-      url: "/pages/detail/detail?lineid=" + e.target.dataset.lineid,
-    });
-  },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
   }
+  
+  
 })

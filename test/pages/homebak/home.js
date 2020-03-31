@@ -6,9 +6,8 @@ Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
-    score:0,
+    score:100,
     hasUserInfo: false,
-    showpanel: 1,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
@@ -17,18 +16,10 @@ Page({
       url: '../logs/logs'
     })
   },
-  showmyactive: function (e){
-    console.log(e.currentTarget.dataset.panel)
-    this.setData({
-      showpanel: e.currentTarget.dataset.panel
-    })
-  },
   onShow:function(){
     console.log('qihndebug-onShow-1-getStorageSync.score ' + wx.getStorageSync("score") )
-    console.log('qihndebug-onShow-1-getStorageSync.hasUserInfo ' + wx.getStorageSync("hasUserInfo"))
     this.setData({
-      score: wx.getStorageSync("score"),
-      hasUserInfo: wx.getStorageSync("hasUserInfo")
+      score: wx.getStorageSync("score")
     })
   },
   onLoad: function (options) {
@@ -47,7 +38,6 @@ Page({
       app.userInfoReadyCallback = res => {
         console.log('qihndebug-res1 ' + res.userInfo)
         app.globalData.userInfo = res.userInfo
-        wx.setStorageSync("hasUserInfo", true)
         console.log('qihndebug-2-app.globalData.score ' + app.globalData.score)
         this.setData({
           userInfo: res.userInfo,
@@ -59,9 +49,9 @@ Page({
       // 在没有 open-type=getUserInfo 版本的兼容处理
       wx.getUserInfo({
         success: res => {
-          console.log('qihndebug-res22 ' + res.userInfo)
+          console.log('qihndebug-res2 ' + res.userInfo)
           app.globalData.userInfo = res.userInfo
-          wx.setStorageSync("hasUserInfo", true)
+        
           console.log('qihndebug-3-app.globalData.score ' + app.globalData.score)
           this.setData({
             userInfo: res.userInfo,
