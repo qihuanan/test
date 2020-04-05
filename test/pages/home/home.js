@@ -9,6 +9,7 @@ Page({
     score:0,
     hasUserInfo: false,
     showpanel: 1,
+    cur:5,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
@@ -16,6 +17,12 @@ Page({
     wx.navigateTo({
       url: '../logs/logs'
     })
+  },
+  todetail: function (e) {
+    console.log('todetail-' + e.target.dataset.lineid)
+    wx.navigateTo({
+      url: "/pages/detail/detail?lineid=" + e.target.dataset.lineid,
+    });
   },
   showmyactive: function (e){
     console.log(e.currentTarget.dataset.panel)
@@ -27,6 +34,7 @@ Page({
     console.log('qihndebug-onShow-1-getStorageSync.score ' + wx.getStorageSync("score") )
     console.log('qihndebug-onShow-1-getStorageSync.hasUserInfo ' + wx.getStorageSync("hasUserInfo"))
     this.setData({
+      cur: 5,
       score: wx.getStorageSync("score"),
       hasUserInfo: wx.getStorageSync("hasUserInfo")
     })

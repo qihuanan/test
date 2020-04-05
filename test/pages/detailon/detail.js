@@ -50,7 +50,7 @@ Page({
       iconPath: '/pages/images/location.png',
       position: {
         left: 0,
-        top: 300 - 50,
+        top: 400 - 50,
         width: 50,
         height: 50
       },
@@ -162,23 +162,22 @@ Page({
       url: '../logs/logs'
     })
   },
-  showimgTap:function(e){
-    console.log('showimgTap ' + JSON.stringify(e))
-    console.log('showimgTap ' + e.currentTarget.dataset.imgsrc)
-    wx.previewImage({
-      current: e.currentTarget.dataset.imgsrc,
-      urls: [e.currentTarget.dataset.imgsrc]
-    })
-  },
   onShow: function (options){
     wx.setNavigationBarTitle({
       title: '线路名称1'
     })
+    this.onLoad(options)
   },
   onLoad: function (options) {
-    console.log("onLoad:"+ options.lineid)
-    app.globalData.curlineid = options.lineid
-    
+    console.log("onLoad " + JSON.stringify(options))
+    var curlineid = app.globalData.curlineid
+    console.log("onLoad-curlineid " + curlineid)
+    if (options && options.lineid){
+      console.log("onLoad" + options.lineid)
+      app.globalData.curlineid = options.lineid
+      curlineid = app.globalData.curlineid
+      console.log("onLoad-curlineid2 " + curlineid)
+    }
     var that = this
     //this.getLineList(that)
     wx.request({

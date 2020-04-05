@@ -1,4 +1,8 @@
-<view class="weui-flex ">
+<view>
+<image  bindtap="showimgTap" data-imgsrc="https://jd.yousheng.tech/qihntest/download?filename=2020-04-04/0d8e92f5-defd-44e7-9fc2-5abd5ca344a0_detail.jpg" class="detailimg" src="https://jd.yousheng.tech/qihntest/download?filename=2020-04-04/0d8e92f5-defd-44e7-9fc2-5abd5ca344a0_detail.jpg"></image>
+</view>
+
+<scroll-view scroll-y="true" style="height: 500rpx;" class="weui-flex ">
   <view class="weui-flex__item">
     <view class="item-text">
       <view class="active-title">
@@ -23,26 +27,11 @@
         </view>
 
         <view class="active-title-bottom weui-flex">
-          <view class="weui-flex__item">
-              <view class="">已用时</view>
-              <view class="active-title-bottom-item">1:23:06</view>
-          </view>
-          <view class="weui-flex__item">
-              <view class="">已打卡</view>
-              <view class="active-title-bottom-item">6</view>
-          </view>
-          <view class="weui-flex__item">
-              <view class="">已获积分</view>
-              <view class="active-title-bottom-item">200</view>
-          </view>
-        </view>
-
-        <view class="active-title-bottom weui-flex">
           <view class="weui-flex__item ">
               <navigator url="/pages/message/message" class="item-liuyanban">留言板</navigator>
           </view>
-          <view class="weui-flex__item ">
-              <navigator url="/pages/message/message" class="item-liuyanban">开始打卡</navigator>
+          <view  class="weui-flex__item " bindtap="dakaflagtap"> 
+              <navigator url="/pages/detailon/detail?lineid=1" class="item-liuyanban">开始打卡</navigator>
           </view>
           
         </view>
@@ -50,49 +39,36 @@
       </view>
 
       <view class="active-body">
-        
-        <view class="weui-flex__item body-item">
-            <view class="body-item-pointname">任务点6</view>
-            <view class="body-item-pointdesc">任务点6内容，要求等文字描述</view>
-        </view>
-
-        <view class="weui-flex__item body-item-tips">
-            <view class="body-item-tips-name">提示1</view>
-            <view class="body-item-tips-desc">提示1，要求等文字描述</view>
-        </view>
-        
-        <image class="img-tips" src="/pages/images/suo.png"></image>
-        <view class="weui-flex__item body-item-tips">
-            <view class="body-item-tips-name">解锁提示2</view>
-            <view class="body-item-tips-desc">提示1，要求等文字描述</view>
-            
-        </view>
 
       </view>
 
     </view>
   </view>
 			
-</view>
+</scroll-view>
 
+<view class="pretabbar"></view>
+<import src ="/pages/template/tabbar.wxml"/>
+<template is="tabbar"/>
 
-
+<!-- 
 <view class="weui-tabbar">
-				<view class="weui-tabbar__item weui-bar__item_on">
-					<view style="display: inline-block; position: relative;">
-						<image src="../images/icon_nav_form.png" alt class="weui-tabbar__icon"></image>
-					</view>
-					<view class="weui-tabbar__label">地图</view>
-				</view>
-				<view class="weui-tabbar__item">
-					<image src="../images/icon_tabbar.png" alt class="weui-tabbar__icon"></image>
-					<view class="weui-tabbar__label">签到点</view>
-				</view>
-				<view class="weui-tabbar__item">
-          <navigator url="/pages/home/home" >
-					  <image src="../images/icon_tabbar.png" alt class="weui-tabbar__icon"></image>
-					  <view class="weui-tabbar__label">留言</view>
-          </navigator>
-				</view>
+  <view class="weui-tabbar__item weui-bar__item_on">
+    <view style="display: inline-block; position: relative;">
+      <image src="../images/icon_nav_form.png" alt class="weui-tabbar__icon"></image>
+    </view>
+    <view class="weui-tabbar__label">地图</view>
+  </view>
+  <view class="weui-tabbar__item">
+    <image src="../images/icon_tabbar.png" alt class="weui-tabbar__icon"></image>
+    <view class="weui-tabbar__label">签到点</view>
+  </view>
+  <view class="weui-tabbar__item">
+    <navigator url="/pages/home/home" >
+      <image src="../images/icon_tabbar.png" alt class="weui-tabbar__icon"></image>
+      <view class="weui-tabbar__label">留言</view>
+    </navigator>
+  </view>
 
-			</view>
+</view>
+-->

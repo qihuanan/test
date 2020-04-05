@@ -35,6 +35,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    score:0
+    score:0,
+    curlineid:0,
   }
 })

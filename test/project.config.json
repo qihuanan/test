@@ -15,7 +15,7 @@
 		"scopeDataCheck": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.0.4",
+	"libVersion": "2.10.3",
 	"appid": "wx976bab1faaf89d4c",
 	"projectname": "qihntest",
 	"debugOptions": {

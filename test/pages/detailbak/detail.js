@@ -162,23 +162,13 @@ Page({
       url: '../logs/logs'
     })
   },
-  showimgTap:function(e){
-    console.log('showimgTap ' + JSON.stringify(e))
-    console.log('showimgTap ' + e.currentTarget.dataset.imgsrc)
-    wx.previewImage({
-      current: e.currentTarget.dataset.imgsrc,
-      urls: [e.currentTarget.dataset.imgsrc]
-    })
-  },
   onShow: function (options){
     wx.setNavigationBarTitle({
       title: '线路名称1'
     })
   },
   onLoad: function (options) {
-    console.log("onLoad:"+ options.lineid)
-    app.globalData.curlineid = options.lineid
-    
+    console.log("onLoad"+ options.lineid)
     var that = this
     //this.getLineList(that)
     wx.request({

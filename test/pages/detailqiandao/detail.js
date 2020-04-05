@@ -7,6 +7,7 @@ Page({
     unlock: false,
     dakaflag:false,
     photoflag:false,
+    cur: 3,
     files: [],
     src: '',
     curpoint:{id:1,name:'任务点1',desc:'任务描述1', 
@@ -125,17 +126,39 @@ Page({
           })
         }
         
+      },
+      fail: () => {
+        //不允许打开定位
+        wx.getSetting({
+          success: (res) => {
+            if (!res.authSetting['scope.userLocation']) {
+              //打开提示框，提示前往设置页面
+              wx.showToast({
+                title: '获取定位失败，请前往设置打开定位权限',
+                icon: 'none',
+                duration: 1000
+              })
+            }
+          }
+        })
       }
+
     })
    
   },
-  takePhoto() {
-    
+  takePhoto(e) {
+    var that = this;
     //setTimeout(function(){},1000)
     const ctx = wx.createCameraContext()
     ctx.takePhoto({
       quality: 'high',
       success: (res) => {
+        wx.showToast({
+          title: '正在验证地址信息！请确保打开GPS定位！',
+          icon: 'none',
+          duration: 2000
+        })
+        that.qiandaotap(e)
         this.setData({
           src: res.tempImagePath,
           photoflag: false
@@ -149,6 +172,13 @@ Page({
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: (res) => {
+        that.qiandaotap(e)
+        wx.showToast({
+          title: '正在验证地址信息！请确保打开GPS定位！',
+          icon: 'none',
+          duration: 2000
+        })
+        
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         this.setData({
           //files: that.data.files.concat(res.tempFilePaths),
@@ -162,23 +192,18 @@ Page({
       url: '../logs/logs'
     })
   },
-  showimgTap:function(e){
-    console.log('showimgTap ' + JSON.stringify(e))
-    console.log('showimgTap ' + e.currentTarget.dataset.imgsrc)
-    wx.previewImage({
-      current: e.currentTarget.dataset.imgsrc,
-      urls: [e.currentTarget.dataset.imgsrc]
-    })
-  },
   onShow: function (options){
     wx.setNavigationBarTitle({
-      title: '线路名称1'
+      title: '任务点打卡'
+    })
+    //this.onLoad(options)
+    this.setData({
+      cur: 3,
     })
   },
   onLoad: function (options) {
-    console.log("onLoad:"+ options.lineid)
+    console.log("onLoad"+ options.lineid)
     app.globalData.curlineid = options.lineid
-    
     var that = this
     //this.getLineList(that)
     wx.request({

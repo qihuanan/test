@@ -23,33 +23,20 @@
 </view>  
 </block>
 
-
+<view class="pretabbar"></view>
+<import src ="/pages/template/tabbarout.wxml"/>
+<template is="tabbarout" data="{{cur:1}}" />
+<!-- 
 <view class="weui-tabbar">
 				<view class="weui-tabbar__item weui-bar__item_on">
 					<view style="display: inline-block; position: relative;">
 						<image src="../images/icon_nav_form.png" alt class="weui-tabbar__icon"></image>
-            <!--
-						<text class="weui-badge" style="position: absolute; top: -2px; right: -13px;">8</text>
-            -->
+            
 					</view>
 					<view class="weui-tabbar__label">首页</view>
 				</view>
 
-         <!--
-				<view class="weui-tabbar__item">
-					<image src="../images/icon_tabbar.png" alt class="weui-tabbar__icon"></image>
-					<view class="weui-tabbar__label">通讯录</view>
-				</view>
-       
-				<view class="weui-tabbar__item">
-					<view style="display: inline-block; position: relative;">
-						<image src="../images/icon_tabbar.png" alt class="weui-tabbar__icon"></image>
-						<text class="weui-badge weui-badge_dot" 
-            style="position: absolute; top: 0; right: -6px;"></text>
-					</view>
-					<view class="weui-tabbar__label">发现</view>
-				</view>
-        -->
+         
 				<view class="weui-tabbar__item">
           <navigator url="/pages/home/home" >
 					  <image src="../images/icon_tabbar.png" alt class="weui-tabbar__icon"></image>
@@ -58,3 +45,4 @@
 				</view>
 
 			</view>
+      -->

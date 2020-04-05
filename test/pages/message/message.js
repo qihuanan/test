@@ -6,6 +6,7 @@ Page({
     listshow: 1,
     toast: false,
     hideToast: false,
+    cur: 2,
     
   },
   //事件处理函数
@@ -50,6 +51,10 @@ Page({
     wx.setNavigationBarTitle({
       title: '留言板'
     })
+    this.setData({
+      cur: 2,
+    })
+    
   },
   onLoad: function (options) {
     console.log("onLoad"+ options)

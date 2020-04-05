@@ -9,10 +9,21 @@
 
 .bottom-view{
   margin-top: 50rpx;
-  margin-bottom: 50rpx;
+  margin-bottom: 100rpx;
   /*
   position: fixed;
   display: flex;
   justify-content: end;
   */
+}
+.userview{
+  margin-bottom: 20rpx;
+}
+.userimg{
+  margin-top: -10rpx;
+  border-radius: 50%;
+}
+.userimgname{
+  font-size: 30rpx;
+  color: #534F4F;
 }

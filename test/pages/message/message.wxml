@@ -2,9 +2,11 @@
 <scroll-view  scroll-y="true" style="height: 1000rpx;" class="weui-panel weui-panel_access">
   <view class="weui-panel__bd">
     <block wx:for="{{20}}" wx:key="key">
-    <a class="weui-media-box weui-media-box_appmsg">
-      <view class="weui-media-box__hd">
-        <image class="weui-media-box__thumb" src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLXwuPzS8pT4ppzc0uvuia385tSJYcbGmILowia7CpIxDDZtoGPZGbR5YDa8EYEthBTPrZjibiaJQIVicA/132"></image>
+    <a class="weui-media-box weui-media-box_appmsg userview">
+      <view class="weui-media-box__hd ">
+        <image class="weui-media-box__thumb userimg" src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLXwuPzS8pT4ppzc0uvuia385tSJYcbGmILowia7CpIxDDZtoGPZGbR5YDa8EYEthBTPrZjibiaJQIVicA/132"></image>
+        <view class="weui-media-box__title userimgname">华南虎</view>
+        
       </view>
       <view class="weui-media-box__bd">
         <view class="weui-media-box__desc">由各种物质组成的由各种物质组成的巨球状天体巨球状天体</view>
@@ -49,3 +51,7 @@
     <view class="weui-toast__content">已完成</view>
   </view>
 </view>
+
+<view class="pretabbar"></view>
+<import src ="/pages/template/tabbar.wxml"/>
+<template is="tabbar" data="{{cur:2}}" />

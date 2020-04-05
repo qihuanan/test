@@ -1,0 +1,35 @@
+<template name="tabbar">
+<view class="weui-tabbar">
+  <view class="weui-tabbar__item {{cur == 1 ? 'weui-bar__item_on' : ''}}">
+    <navigator url="/pages/list/list" open-type="reLaunch">
+      <image src="../images/icon_nav_form.png" alt class="weui-tabbar__icon"></image>
+      <view class="weui-tabbar__label">首页</view>
+    </navigator>
+  </view>
+  <view class="weui-tabbar__item {{cur == 2 ? 'weui-bar__item_on' : ''}}">
+    <navigator url="/pages/message/message" >
+      <image src="../images/icon_tabbar.png" alt class="weui-tabbar__icon"></image>
+      <view class="weui-tabbar__label">留言</view>
+    </navigator>
+  </view>
+  <view  class="weui-tabbar__item {{cur == 3 ? 'weui-bar__item_on' : ''}}">
+    <navigator url="/pages/detailqiandao/detail" >
+      <image src="../images/icon_tabbar.png" alt class="weui-tabbar__icon"></image>
+      <view class="weui-tabbar__label">签到</view>
+    </navigator>
+  </view>
+  <view class="weui-tabbar__item {{cur == 4 ? 'weui-bar__item_on' : ''}}">
+    <navigator url="/pages/detailmap/detail" >
+      <image src="../images/icon_tabbar.png" alt class="weui-tabbar__icon"></image>
+      <view class="weui-tabbar__label">地图</view>
+    </navigator>
+  </view>
+  <view class="weui-tabbar__item {{cur == 5 ? 'weui-bar__item_on' : ''}}">
+    <navigator url="/pages/home/home" >
+      <image src="../images/icon_tabbar.png" alt class="weui-tabbar__icon"></image>
+      <view class="weui-tabbar__label">我</view>
+    </navigator>
+  </view>
+
+</view>
+</template>

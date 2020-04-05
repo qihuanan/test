@@ -1,16 +1,21 @@
 {
   "pages": [
     "pages/list/list",
-    "pages/home/home",
-    "pages/index/index",
-    
-    "pages/message/message",
+    "pages/detailmap/detail",
     "pages/detail/detail",
+    "pages/detailqiandao/detail",
     
+    "pages/detailon/detail",
     
+    "pages/home/home",
+    "pages/message/message",
     
-    
-    
+    "pages/index/index",
+
+    "pages/msgsuccess/msg_success",
+    "pages/msgwarn/msg_warn",
+    "pages/uploader/uploader",
+
     "pages/listtest/list",
     "pages/list3/list",
     "pages/homebak/home",
@@ -24,5 +29,11 @@
     "navigationBarTextStyle": "black"
   },
   "style": "v2",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于签到位置验证!"
+    }
+  },
+  
   "sitemapLocation": "sitemap.json"
 }

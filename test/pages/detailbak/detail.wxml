@@ -1,0 +1,142 @@
+<!-- map.wxml -->
+<map id="map" longitude="116.391712" latitude="40.022103" scale="14" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location style="width: 100%; height: 300px;" show-location="true"></map>
+
+<view class="weui-flex ">
+  <view class="weui-flex__item">
+    <view class="item-text">
+      <view class="active-title">
+        <view class="active-title-top">
+          奥森北线
+          <mp-icon  class="active-title-like" icon="like" type="outline" color="red" size="{{35}}"></mp-icon>
+        </view>
+        
+        <view class="active-title-bottom weui-flex">
+          <view class="weui-flex__item">
+              <view class="">总长</view>
+              <view class="active-title-bottom-item">5km</view>
+          </view>
+          <view class="weui-flex__item">
+              <view class="">打卡点</view>
+              <view class="active-title-bottom-item">6</view>
+          </view>
+          <view class="weui-flex__item">
+              <view class="">积分奖励</view>
+              <view class="active-title-bottom-item">50</view>
+          </view>
+        </view>
+
+        <view class="active-title-bottom weui-flex">
+          <view class="weui-flex__item">
+              <view class="">已用时</view>
+              <view class="active-title-bottom-item">1:23:06</view>
+          </view>
+          <view class="weui-flex__item">
+              <view class="">已打卡</view>
+              <view class="active-title-bottom-item">6</view>
+          </view>
+          <view class="weui-flex__item">
+              <view class="">已获积分</view>
+              <view class="active-title-bottom-item">200</view>
+          </view>
+        </view>
+
+        <view class="active-title-bottom weui-flex">
+          <view class="weui-flex__item ">
+              <navigator url="/pages/message/message" class="item-liuyanban">留言板</navigator>
+          </view>
+          <view wx:if="{{! dakaflag}}" class="weui-flex__item " bindtap="dakaflagtap"> 
+              <view class="item-liuyanban">开始打卡</view>
+          </view>
+          <view wx:if="{{dakaflag}}" class="weui-flex__item " bindtap="qiandaotap">
+              <view  class="item-liuyanban">任务点签到</view>
+          </view>
+        </view>
+
+        <view class="active-title-bottom weui-flex">
+          <view  class="weui-flex__item " bindtap="qiandaotap" data-res="1"> 
+              <view class="item-liuyanban">签到成功</view>
+          </view>
+          <view  class="weui-flex__item " bindtap="qiandaotap" data-res="0">
+              <view  class="item-liuyanban">签到失败</view>
+          </view>
+        </view>
+        <view class="active-title-bottom weui-flex">
+          <view  class="weui-flex__item " bindtap="takePhoto" data-res="1"> 
+              <view class="item-liuyanban">拍照</view>
+          </view>
+          <view  class="weui-flex__item " >
+              <view bindtap="chooseImage" class="item-liuyanban">相册</view>
+          </view>
+        </view>
+
+      </view>
+
+
+      <view class="active-body">
+        
+        <view class="weui-flex__item body-item">
+            <view class="body-item-pointname">签到点{{curpoint.name}}</view>
+            <view class="body-item-pointdesc">签到点描述{{curpoint.desc}}</view>
+        </view>
+
+        <view class="weui-flex__item body-item-tips">
+            <view class="body-item-tips-name">提示标题{{curpoint.tips[0].tip }}</view>
+            <view class="body-item-tips-desc">提示内容{{curpoint.tips[0].desc }}</view>
+        </view>
+        
+        <image wx:if="{{! unlock}}" class="img-tips" src="/pages/images/suo.png" bindtap="openIOS1"></image>
+        <view class="weui-flex__item body-item-tips" wx:if="{{unlock}}">
+            <view class="body-item-tips-name">解锁提示2</view>
+            <view class="body-item-tips-desc">提示1，要求等文字描述</view>
+            
+        </view>
+
+      </view>
+
+    </view>
+  </view>
+			
+</view>
+
+
+<view class="fadeIn" wx:if="{{iosDialog1}}">
+    <view class="weui-mask"></view>
+    <view class="weui-dialog">
+        <view class="weui-dialog__hd"><strong class="weui-dialog__title">提示</strong></view>
+        <view class="weui-dialog__bd">解锁提示，将扣除10积分！</view>
+        <view class="weui-dialog__ft">
+            <a class="weui-dialog__btn weui-dialog__btn_default" bindtap="close">取消</a>
+            <a class="weui-dialog__btn weui-dialog__btn_primary" bindtap="close2">确定</a>
+        </view>
+    </view>
+</view>
+
+<!-- camera.wxml  -->
+<camera class="{{!photoflag?'viewshow':'viewshow'}}" device-position="back" flash="off" binderror="error" style="width: 100%; height: 300px;"></camera>
+<view class="zhanweifu"></view>
+<image wx:if="{{src}}" src="{{src}}" style="width: 100%; height: 300px;"></image>
+
+<import src ="/pages/template/tabbar.wxml"/>
+<template is="tabbar"/>
+
+<!-- 
+<view class="weui-tabbar">
+  <view class="weui-tabbar__item weui-bar__item_on">
+    <view style="display: inline-block; position: relative;">
+      <image src="../images/icon_nav_form.png" alt class="weui-tabbar__icon"></image>
+    </view>
+    <view class="weui-tabbar__label">地图</view>
+  </view>
+  <view class="weui-tabbar__item">
+    <image src="../images/icon_tabbar.png" alt class="weui-tabbar__icon"></image>
+    <view class="weui-tabbar__label">签到点</view>
+  </view>
+  <view class="weui-tabbar__item">
+    <navigator url="/pages/home/home" >
+      <image src="../images/icon_tabbar.png" alt class="weui-tabbar__icon"></image>
+      <view class="weui-tabbar__label">留言</view>
+    </navigator>
+  </view>
+
+</view>
+-->

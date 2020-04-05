@@ -16,6 +16,11 @@ Page({
       url: '../logs/logs'
     })
   },
+  onShow:function(){
+    this.setData({
+      cur:1
+    })
+  },
   onLoad: function () {
     var that = this
     //this.getLineList(that)
