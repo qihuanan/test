@@ -3,7 +3,7 @@
     <view class="item-text">
       <view class="active-title">
         <view class="active-title-top">
-          奥森北线-游客服务中心
+          {{point.name}}
         </view>
       </view>
     </view>
@@ -18,6 +18,22 @@
 
 <view class="active-title-bottom weui-flex">
   <view  class="weui-flex__item " bindtap="takePhoto" data-res="1"> 
+    <view class="item-liuyanban2">
+      <image class="liuyanbandaka" src="/pages/images/btm-pht@2x.png" ></image>
+    </view>
+  </view>
+</view>
+<view class="active-title-bottom weui-flex">
+  <view  class="weui-flex__item " bindtap="chooseImage" data-res="0" >
+    <view class="item-liuyanban2" >
+      <image class="liuyanbandaka" src="/pages/images/btm-alb@2x.png" ></image>
+    </view>
+  </view>
+</view>
+
+<!-- 
+<view class="active-title-bottom weui-flex">
+  <view  class="weui-flex__item " bindtap="takePhoto" data-res="1"> 
       <view class="item-liuyanban">拍照(此按钮签到成功)</view>
   </view>
 </view>
@@ -26,6 +42,7 @@
       <view class="item-liuyanban" >相册(此按钮签到失败)</view>
   </view>
 </view>
+-->
 
 
 <view class="pretabbar"></view>

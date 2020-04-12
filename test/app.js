@@ -37,5 +37,7 @@ App({
     userInfo: null,
     score:0,
     curlineid:0,
+    curpointid: 0,
+    curupimgsrc:''
   }
 })

@@ -1,15 +1,15 @@
 <block wx:if="{{listshow == 1  }}" >
 <scroll-view  scroll-y="true" style="height: 1000rpx;" class="weui-panel weui-panel_access">
   <view class="weui-panel__bd">
-    <block wx:for="{{20}}" wx:key="key">
+    <block wx:for="{{list}}" wx:key="key">
     <a class="weui-media-box weui-media-box_appmsg userview">
       <view class="weui-media-box__hd ">
-        <image class="weui-media-box__thumb userimg" src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLXwuPzS8pT4ppzc0uvuia385tSJYcbGmILowia7CpIxDDZtoGPZGbR5YDa8EYEthBTPrZjibiaJQIVicA/132"></image>
-        <view class="weui-media-box__title userimgname">华南虎</view>
+        <image class="weui-media-box__thumb userimg" src="{{item.avatarUrl}}"></image>
+        <view class="weui-media-box__title userimgname">{{item.username}}</view>
         
       </view>
       <view class="weui-media-box__bd">
-        <view class="weui-media-box__desc">由各种物质组成的由各种物质组成的巨球状天体巨球状天体</view>
+        <view class="weui-media-box__desc">{{item.description}}</view>
       </view>
     </a>
     </block>
@@ -24,24 +24,26 @@
 </block>
 
 <block wx:if="{{listshow == 0}}" >
+<form bindsubmit="fabuaction">
 <view class="weui-form__control-area">
   <view class="weui-cells__group weui-cells__group_form">
     <view class="weui-cells weui-cells_form">
       <view class="weui-cell ">
         <view class="weui-cell__bd">
-          <textarea class="weui-textarea" placeholder="请输入留言内容，文明留言" rows="3"></textarea>
+          <textarea name="evaContent"  class="weui-textarea" placeholder="请输入留言内容，文明留言" rows="3"></textarea>
           <view class="weui-textarea-counter"><text>0</text>/200</view>
         </view>
       </view>
     </view>
   </view>
 </view>
-
 <view class="weui-flex bottom-view">
   <view class="weui-flex__item ">
-    <view  class="item-liuyanban" bindtap="fabuaction">发布</view>
+    <!--<view  class="item-liuyanban" bindtap="fabuaction">发布</view>-->
+    <button formType="submit" class="item-liuyanban" >发布</button>
   </view>
 </view>
+</form>
 </block>
 
 <view class="fadeIn {{hideToast ? 'fadeOut' : ''}}" wx:if="{{toast}}">

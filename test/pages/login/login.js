@@ -20,16 +20,10 @@ Page({
       url: '../logs/logs'
     })
   },
-  getPhoneNumber(e) {
-    console.log(e.detail.errMsg)
-    console.log(e.detail.iv)
-    console.log(e.detail.encryptedData)
-  },
-  todetail: function (e) {
-    console.log('markertap ' + JSON.stringify(e))
-    console.log('todetail-' + e.currentTarget.dataset.lineid)
+  
+  goindex: function (e) {
     wx.navigateTo({
-      url: "/pages/detail/detail?lineid=" + e.currentTarget.dataset.lineid,
+      url: "/pages/list/list",
     });
   },
   showmyactive: function (e){
@@ -52,21 +46,6 @@ Page({
     var that = this;
     if (app.globalData.userInfo) {
       console.log('qihndebug-1-app.globalData.score ' + app.globalData.score)
-      wx.request({
-        url: 'https://jd.yousheng.tech/qihntest/wx/wode', // 
-        header: { 'content-type': 'application/json' },
-        data: {
-          code: 1,
-          userid: wx.getStorageSync("userid")
-        }, success(res2) {
-          console.log("home onLoad-res  " + JSON.stringify(res2.data))
-          that.setData({
-            activelist: res2.data.data,
-            user: res2.data.user
-
-          })
-        }
-      })
       this.setData({
         userInfo: app.globalData.userInfo,
         //score: app.globalData.score,
@@ -131,7 +110,21 @@ Page({
                 wx.setStorageSync("userid", res2.data.data.id)
                 app.globalData.score = res2.data.data.score
                 console.log('qihndebug-4-app.globalData.score ' + app.globalData.score)
-                
+                wx.request({
+                  url: 'https://jd.yousheng.tech/qihntest/wx/wode', // 
+                  header: { 'content-type': 'application/json' },
+                  data: {
+                    code: 1,
+                    userid: wx.getStorageSync("userid")
+                  }, success(res2) {
+                    console.log("home onLoad-res  " + JSON.stringify(res2.data))
+                    that.setData({
+                      activelist: res2.data.data,
+                      user: res2.data.user
+
+                    })
+                  }
+                })
                 that.setData({
 
                   score: app.globalData.score

@@ -91,3 +91,8 @@
 .viewshow{
   display: block;
 }
+
+.liuyanbandaka{
+  height: 130rpx;
+  width: 80%;
+}

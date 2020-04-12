@@ -1,0 +1,22 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <block wx:if="{{!hasUserInfo && canIUse && score == 0 }}">
+    <view class="item-title">欢迎</view>
+    <view class="item-title">
+      <image class="logoimg" src="/pages/images/logo.png" mode="cover"></image>
+    </view>
+    <button class="userinfobtn" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 微信登录 </button>
+    </block>
+
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      
+      <view class="item-title "> {{userInfo.nickName}}</view>
+      
+      <button bindtap="goindex" class="userinfobtn" wx:if="{{hasUserInfo}}" > 开始闯关 </button>
+
+    </block>
+  </view>
+  
+</view>

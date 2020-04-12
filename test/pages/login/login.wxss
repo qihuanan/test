@@ -56,6 +56,11 @@
   height: 200px;
   
 }
+.logoimg2{
+  width: 100px;
+  height: 100px;
+  
+}
 .item-top-logon {
   align-items: center;
   
@@ -88,36 +93,7 @@
   display:flex;
   flex: 1;
 }
-.xiangche-img-2{
-  margin: 10rpx;
-  width: 100%;
-  height: 400rpx;
-  border-radius: 10rpx;
 
-}
-.daohang{
-  margin: 10rpx;
-  text-align: center;
-  border-bottom: 2rpx solid #DDDEDE;
-}
-.iconunderline{
-  border-bottom: 5rpx solid #8FC400;
-}
-
-/* d  dd  */
-.img-view-active{
- display:flex; 
- flex-direction: column;
- align-items: center;
- flex-grow: 1;
- padding: 10rpx;
- height: 400rpx;
-}
-.xiangche-img-active{
-  width: 100%;
-  height: 400rpx;
-  border-radius: 10rpx;
-}
 
 
 .item-text {
@@ -125,20 +101,7 @@
   margin-top: -250rpx;
   
 }
-.active-title {
-  color: white;
-  font-size: 50rpx;
-  font-weight: 500;
-}
-.active-titlesub {
-  color: white;
-  font-size: 30rpx;
-  font-weight: 400;
-}
-.active-titlesub-text{
-  margin-right: 10rpx;
-  padding-right: 10rpx;
-}
+
 
 .img-tips{
   height: 30px;
@@ -147,16 +110,4 @@
 .dakatext{
   font-weight: bold;
   padding-bottom: 5px;
-}
-.inputtext{
-  width: 120px;
-  border-bottom: 1px solid gray;
-  display: inline-block;
-  margin-top: 0px;
-  margin-right: 10px;
-  font-size: 12px；
-  
-}
-.mobile3{
-  width: 60px;
 }

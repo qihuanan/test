@@ -1,27 +1,27 @@
 <!-- map.wxml -->
-<map id="map" longitude="116.391712" latitude="40.022103" scale="14" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location style="width: 100%; height: 400px;" show-location="true"></map>
+<map id="map" longitude="{{line.jingdu}}" latitude="{{line.weidu}}" scale="14" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location style="width: 100%; height: 400px;" show-location="true"></map>
 
 <view class="weui-flex ">
   <view class="weui-flex__item">
     <view class="item-text">
       <view class="active-title">
         <view class="active-title-top">
-          奥森北线
-          <mp-icon  class="active-title-like" icon="like" type="outline" color="red" size="{{35}}"></mp-icon>
+          {{line.name}}
+          <mp-icon bindtap="taplike" data-lineid="{{line.id}}"  class="active-title-like" icon="like" type="{{line.like == '1' ? 'field' : 'outline' }}" color="red" size="{{35}}"></mp-icon>
         </view>
         
         <view class="active-title-bottom weui-flex">
           <view class="weui-flex__item">
               <view class="">已用时</view>
-              <view class="active-title-bottom-item">1:23:06</view>
+              <view class="active-title-bottom-item">{{line.yiyongshi}}</view>
           </view>
           <view class="weui-flex__item">
               <view class="">已打卡</view>
-              <view class="active-title-bottom-item">6</view>
+              <view class="active-title-bottom-item">{{line.yidaka}}</view>
           </view>
           <view class="weui-flex__item">
               <view class="">已获积分</view>
-              <view class="active-title-bottom-item">200</view>
+              <view class="active-title-bottom-item">{{line.yijifen }}</view>
           </view>
         </view>
 
@@ -31,21 +31,25 @@
       <view class="active-body">
         
         <view class="weui-flex__item body-item">
-            <view class="body-item-pointname">签到点{{curpoint.name}}</view>
-            <view class="body-item-pointdesc">签到点描述{{curpoint.desc}}</view>
+            <view class="body-item-pointname">{{point.name}}</view>
+            <view class="body-item-pointdesc">{{point.description}}</view>
         </view>
 
-        <view class="weui-flex__item body-item-tips">
-            <view class="body-item-tips-name">提示标题{{curpoint.tips[0].tip }}</view>
-            <view class="body-item-tips-desc">提示内容{{curpoint.tips[0].desc }}</view>
-        </view>
-        
-        <image wx:if="{{! unlock}}" class="img-tips" src="/pages/images/suo.png" bindtap="openIOS1"></image>
-        <view class="weui-flex__item body-item-tips" wx:if="{{unlock}}">
-            <view class="body-item-tips-name">解锁提示2</view>
-            <view class="body-item-tips-desc">提示1，要求等文字描述</view>
-            
-        </view>
+        <block wx:for="{{tipList }}" wx:for-index="index" wx:key="t1">  
+          <view wx:if="{{item.lockflag == 0}}" class="weui-flex__item body-item-tips">
+              <view class="body-item-tips-name">{{item.name}} </view>
+              <view class="body-item-tips-desc">{{item.description}} </view>
+          </view>
+          <block wx:if="{{item.lockflag == 1}}" >
+            <view class="view-imgmask" bindtap="openIOS1" data-jifen="{{item.jifen}}" data-tipid="{{item.id}}">
+            <image wx:if="{{! unlock}}" class="img-tips" src="/pages/images/icon-lok@2x.png" ></image>
+            </view>
+            <view class="weui-flex__item body-item-tips" wx:if="{{unlock}}">
+                <view class="body-item-tips-name">{{item.name}}</view>
+                <view class="body-item-tips-desc">{{item.description}} </view>
+            </view>
+          </block>
+        </block>
 
       </view>
 
@@ -66,7 +70,7 @@
     <view class="weui-mask"></view>
     <view class="weui-dialog">
         <view class="weui-dialog__hd"><strong class="weui-dialog__title">提示</strong></view>
-        <view class="weui-dialog__bd">解锁提示，将扣除10积分！</view>
+        <view class="weui-dialog__bd">解锁提示，将扣除{{kouchujifen}}积分！</view>
         <view class="weui-dialog__ft">
             <a class="weui-dialog__btn weui-dialog__btn_default" bindtap="close">取消</a>
             <a class="weui-dialog__btn weui-dialog__btn_primary" bindtap="close2">确定</a>

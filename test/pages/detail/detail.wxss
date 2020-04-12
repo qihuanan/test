@@ -94,5 +94,9 @@
 
 .detailimg{
   width: 100%;
-  height: 800rpx;
+  height: 600rpx;
+}
+.liuyanbandaka{
+  height: 100rpx;
+  width: 90%;
 }

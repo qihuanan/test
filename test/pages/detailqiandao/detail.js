@@ -10,125 +10,95 @@ Page({
     cur: 3,
     files: [],
     src: '',
-    curpoint:{id:1,name:'任务点1',desc:'任务描述1', 
-      tips:[
-        {id:1,tip:'tips1',desc:'tips desc1'},
-        { id: 2, tip: 'tips1', desc: 'tips desc1' },
-      ]
-    },
-
-    markers: [{
-      id: 0,  title:'奥林匹克森林公园湿地',
-      latitude: 40.018720, longitude: 116.384537,
-      width: 20, height: 20,
-      iconPath: "/pages/images/green.jpg",
-    }, {
-        id: 1,
-        title: '奥林匹克森林南园',
-        latitude: 40.016062,
-        longitude: 116.391505,
-        width: 20,
-        height: 20, iconPath: "/pages/images/green.jpg",
-        
-      }, {
-        id: 2,
-        title: '奥林匹克森林北园',
-        latitude: 40.027594, longitude: 116.391752,
-        width: 20, height: 20, iconPath: "/pages/images/green.jpg",
-        
-      }, {
-        id: 4,
-        title: '奥林匹克森林服务中心',
-        latitude: 40.024500,
-        longitude: 116.398330,
-        width: 20,
-        height: 20, iconPath: "/pages/images/red.jpg",
-        
-      }],
-    polyline: [],
-    controls: [{
-      id: 1,
-      iconPath: '/pages/images/location.png',
-      position: {
-        left: 0,
-        top: 300 - 50,
-        width: 50,
-        height: 50
-      },
-      clickable: true
-    }],
-    
+    pictureupres:'',
+    line:{},
+    point:{},
+    juli:20
     
   },
   //事件处理函数
-  regionchange(e) {
-    console.log(e.type)
-  },
-  markertap(e) {
-    console.log('markertap ' + JSON.stringify(e) )
-    console.log('markertap '+e.markerId)
-    var that = this
-    that.setData({
-      'curpoint.name': e.markerId,
-      'curpoint.desc': e.markerId,
-      'curpoint.tips[0].tip': e.markerId,
-      'curpoint.tips[0].desc': e.markerId,
-    })
-  },
-  controltap(e) {
-    console.log('controltap ' +e.controlId)
-  },
-  
-  close: function () {
-    this.setData({
-      iosDialog1: false,
-    })
-  },
-  close2: function () {
-    this.setData({
-      unlock: true,
-      iosDialog1: false,
-    })
-  },
-  openIOS1: function () {
-    this.setData({
-      iosDialog1: true
-    });
-  },
-  dakaflagtap: function(){
-    this.setData({
-      dakaflag: true
-    })
-  },
+
   qiandaotap: function (e) {
     console.log('qiandaotap ' + JSON.stringify(e))
-    var res1 = e.currentTarget.dataset.res;
+    var res1 = e.currentTarget.dataset.res
+    var pages = getCurrentPages()    //获取加载的页面
+    var currentPage = pages[pages.length - 1]    //获取当前页面的对象
+    var jingdu = this.data.point.jingdu // 
+    var weidu = this.data.point.weidu
+    var juli = this.data.juli
+    console.log('qiandaotap-j-weidu: ' + jingdu + " " + weidu)
     var that = this
     wx.getLocation({
       type: 'wgs84',
       success(res) {
         console.log('qiandaotap ' + JSON.stringify(res))
-        var distance = that.distance(res.latitude, res.longitude, 39.918034, 116.415192);
+        var distance = that.distance(res.latitude, res.longitude, weidu, jingdu);
         console.log("当前位置距离北京故宫：", distance, "千米")
-        if (res1 == 1){
-          wx.navigateTo({
-            url: '/pages/msgsuccess/msg_success'
+        if (juli < distance || res1 == 1){
+          console.log("当uploadFile：" + app.globalData.curupimgsrc )
+          wx.uploadFile({
+            url: 'https://jd.yousheng.tech/qihntest/wx/upfile', //  
+            name: 'imagefile',
+            //url: 'https://jd.yousheng.tech/qihntest/upload', //  
+            //name: 'filepath',
+            filePath: app.globalData.curupimgsrc,
+            header: {
+              'Content-Type': 'multipart/form-data'
+            },
+            formData: {
+              'user': 'test'
+            },
+            success(res) {
+              console.log('uploadFile res ' + JSON.stringify(res))
+              var resjson = JSON.parse(res.data)
+              console.log('uploadFile res2 ' + resjson.data)
+              app.globalData.curupimgsrc = resjson.data
+              wx.request({
+                url: 'https://jd.yousheng.tech/qihntest/wx/qiandao', //
+                header: { 'content-type': 'application/json' },
+                data: {
+                  code: 1,
+                  pointid: app.globalData.curpointid,
+                  userid: wx.getStorageSync("userid"),
+                  picture: app.globalData.curupimgsrc
+                }, success(res2) {
+                  console.log("detail qiandao-res  " + JSON.stringify(res2.data))
+                  wx.navigateTo({
+                    url: '/pages/msgsuccess/msg_success'
+                  })
+                  that.setData({
+                    //point: res2.data.point,
+                    hasUserInfo: true
+                  })
+                }
+              })
+              
+            },
+            fail(res){
+              console.log('uploadFile fail res ' + JSON.stringify(res))
+            }
           })
+          
         }else{
           wx.navigateTo({
             url: '/pages/msgwarn/msg_warn'
           })
         }
         
-        if (distance<30){
-          that.setData({
-            'curpoint.name': distance+'千米',
-          })
-        }
+        // if (distance < jingdu){
+        //   that.setData({
+        //     'curpoint.name': distance+'千米',
+        //   })
+        // }
         
       },
       fail: () => {
         //不允许打开定位
+        wx.showToast({
+          title: '获取定位失败，请前往设置打开定位权限',
+          icon: 'none',
+          duration: 3000
+        })
         wx.getSetting({
           success: (res) => {
             if (!res.authSetting['scope.userLocation']) {
@@ -148,11 +118,12 @@ Page({
   },
   takePhoto(e) {
     var that = this;
-    //setTimeout(function(){},1000)
+    //setTimeout(function(){},1000) 
     const ctx = wx.createCameraContext()
     ctx.takePhoto({
       quality: 'high',
       success: (res) => {
+        app.globalData.curupimgsrc = res.tempImagePath
         wx.showToast({
           title: '正在验证地址信息！请确保打开GPS定位！',
           icon: 'none',
@@ -172,7 +143,8 @@ Page({
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: (res) => {
-        that.qiandaotap(e)
+        app.globalData.curupimgsrc = res.tempFilePaths[0]
+        console.log("chooseImage-res " + res.tempFilePaths)
         wx.showToast({
           title: '正在验证地址信息！请确保打开GPS定位！',
           icon: 'none',
@@ -184,6 +156,7 @@ Page({
           //files: that.data.files.concat(res.tempFilePaths),
           src:  res.tempFilePaths,
         });
+        that.qiandaotap(e)
       }
     })
   },
@@ -202,25 +175,26 @@ Page({
     })
   },
   onLoad: function (options) {
-    console.log("onLoad"+ options.lineid)
-    app.globalData.curlineid = options.lineid
+    console.log("detailqiandao-onLoad "+ options.lineid)
+    console.log("detailqiandao-onLoad-line " + app.globalData.curlineid)
+    console.log("detailqiandao-onLoad-point " + app.globalData.curpointid)
     var that = this
-    //this.getLineList(that)
     wx.request({
-      url: 'https://jd.yousheng.tech/qihntest/wx/getLineList',
+      url: 'https://jd.yousheng.tech/qihntest/wx/tiplist', // 只需要里面的point   
       header: { 'content-type': 'application/json' },
       data: {
-        code: 1
+        code: 1,
+        pointid: app.globalData.curpointid,
+        userid: wx.getStorageSync("userid")
       }, success(res2) {
-        console.log("login getLineList " + res2.data)
-        console.log("login getLineList2 " + res2.data.data)
-        //that.actvielist = res2.data.data
+        console.log("detail onLoad-res  " + JSON.stringify(res2.data))
         that.setData({
-          actvielist: res2.data.data,
+          point: res2.data.point,
           hasUserInfo: true
         })
       }
     })
+  
     
   },
 
@@ -238,16 +212,3 @@ Page({
   
   
 })
-/**
- * label: {
-        content: '金水区绿地原盛国际',  //文本
-        color: '#FF0202',  //文本颜色
-        borderRadius: 3,  //边框圆角
-        borderWidth: 1,  //边框宽度
-        borderColor: '#FF0202',  //边框颜色
-        bgColor: '#ffffff',  //背景色
-        padding: 5,  //文本边缘留白
-        textAlign: 'center'  //文本对齐方式。有效值: left, right, center
-      }
- * 
- */

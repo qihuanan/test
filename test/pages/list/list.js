@@ -30,8 +30,8 @@ Page({
       data: {
         code: 1
       }, success(res2) {
-        console.log("login getLineList " + res2.data)
-        console.log("login getLineList2 " + res2.data.data)
+        //console.log("login getLineList " + res2.data)
+        console.log("login getLineList2 " + JSON.stringify(res2.data.data))
         //that.actvielist = res2.data.data
         that.setData({
           actvielist: res2.data.data,

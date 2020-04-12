@@ -3,11 +3,20 @@ const app = getApp()
 Page({
   data: {
     motto: 'Hello World',
+    longitude: 116.384537,
+    latitude: 40.018720,
+    
     iosDialog1: false,
     unlock: false,
     dakaflag:false,
     photoflag:false,
     files: [],
+    line: {},
+    pointlist:[],
+    tipList:[],
+    point:{},
+    kouchujifen:1,
+    tipid:0,
     src: '',
     curpoint:{id:1,name:'任务点1',desc:'任务描述1', 
       tips:[
@@ -19,15 +28,15 @@ Page({
     markers: [{
       id: 0,  title:'奥林匹克森林公园湿地',
       latitude: 40.018720, longitude: 116.384537,
-      width: 20, height: 20,
-      iconPath: "/pages/images/green.jpg",
+      width: 40, height: 40,
+      iconPath: "/pages/images/icon-des-d@2x.png",
     }, {
         id: 1,
         title: '奥林匹克森林南园',
         latitude: 40.016062,
         longitude: 116.391505,
-        width: 20,
-        height: 20, iconPath: "/pages/images/green.jpg",
+        width: 40,
+        height: 40, iconPath: "/pages/images/icon-des-und@2x.png",
         
       }, {
         id: 2,
@@ -47,7 +56,7 @@ Page({
     polyline: [],
     controls: [{
       id: 1,
-      iconPath: '/pages/images/location.png',
+      iconPath: '/pages/images/icon-loc@2x.png',
       position: {
         left: 0,
         top: 400 - 50,
@@ -59,14 +68,32 @@ Page({
     
     
   },
-  //事件处理函数
+  //事件处理函数 
   regionchange(e) {
     console.log(e.type)
   },
   markertap(e) {
     console.log('markertap ' + JSON.stringify(e) )
     console.log('markertap '+e.markerId)
+    app.globalData.curpointid = e.markerId
+    console.log('markertap curpointid ' + e.markerId)
     var that = this
+    wx.request({
+      url: 'https://jd.yousheng.tech/qihntest/wx/tiplist',
+      header: { 'content-type': 'application/json' },
+      data: {
+        pointid: e.markerId,
+        userid: wx.getStorageSync("userid")
+      }, success(res2) {
+        console.log("markertap res " + JSON.stringify(res2.data))
+        that.setData({
+          point: res2.data.point,
+          unlock:false,
+          tipList: res2.data.tipList
+        })
+      }
+    })
+    
     that.setData({
       'curpoint.name': e.markerId,
       'curpoint.desc': e.markerId,
@@ -75,7 +102,25 @@ Page({
     })
   },
   controltap(e) {
-    console.log('controltap ' +e.controlId)
+    var that = this
+    console.log('controltap ' + e.controlId)
+    wx.getLocation({
+      type: 'wgs84',
+      success(res) {
+        console.log('controltap-res ' + JSON.stringify(res))
+        that.setData({
+          'line.weidu': res.latitude,
+          'line.jingdu': res.longitude
+        })
+      },
+      fail(res){
+        wx.showToast({
+          title: '获取定位失败，请前往设置打开定位权限',
+          icon: 'none',
+          duration: 1000
+        })
+      }
+    })
   },
   
   close: function () {
@@ -83,15 +128,35 @@ Page({
       iosDialog1: false,
     })
   },
-  close2: function () {
+  close2: function (e) { //unlockTip 
+    
+    var that = this
+    console.log("detailon close2 " + that.data.tipid)
+    wx.request({
+      url: 'https://jd.yousheng.tech/qihntest/wx/unlockTip',
+      header: { 'content-type': 'application/json' },
+      data: {
+        tipid: that.data.tipid,
+        userid: wx.getStorageSync("userid")
+      }, success(res2) {
+        console.log("fabuaction " + JSON.stringify(res2.data.data))
+        that.setData({
+          mess: '',
+          //listshow: 1
+        })
+      }
+    })
     this.setData({
       unlock: true,
       iosDialog1: false,
     })
   },
-  openIOS1: function () {
+  openIOS1: function (e) {
+    console.log("detailon onLoad " + JSON.stringify(e))
     this.setData({
-      iosDialog1: true
+      iosDialog1: true,
+      kouchujifen: e.currentTarget.dataset.jifen,
+      tipid: e.currentTarget.dataset.tipid
     });
   },
   dakaflagtap: function(){
@@ -99,63 +164,26 @@ Page({
       dakaflag: true
     })
   },
-  qiandaotap: function (e) {
-    console.log('qiandaotap ' + JSON.stringify(e))
-    var res1 = e.currentTarget.dataset.res;
+  taplike: function (e) {
+    console.log('taplike ' + JSON.stringify(e))
+    console.log('curlineid ' + app.globalData.curlineid)
     var that = this
-    wx.getLocation({
-      type: 'wgs84',
-      success(res) {
-        console.log('qiandaotap ' + JSON.stringify(res))
-        var distance = that.distance(res.latitude, res.longitude, 39.918034, 116.415192);
-        console.log("当前位置距离北京故宫：", distance, "千米")
-        if (res1 == 1){
-          wx.navigateTo({
-            url: '/pages/msgsuccess/msg_success'
-          })
-        }else{
-          wx.navigateTo({
-            url: '/pages/msgwarn/msg_warn'
-          })
-        }
-        
-        if (distance<30){
-          that.setData({
-            'curpoint.name': distance+'千米',
-          })
-        }
-        
-      }
-    })
-   
-  },
-  takePhoto() {
-    
-    //setTimeout(function(){},1000)
-    const ctx = wx.createCameraContext()
-    ctx.takePhoto({
-      quality: 'high',
-      success: (res) => {
-        this.setData({
-          src: res.tempImagePath,
-          photoflag: false
+    wx.request({
+      url: 'https://jd.yousheng.tech/qihntest/wx/linelike',
+      header: { 'content-type': 'application/json' },
+      data: {
+        lineid: app.globalData.curlineid,
+        userid: wx.getStorageSync("userid")
+      }, success(res2) {
+        console.log("taplike res  " + res2.data.data)
+        console.log("taplike res  " + JSON.stringify(res2.data.data))
+        that.setData({
+          'line.like': res2.data.data,
+          hasUserInfo: true
         })
       }
     })
-  },
-  chooseImage: function (e) {
-    var that = this;
-    wx.chooseImage({
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: (res) => {
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        this.setData({
-          //files: that.data.files.concat(res.tempFilePaths),
-          src:  res.tempFilePaths,
-        });
-      }
-    })
+
   },
   bindViewTap: function() {
     wx.navigateTo({
@@ -164,33 +192,42 @@ Page({
   },
   onShow: function (options){
     wx.setNavigationBarTitle({
-      title: '线路名称1'
+      title: '线路详情'
     })
     this.onLoad(options)
   },
   onLoad: function (options) {
-    console.log("onLoad " + JSON.stringify(options))
+    console.log("detailon onLoad " + JSON.stringify(options))
     var curlineid = app.globalData.curlineid
-    console.log("onLoad-curlineid " + curlineid)
+    console.log("detailon onLoad-curlineid " + curlineid)
     if (options && options.lineid){
-      console.log("onLoad" + options.lineid)
+      console.log("detailon onLoad" + options.lineid)
       app.globalData.curlineid = options.lineid
       curlineid = app.globalData.curlineid
-      console.log("onLoad-curlineid2 " + curlineid)
+      console.log("detailon onLoad-curlineid2 " + curlineid)
+    }else{
+      app.globalData.curlineid = 7
     }
     var that = this
     //this.getLineList(that)
     wx.request({
-      url: 'https://jd.yousheng.tech/qihntest/wx/getLineList',
+      url: 'https://jd.yousheng.tech/qihntest/wx/linedetailon',
       header: { 'content-type': 'application/json' },
       data: {
-        code: 1
+        code: 1,
+        lineid: app.globalData.curlineid,
+        userid: wx.getStorageSync("userid")
       }, success(res2) {
-        console.log("login getLineList " + res2.data)
-        console.log("login getLineList2 " + res2.data.data)
+        console.log("detailon linedetailon  " + JSON.stringify(res2.data))
         //that.actvielist = res2.data.data
+        app.globalData.curpointid= res2.data.point.id
         that.setData({
-          actvielist: res2.data.data,
+          line: res2.data.line, //parseFloat
+          pointlist: res2.data.pointlist,
+          tipList: res2.data.tipList,
+          point: res2.data.point,
+          
+          markers: res2.data.marklist,
           hasUserInfo: true
         })
       }

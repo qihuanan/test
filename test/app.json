@@ -1,15 +1,17 @@
 {
   "pages": [
-    "pages/list/list",
+    "pages/login/login",
+"pages/list/list",
+    "pages/home/home",
+    "pages/detailon/detail",
+    
+    "pages/message/message",
+    
     "pages/detailmap/detail",
     "pages/detail/detail",
     "pages/detailqiandao/detail",
     
-    "pages/detailon/detail",
-    
-    "pages/home/home",
-    "pages/message/message",
-    
+   
     "pages/index/index",
 
     "pages/msgsuccess/msg_success",

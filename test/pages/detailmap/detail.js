@@ -9,6 +9,10 @@ Page({
     unlock: false,
     dakaflag: false,
     photoflag: false,
+    line: {},
+    pointlist: [],
+    tipList: [],
+    point: {},
     height:600,
     cur: 4,
     files: [],
@@ -52,7 +56,7 @@ Page({
     polyline: [],
     controls: [{
       id: 1,
-      iconPath: '/pages/images/location.png',
+      iconPath: '/pages/images/icon-loc@2x.png',
       position: {
         left: 0,
         top: 600 - 50,
@@ -85,10 +89,10 @@ Page({
     wx.getLocation({
       type: 'wgs84',
       success(res) {
-        console.log('qiandaotap ' + JSON.stringify(res))
+        console.log('controltap-res ' + JSON.stringify(res))
         that.setData({
-          latitude : res.latitude,
-          longitude : res.longitude
+          'line.weidu': res.latitude,
+          'line.jingdu': res.longitude
         })
       }
     })
@@ -120,26 +124,40 @@ Page({
     console.log("height " + that.data.controls[0].position.top)
   },
   onLoad: function (options) {
-    console.log("onLoad" + options.lineid)
+    var curlineid = app.globalData.curlineid
+    console.log("detailmap onLoad-curlineid " + curlineid)
+    if (options && options.lineid) {
+      console.log("detailmap onLoad" + options.lineid)
+      app.globalData.curlineid = options.lineid
+      curlineid = app.globalData.curlineid
+      console.log("detailmap onLoad-curlineid2 " + curlineid)
+    } else {
+      app.globalData.curlineid = 7
+    }
     var that = this
-    //this.getLineList(that)
+    
     wx.request({
-      url: 'https://jd.yousheng.tech/qihntest/wx/getLineList',
+      url: 'https://jd.yousheng.tech/qihntest/wx/linedetailon',
       header: { 'content-type': 'application/json' },
       data: {
-        code: 1
+        code: 1,
+        lineid: app.globalData.curlineid,
+        userid: wx.getStorageSync("userid")
       }, success(res2) {
-        console.log("login getLineList " + res2.data)
-        console.log("login getLineList2 " + res2.data.data)
-        //that.actvielist = res2.data.data
+        console.log("detailmap linedetailon  " + JSON.stringify(res2.data))
+        app.globalData.curpointid = res2.data.point.id
         that.setData({
-          actvielist: res2.data.data,
+          line: res2.data.line, //parseFloat
+          pointlist: res2.data.pointlist,
+          tipList: res2.data.tipList,
+          point: res2.data.point,
+
+          markers: res2.data.marklist,
           hasUserInfo: true
         })
       }
     })
 
   },
-
 
 })

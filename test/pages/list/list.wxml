@@ -13,9 +13,9 @@
             <mp-icon wx:if="{{index % 2 == 0}}" class="active-title-like" icon="like" type="field" color="#FFBB4C" size="{{40}}"></mp-icon>
           </view>
           <view class="active-titlesub">
-            <text class="active-titlesub-text">5km</text>
-            <text class="active-titlesub-text">10点</text>
-            <text class="active-titlesub-text">20积分</text>
+            <text class="active-titlesub-text">{{item.changdu}}km</text>
+            <text class="active-titlesub-text">{{item.dianshu}}点</text>
+            <text class="active-titlesub-text">{{item.jifen}}积分</text>
           </view>
         </view>
     </view>

@@ -18,9 +18,16 @@
             <text class="jifen">积分：{{score}}</text>
           </view>
           <view>
-            <text class="mobile">手机号：138*******</text>
-            <text class="mobile2 mobile">更改电话</text>
+            <text class="mobile">手机号：{{user.mobile}}</text>
+            
+            <input class="inputtext" placeholder=""/> <text bindtap="">绑定</text>
+            <!-- 
+            <text class="mobile2 mobile">
+            绑定电话
+            </text>
+            -->
           </view>
+          
         </view>
       </view>
     </block>
@@ -31,23 +38,29 @@
 <!-- 导航 -->
 <view class="weui-flex daohang">
   <view class="weui-flex__item {{showpanel == 1 ? 'iconunderline' : '' }}" data-panel="1"  bindtap="showmyactive">
+  <!-- 
     <mp-icon  class="" icon="camera"  size="{{35}}" type="outline" color="{{showpanel == 1 ? '#8FC400' : '' }}" ></mp-icon>
+    -->
+    <image class="img-tips" src="/pages/images/icon-his@2x.png" ></image>
+    <view class="dakatext">打卡记录</view>
   </view>
   <view class="weui-flex__item {{showpanel == 2 ? 'iconunderline' : '' }}" bindtap="showmyactive" data-panel="2"  >
-    <mp-icon  class="" icon="like"  size="{{35}}" color="{{showpanel == 2 ? '#8FC400' : '' }}" type="outline"></mp-icon>
+    
+    <image class="img-tips" src="/pages/images/icon-fav-1@2x.png" ></image>
+    <view class="dakatext">收藏路线</view>
   </view>
 </view>
 
 <block wx:if="{{showpanel == 1 }}">
-<block wx:for="{{2 }}" wx:for-index="index" wx:for-item="item" wx:key="t1">
-<view class="img-view-active " bindtap="todetail" data-lineid="{{item.id}}">
-  <image class="xiangche-img-active" src="https://jd.yousheng.tech/qihntest/download?filename=2020-03-28/33d19a10-183d-4e2d-8e6c-e885043ce4e4_badaling.jpg"></image>
+<block wx:for="{{activelist }}" wx:for-index="index" wx:for-item="item" wx:key="t1">
+<view wx:if="{{item.flag == 1 }}" class="img-view-active " bindtap="todetail" data-lineid="{{item.lineid}}">
+  <image class="xiangche-img-active" src="https://jd.yousheng.tech/qihntest/wx/showimg?filename={{item.line.picture1}}"></image>
   <view class="item-text">
     <view class="active-title">
-      线路名称{{index}}
+      {{item.line.name}}
     </view>
     <view class="active-titlesub">
-      <text class="active-titlesub-text">10个点</text>
+      <text class="active-titlesub-text">{{item.line.dianshu}}个点</text>
     </view>
   </view>
 </view>
@@ -77,17 +90,17 @@
 </block>
 -->
 
-<!-- 我参与的喜欢的活动列表 -->
+<!-- 我喜欢的活动列表 -->
 <block wx:if="{{showpanel == 2 }}">
-<block wx:for="{{2 }}" wx:for-index="index" wx:for-item="item" wx:key="t1">
-<view class="img-view-active " bindtap="todetail" data-lineid="{{item.id}}">
-  <image class="xiangche-img-active" src="https://jd.yousheng.tech/qihntest/download?filename=2020-03-28/33d19a10-183d-4e2d-8e6c-e885043ce4e4_badaling.jpg"></image>
+<block wx:for="{{activelist }}" wx:for-index="index" wx:for-item="item" wx:key="t1">
+<view wx:if="{{item.flag == 2 }}" class="img-view-active " bindtap="todetail" data-lineid="{{item.lineid}}">
+  <image class="xiangche-img-active" src="https://jd.yousheng.tech/qihntest/wx/showimg?filename={{item.line.picture1}}"></image>
   <view class="item-text">
     <view class="active-title">
-      线路名称{{index}}
+      {{item.line.name}}
     </view>
     <view class="active-titlesub">
-      <text class="active-titlesub-text">10个点</text>
+      <text class="active-titlesub-text">{{item.line.dianshu}}个点</text>
     </view>
   </view>
 </view>
