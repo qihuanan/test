@@ -18,9 +18,9 @@
             <text class="jifen">积分：{{score}}</text>
           </view>
           <view>
-            <text class="mobile">手机号：{{user.mobile}}</text>
+            <text class="mobile">手机号：</text>
             
-            <input class="inputtext" placeholder=""/> <text bindtap="">绑定</text>
+            <input class="inputtext" value="{{user.mobile!='null' ? user.mobile : ''}}"/> <text bindtap="">绑定</text>
             <!-- 
             <text class="mobile2 mobile">
             绑定电话

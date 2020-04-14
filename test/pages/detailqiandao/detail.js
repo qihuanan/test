@@ -13,7 +13,7 @@ Page({
     pictureupres:'',
     line:{},
     point:{},
-    juli:20
+    juli: 1
     
   },
   //事件处理函数
@@ -34,7 +34,7 @@ Page({
         console.log('qiandaotap ' + JSON.stringify(res))
         var distance = that.distance(res.latitude, res.longitude, weidu, jingdu);
         console.log("当前位置距离北京故宫：", distance, "千米")
-        if (juli < distance || res1 == 1){
+        if (juli > distance) {//|| res1 == 1
           console.log("当uploadFile：" + app.globalData.curupimgsrc )
           wx.uploadFile({
             url: 'https://jd.yousheng.tech/qihntest/wx/upfile', //  
@@ -63,9 +63,19 @@ Page({
                   picture: app.globalData.curupimgsrc
                 }, success(res2) {
                   console.log("detail qiandao-res  " + JSON.stringify(res2.data))
-                  wx.navigateTo({
-                    url: '/pages/msgsuccess/msg_success'
-                  })
+                  if(res2.data.data == 'has'){
+                    wx.showToast({
+                      title: '您已签到过此任务点啦，请到下个任务点签到吧！',
+                      icon: 'none',
+                      duration: 2000
+                    })
+                  }
+                  if (res2.data.data == 'ok') {
+                    wx.navigateTo({
+                      url: '/pages/msgsuccess/msg_success'
+                    })
+                  }
+                  
                   that.setData({
                     //point: res2.data.point,
                     hasUserInfo: true

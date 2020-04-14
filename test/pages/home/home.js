@@ -41,11 +41,27 @@ Page({
   onShow:function(){
     console.log('qihndebug-onShow-1-getStorageSync.score ' + wx.getStorageSync("score") )
     console.log('qihndebug-onShow-1-getStorageSync.hasUserInfo ' + wx.getStorageSync("hasUserInfo"))
-    this.setData({
-      cur: 5,
-      score: wx.getStorageSync("score"),
-      hasUserInfo: wx.getStorageSync("hasUserInfo")
+    var that = this;
+    wx.request({
+      url: 'https://jd.yousheng.tech/qihntest/wx/wode', // 
+      header: { 'content-type': 'application/json' },
+      data: {
+        code: 1,
+        userid: wx.getStorageSync("userid")
+      }, success(res2) {
+        console.log("home onLoad-res  " + JSON.stringify(res2.data))
+        app.globalData.score = res2.data.user.score
+        wx.setStorageSync("score", app.globalData.score)
+        that.setData({
+          activelist: res2.data.data,
+          user: res2.data.user,
+          cur: 5,
+          score: wx.getStorageSync("score"),
+          hasUserInfo: wx.getStorageSync("hasUserInfo")
+        })
+      }
     })
+    
   },
   onLoad: function (options) {
     console.log('qihndebug-options- ' + options)

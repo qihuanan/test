@@ -72,6 +72,14 @@ Page({
   regionchange(e) {
     console.log(e.type)
   },
+  showimgTap: function (e) {
+    console.log('showimgTap ' + JSON.stringify(e))
+    console.log('showimgTap ' + e.currentTarget.dataset.imgsrc)
+    wx.previewImage({
+      current: e.currentTarget.dataset.imgsrc,
+      urls: [e.currentTarget.dataset.imgsrc]
+    })
+  },
   markertap(e) {
     console.log('markertap ' + JSON.stringify(e) )
     console.log('markertap '+e.markerId)
@@ -139,7 +147,7 @@ Page({
         tipid: that.data.tipid,
         userid: wx.getStorageSync("userid")
       }, success(res2) {
-        console.log("fabuaction " + JSON.stringify(res2.data.data))
+        console.log("unlockTip " + JSON.stringify(res2.data.data))
         that.setData({
           mess: '',
           //listshow: 1
@@ -194,20 +202,6 @@ Page({
     wx.setNavigationBarTitle({
       title: '线路详情'
     })
-    this.onLoad(options)
-  },
-  onLoad: function (options) {
-    console.log("detailon onLoad " + JSON.stringify(options))
-    var curlineid = app.globalData.curlineid
-    console.log("detailon onLoad-curlineid " + curlineid)
-    if (options && options.lineid){
-      console.log("detailon onLoad" + options.lineid)
-      app.globalData.curlineid = options.lineid
-      curlineid = app.globalData.curlineid
-      console.log("detailon onLoad-curlineid2 " + curlineid)
-    }else{
-      app.globalData.curlineid = 7
-    }
     var that = this
     //this.getLineList(that)
     wx.request({
@@ -220,22 +214,36 @@ Page({
       }, success(res2) {
         console.log("detailon linedetailon  " + JSON.stringify(res2.data))
         //that.actvielist = res2.data.data
-        app.globalData.curpointid= res2.data.point.id
+        app.globalData.curpointid = res2.data.point.id
         that.setData({
           line: res2.data.line, //parseFloat
           pointlist: res2.data.pointlist,
           tipList: res2.data.tipList,
           point: res2.data.point,
-          
+
           markers: res2.data.marklist,
           hasUserInfo: true
         })
       }
     })
+  },
+  onLoad: function (options) {
+    console.log("detailon onLoad " + JSON.stringify(options))
+    var curlineid = app.globalData.curlineid
+    console.log("detailon onLoad-curlineid " + curlineid)
+    if (options && options.lineid){
+      console.log("detailon onLoad" + options.lineid)
+      app.globalData.curlineid = options.lineid
+      curlineid = app.globalData.curlineid
+      console.log("detailon onLoad-curlineid2 " + curlineid)
+    }else{
+      //app.globalData.curlineid = 7
+    }
+    
     
   },
 
-  distance: function (la1, lo1, la2, lo2) { //返回距离(单位千米或公里)
+  distance: function (la1, lo1, la2, lo2) { //返回距离(单位千米或公里) 
     var La1 = la1 * Math.PI / 180.0;
     var La2 = la2 * Math.PI / 180.0;
     var La3 = La1 - La2;

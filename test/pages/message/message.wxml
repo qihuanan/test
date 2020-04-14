@@ -17,9 +17,17 @@
 </scroll-view>
 
 <view class="weui-flex bottom-view">
+<!-- 
+  <view class="weui-flex__item ">
+    <view class="item-liuyanban2" bindtap="showmess">
+      <image class="liuyanbandaka" src="/pages/images/btm-mes@2x.png" ></image>
+    </view>
+  </view>
+  -->
   <view class="weui-flex__item ">
     <view  class="item-liuyanban" bindtap="showmess">留言</view>
   </view>
+  
 </view>
 </block>
 

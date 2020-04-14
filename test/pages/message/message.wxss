@@ -27,3 +27,11 @@
   font-size: 30rpx;
   color: #534F4F;
 }
+.liuyanbandaka{
+  width: 153px;
+  height: 62px;
+  text-align: center;
+}
+.item-liuyanban2{
+  text-align: center;
+}

@@ -22,3 +22,11 @@
   right: 0;
   margin-top: 20rpx;
 }
+.weui-tabbar-img {
+  height: 30px;
+  width: 30px;
+}
+.weui-tabbar-img-2 {
+  height: 30px;
+  width:17px;
+}

@@ -9,8 +9,8 @@
         <view class="item-text">
           <view class="active-title">
             {{item.name}}
-            <mp-icon wx:if="{{index % 2 == 1}}" class="active-title-like" icon="like" type="outline" color="white" size="{{40}}"></mp-icon>
-            <mp-icon wx:if="{{index % 2 == 0}}" class="active-title-like" icon="like" type="field" color="#FFBB4C" size="{{40}}"></mp-icon>
+            <mp-icon bindtap="taplike" data-lineid="{{item.id}}" data-index="{{index}}" class="active-title-like" icon="like" type="{{item.like == '1' ? 'field' : 'outline' }}" color="#FFBB4C" size="{{40}}"></mp-icon>
+            
           </view>
           <view class="active-titlesub">
             <text class="active-titlesub-text">{{item.changdu}}km</text>

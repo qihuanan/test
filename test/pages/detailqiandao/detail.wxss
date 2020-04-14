@@ -93,6 +93,6 @@
 }
 
 .liuyanbandaka{
-  height: 130rpx;
-  width: 80%;
+  height: 78px;
+  width: 310px;
 }

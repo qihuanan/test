@@ -132,7 +132,7 @@ Page({
       curlineid = app.globalData.curlineid
       console.log("detailmap onLoad-curlineid2 " + curlineid)
     } else {
-      app.globalData.curlineid = 7
+      //app.globalData.curlineid = 7
     }
     var that = this
     
