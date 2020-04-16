@@ -110,26 +110,10 @@ Page({
                 wx.setStorageSync("userid", res2.data.data.id)
                 app.globalData.score = res2.data.data.score
                 console.log('qihndebug-4-app.globalData.score ' + app.globalData.score)
-                wx.request({
-                  url: 'https://jd.yousheng.tech/qihntest/wx/wode', // 
-                  header: { 'content-type': 'application/json' },
-                  data: {
-                    code: 1,
-                    userid: wx.getStorageSync("userid")
-                  }, success(res2) {
-                    console.log("home onLoad-res  " + JSON.stringify(res2.data))
-                    that.setData({
-                      activelist: res2.data.data,
-                      user: res2.data.user
-
-                    })
-                  }
-                })
-                that.setData({
-
-                  score: app.globalData.score
-
-                })
+                wx.redirectTo({
+                  url: "/pages/list/list",
+                });
+               
               }
             })
           } else {

@@ -1,13 +1,5 @@
 <view class="weui-flex">
   <view class="weui-flex__item item-top-login">
-    <block wx:if="{{!hasUserInfo && canIUse && score == 0 }}">
-    <view class="item-title">欢迎</view>
-    <view class="item-title">
-      <image class="logoimg" src="/pages/images/logo.png" mode="cover"></image>
-    </view>
-    <button class="userinfobtn" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 微信登录 </button>
-    </block>
-    <block wx:else>
       <view class="weui-flex item-top-logon">
         <view class="weui-flex__item ">
           <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
@@ -17,20 +9,15 @@
             <text >{{userInfo.nickName}}</text>
             <text class="jifen">积分：{{score}}</text>
           </view>
+          <!--
           <view>
             <text class="mobile">手机号：</text>
-            
             <input class="inputtext" value="{{user.mobile!='null' ? user.mobile : ''}}"/> <text bindtap="">绑定</text>
-            <!-- 
-            <text class="mobile2 mobile">
-            绑定电话
-            </text>
-            -->
           </view>
-          
+           -->
         </view>
       </view>
-    </block>
+    
   </view>
   
 </view>

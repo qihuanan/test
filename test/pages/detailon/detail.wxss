@@ -70,9 +70,10 @@
   font-size: 30rpx;
 }
 .img-tips{
-  height: 30px;
-  width: 30px;
+  height: 69px;
+  width: 54px;
   margin-top: 40rpx;
+  padding-bottom: 10px;
 }
 .view-imgmask{
   align-items: center;
@@ -98,6 +99,5 @@
   display: block;
 }
 .tipimg{
-  width: 300px;
-  height: 100px;
+  height: 300px;
 }

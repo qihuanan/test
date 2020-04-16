@@ -1,5 +1,5 @@
 <view>
-<image wx:if="{{line.picture2}}"  bindtap="showimgTap" data-imgsrc="https://jd.yousheng.tech/qihntest/download?filename={{line.picture2}}" class="detailimg" src="https://jd.yousheng.tech/qihntest/download?filename={{line.picture2}}"></image>
+<image  wx:if="{{line.picture2}}" mode="aspectFit"  bindtap="showimgTap" data-imgsrc="https://jd.yousheng.tech/qihntest/download?filename={{line.picture2}}" class="detailimg" src="https://jd.yousheng.tech/qihntest/download?filename={{line.picture2}}"></image>
 </view>
 
 <scroll-view scroll-y="true" style="height: 500rpx;" class="weui-flex ">
@@ -39,12 +39,12 @@
         <view class="active-title-bottom weui-flex">
           <view class="weui-flex__item ">
               <navigator url="/pages/message/message" >
-                <image src="/pages/images/btm-mes@2x.png" class="liuyanbandaka"></image>
+                <image mode="aspectFit" src="/pages/images/btm-mes@3x.png" class="liuyanbandaka"></image>
               </navigator>
           </view>
           <view  class="weui-flex__item " bindtap="dakaflagtap" data-lineid="{{line.id}}"> 
               <view >
-                <image src="/pages/images/btm-str@2x.png" class="liuyanbandaka"></image>
+                <image mode="aspectFit" src="/pages/images/btm-str@3x.png" class="liuyanbandaka"></image>
               </view>
           </view>
         </view>

@@ -113,7 +113,8 @@ Page({
     var that = this
     console.log('controltap ' + e.controlId)
     wx.getLocation({
-      type: 'wgs84',
+      //type: 'wgs84',
+      type: 'gcj02',
       success(res) {
         console.log('controltap-res ' + JSON.stringify(res))
         that.setData({
@@ -150,6 +151,7 @@ Page({
         console.log("unlockTip " + JSON.stringify(res2.data.data))
         that.setData({
           mess: '',
+          tipList: res2.data.tipList
           //listshow: 1
         })
       }
@@ -160,12 +162,24 @@ Page({
     })
   },
   openIOS1: function (e) {
-    console.log("detailon onLoad " + JSON.stringify(e))
-    this.setData({
-      iosDialog1: true,
-      kouchujifen: e.currentTarget.dataset.jifen,
-      tipid: e.currentTarget.dataset.tipid
-    });
+    console.log("detailon openIOS1 " + JSON.stringify(e))
+    var canunlock = e.currentTarget.dataset.canunlock
+    if (canunlock != '1'){
+      console.log("detailon openIOS1 解锁顺序限制，不可解锁！")
+      wx.showToast({
+        title: '解锁限制，请您按照顺序解锁！',
+        icon: 'none',
+        duration: 3000
+      })
+      return;
+    }else{
+      this.setData({
+        iosDialog1: true,
+        kouchujifen: e.currentTarget.dataset.jifen,
+        tipid: e.currentTarget.dataset.tipid
+      })
+    }
+    
   },
   dakaflagtap: function(){
     this.setData({

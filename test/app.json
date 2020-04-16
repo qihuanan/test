@@ -1,11 +1,12 @@
 {
   "pages": [
+    "pages/list/list",
     "pages/login/login",
-    "pages/message/message",
     
     "pages/detailon/detail",
+     
+    "pages/message/message",
     
-    "pages/list/list",
     "pages/home/home",
     
     "pages/detailmap/detail",

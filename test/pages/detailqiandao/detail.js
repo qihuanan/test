@@ -29,7 +29,8 @@ Page({
     console.log('qiandaotap-j-weidu: ' + jingdu + " " + weidu)
     var that = this
     wx.getLocation({
-      type: 'wgs84',
+      //type: 'wgs84',
+      type: 'gcj02',
       success(res) {
         console.log('qiandaotap ' + JSON.stringify(res))
         var distance = that.distance(res.latitude, res.longitude, weidu, jingdu);

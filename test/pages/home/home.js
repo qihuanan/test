@@ -32,6 +32,14 @@ Page({
       url: "/pages/detail/detail?lineid=" + e.currentTarget.dataset.lineid,
     });
   },
+  islogin: function () {
+    var userid = wx.getStorageSync("userid")
+    if (userid == null || userid == '') {
+      wx.reLaunch({
+        url: '/pages/login/login'
+      })
+    }
+  },
   showmyactive: function (e){
     console.log(e.currentTarget.dataset.panel)
     this.setData({
@@ -64,25 +72,11 @@ Page({
     
   },
   onLoad: function (options) {
+    this.islogin()
     console.log('qihndebug-options- ' + options)
     var that = this;
     if (app.globalData.userInfo) {
       console.log('qihndebug-1-app.globalData.score ' + app.globalData.score)
-      wx.request({
-        url: 'https://jd.yousheng.tech/qihntest/wx/wode', // 
-        header: { 'content-type': 'application/json' },
-        data: {
-          code: 1,
-          userid: wx.getStorageSync("userid")
-        }, success(res2) {
-          console.log("home onLoad-res  " + JSON.stringify(res2.data))
-          that.setData({
-            activelist: res2.data.data,
-            user: res2.data.user
-
-          })
-        }
-      })
       this.setData({
         userInfo: app.globalData.userInfo,
         //score: app.globalData.score,

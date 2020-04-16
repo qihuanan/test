@@ -87,7 +87,8 @@ Page({
     var that = this
     console.log('controltap ' + e.controlId)
     wx.getLocation({
-      type: 'wgs84',
+      //type: 'wgs84',
+      type: 'gcj02',
       success(res) {
         console.log('controltap-res ' + JSON.stringify(res))
         that.setData({

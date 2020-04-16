@@ -16,6 +16,14 @@ Page({
       url: '../logs/logs'
     })
   },
+  islogin: function () {
+    var userid = wx.getStorageSync("userid")
+    if(userid == null || userid == ''){
+      wx.reLaunch({
+        url: '/pages/login/login'
+      })
+    }
+  },
   taplike: function (e) {
     console.log('taplike ' + JSON.stringify(e))
     var that = this
@@ -36,6 +44,11 @@ Page({
 
   },
   onShow:function(){
+    var userid = wx.getStorageSync("userid")
+    console.log("onLaunch userid " + userid)
+    if (userid == null || userid == '') {
+      return;
+    }
     this.setData({
       cur:1
     })
@@ -56,7 +69,7 @@ Page({
     })
   },
   onLoad: function () {
-   
+    this.islogin()
   },
   getLineList: function(obj){
   },

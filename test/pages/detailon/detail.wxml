@@ -39,18 +39,16 @@
           <view wx:if="{{item.lockflag == 0}}" class="weui-flex__item body-item-tips">
               <view class="body-item-tips-name">{{item.name}} </view>
               <view class="body-item-tips-desc">{{item.description}} 
-                <image wx:if="{{item.img != null}}" bindtap="showimgTap" data-imgsrc="https://jd.yousheng.tech/qihntest/download?filename={{item.img}}"  class="tipimg" src="https://jd.yousheng.tech/qihntest/download?filename={{item.img}}" ></image>
+                <image mode="aspectFit" wx:if="{{item.img != null && item.img != ''}}" bindtap="showimgTap" data-imgsrc="https://jd.yousheng.tech/qihntest/download?filename={{item.img}}"  class="tipimg2" src="https://jd.yousheng.tech/qihntest/download?filename={{item.img}}" ></image>
               </view>
           </view>
           <block wx:if="{{item.lockflag == 1}}" >
-            <view class="view-imgmask" bindtap="openIOS1" data-jifen="{{item.jifen}}" data-tipid="{{item.id}}">
-            <image wx:if="{{! unlock}}" class="img-tips" src="/pages/images/icon-lok@2x.png" ></image>
-            </view>
-            <view class="weui-flex__item body-item-tips" wx:if="{{unlock}}">
+            <view class="weui-flex__item body-item-tips" >
                 <view class="body-item-tips-name">{{item.name}}</view>
-                <view class="body-item-tips-desc">{{item.description}}
-                <image wx:if="{{item.img != null}}" bindtap="showimgTap" data-imgsrc="https://jd.yousheng.tech/qihntest/download?filename={{item.img}}"  class="tipimg" src="https://jd.yousheng.tech/qihntest/download?filename={{item.img}}" ></image>
-                </view>
+            </view>
+            <view class="view-imgmask" bindtap="openIOS1" data-canunlock="{{item.canunlock}}" data-jifen="{{item.jifen}}" data-tipid="{{item.id}}">
+            <image  class="img-tips" src="/pages/images/icon-lok@2x.png" ></image>
+            <!-- wx:if="{{! unlock}}" -->
             </view>
           </block>
         </block>
