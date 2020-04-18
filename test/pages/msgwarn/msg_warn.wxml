@@ -3,7 +3,7 @@
 		<view class="weui-msg__icon-area"><i class="weui-icon-warn weui-icon_msg"></i></view>
 		<view class="weui-msg__text-area">
 			<h2 class="weui-msg__title">签到失败</h2>
-			<view class="weui-msg__desc">签到失败，可能离任务点太远了点，走近些再试试？</view>
+			<view class="weui-msg__desc">签到失败，可能离任务点太远了点，走近些再试试？{{distance}}</view>
 		</view>
 		
 		<view class="weui-msg__opr-area">

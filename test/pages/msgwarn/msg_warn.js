@@ -1,7 +1,7 @@
 const app = getApp()
 Page({
   data: {
-
+    distance: '',
   },
   //事件处理函数
   bindViewTap: function () {
@@ -16,8 +16,11 @@ Page({
   },
 
   onLoad: function (options) {
-    console.log("onLoad" + options)
-
+    console.log("onLoad " + options)
+    this.setData({
+      //point: res2.data.point,
+      distance: options.distance
+    })
   }
 
 

@@ -5,7 +5,7 @@ Page({
     motto: 'Hello World',
     longitude: 116.384537,
     latitude: 40.018720,
-    
+    scale: 14,
     iosDialog1: false,
     unlock: false,
     dakaflag:false,
@@ -21,50 +21,23 @@ Page({
     curpoint:{id:1,name:'任务点1',desc:'任务描述1', 
       tips:[
         {id:1,tip:'tips1',desc:'tips desc1'},
-        { id: 2, tip: 'tips1', desc: 'tips desc1' },
       ]
     },
 
     markers: [{
       id: 0,  title:'奥林匹克森林公园湿地',
       latitude: 40.018720, longitude: 116.384537,
-      width: 40, height: 40,
+      width: 30, height: 30,
       iconPath: "/pages/images/icon-des-d@2x.png",
-    }, {
-        id: 1,
-        title: '奥林匹克森林南园',
-        latitude: 40.016062,
-        longitude: 116.391505,
-        width: 40,
-        height: 40, iconPath: "/pages/images/icon-des-und@2x.png",
-        
-      }, {
-        id: 2,
-        title: '奥林匹克森林北园',
-        latitude: 40.027594, longitude: 116.391752,
-        width: 20, height: 20, iconPath: "/pages/images/green.jpg",
-        
-      }, {
-        id: 4,
-        title: '奥林匹克森林服务中心',
-        latitude: 40.024500,
-        longitude: 116.398330,
-        width: 20,
-        height: 20, iconPath: "/pages/images/red.jpg",
-        
-      }],
+    }],
     polyline: [],
     controls: [{
-      id: 1,
-      iconPath: '/pages/images/icon-loc@2x.png',
-      position: {
-        left: 0,
-        top: 400 - 50,
-        width: 50,
-        height: 50
-      },
-      clickable: true
-    }],
+      id: 1, iconPath: '/pages/images/icon-loc@2x.png', clickable: true,
+      position: {left: 0, top: 400 - 50,width: 50, height: 50}
+    },{
+        id: 2, iconPath: '/pages/images/icon-loc@2x.png', clickable: true,
+        position: { left: 55, top: 400 - 50, width: 50, height: 50 }
+      }],
     
     
   },
@@ -97,6 +70,9 @@ Page({
         that.setData({
           point: res2.data.point,
           unlock:false,
+          scale:20,
+          'line.jingdu': res2.data.point.jingdu,
+          'line.weidu': res2.data.point.weidu,
           tipList: res2.data.tipList
         })
       }
@@ -112,24 +88,32 @@ Page({
   controltap(e) {
     var that = this
     console.log('controltap ' + e.controlId)
-    wx.getLocation({
-      //type: 'wgs84',
-      type: 'gcj02',
-      success(res) {
-        console.log('controltap-res ' + JSON.stringify(res))
-        that.setData({
-          'line.weidu': res.latitude,
-          'line.jingdu': res.longitude
-        })
-      },
-      fail(res){
-        wx.showToast({
-          title: '获取定位失败，请前往设置打开定位权限',
-          icon: 'none',
-          duration: 1000
-        })
-      }
-    })
+    if (e.controlId == 1){
+      wx.getLocation({
+        //type: 'wgs84',
+        type: 'gcj02',
+        success(res) {
+          console.log('controltap-res ' + JSON.stringify(res))
+          that.setData({
+            'line.weidu': res.latitude,
+            'line.jingdu': res.longitude
+          })
+        },
+        fail(res) {
+          wx.showToast({
+            title: '获取定位失败，请前往设置打开定位权限',
+            icon: 'none',
+            duration: 1000
+          })
+        }
+      })
+    }else{
+      this.setData({
+        'line.weidu': that.data.latitude,
+        'line.jingdu': that.data.longitude
+      })
+    }
+    
   },
   
   close: function () {
@@ -234,7 +218,8 @@ Page({
           pointlist: res2.data.pointlist,
           tipList: res2.data.tipList,
           point: res2.data.point,
-
+          longitude: res2.data.line.jingdu,
+          latitude: res2.data.line.weidu,
           markers: res2.data.marklist,
           hasUserInfo: true
         })

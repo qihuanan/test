@@ -11,6 +11,7 @@ Page({
     files: [],
     src: '',
     pictureupres:'',
+    
     line:{},
     point:{},
     juli: 1
@@ -35,6 +36,7 @@ Page({
         console.log('qiandaotap ' + JSON.stringify(res))
         var distance = that.distance(res.latitude, res.longitude, weidu, jingdu);
         console.log("当前位置距离北京故宫：", distance, "千米")
+        
         if (juli > distance) {//|| res1 == 1
           console.log("当uploadFile：" + app.globalData.curupimgsrc )
           wx.uploadFile({
@@ -92,7 +94,7 @@ Page({
           
         }else{
           wx.navigateTo({
-            url: '/pages/msgwarn/msg_warn'
+            url: '/pages/msgwarn/msg_warn?distance=' + distance
           })
         }
         

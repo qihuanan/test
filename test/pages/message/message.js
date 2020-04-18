@@ -29,15 +29,18 @@ Page({
   fabuaction: function (e){
     console.log("fabuaction " + JSON.stringify(e))
     var that = this
-    
+    var curlineid = app.globalData.curlineid
+    console.log("message onShow-curlineid " + curlineid)
     wx.request({
       url: 'https://jd.yousheng.tech/qihntest/wx/writeMessage',
       header: { 'content-type': 'application/json' },
       data: {
         description: e.detail.value.evaContent,
+        lineid: curlineid,
         userid: wx.getStorageSync("userid")
       }, success(res2) {
-        console.log("fabuaction " + JSON.stringify(res2.data.data))
+        console.log("fabuaction2 " + JSON.stringify(res2.data.data))
+        that.getlist(that)
         that.setData({
           mess: '',
           //listshow: 1
@@ -45,7 +48,7 @@ Page({
       }
     })
     that.openToast(that) // reLaunch  redirectTo 
-    that.getlist(that)
+    
     // wx.redirectTo({
     //   url: `/pages/message/message`
     // })
@@ -75,17 +78,20 @@ Page({
     wx.setNavigationBarTitle({
       title: '留言板'
     })
+    this.getlist(that)
     this.setData({
       cur: 2,
     })
   },
   getlist:function(obj){
+    var curlineid = app.globalData.curlineid
+    console.log("message onShow-curlineid " + curlineid)
     var that = obj
     wx.request({
       url: 'https://jd.yousheng.tech/qihntest/wx/messageList',
       header: { 'content-type': 'application/json' },
       data: {
-        code: 1
+        lineid: curlineid
       }, success(res2) {
         console.log("messagelist " + JSON.stringify(res2.data.data))
         that.setData({
@@ -98,7 +104,7 @@ Page({
   onLoad: function (options) {
     console.log("onLoad "+ options)
     var that = this
-    this.getlist(that)
+    //this.getlist(that)
    
   }
   

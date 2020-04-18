@@ -21,7 +21,6 @@ Page({
       id: 1, name: '任务点1', desc: '任务描述1',
       tips: [
         { id: 1, tip: 'tips1', desc: 'tips desc1' },
-        { id: 2, tip: 'tips1', desc: 'tips desc1' },
       ]
     },
 
@@ -30,28 +29,6 @@ Page({
       latitude: 40.018720, longitude: 116.384537,
       width: 20, height: 20,
       iconPath: "/pages/images/green.jpg",
-    }, {
-      id: 1,
-      title: '奥林匹克森林南园',
-      latitude: 40.016062,
-      longitude: 116.391505,
-      width: 20,
-      height: 20, iconPath: "/pages/images/green.jpg",
-
-    }, {
-      id: 2,
-      title: '奥林匹克森林北园',
-      latitude: 40.027594, longitude: 116.391752,
-      width: 20, height: 20, iconPath: "/pages/images/green.jpg",
-
-    }, {
-      id: 4,
-      title: '奥林匹克森林服务中心',
-      latitude: 40.024500,
-      longitude: 116.398330,
-      width: 20,
-      height: 20, iconPath: "/pages/images/red.jpg",
-
     }],
     polyline: [],
     controls: [{
