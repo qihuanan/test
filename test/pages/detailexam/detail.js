@@ -75,7 +75,7 @@ Page({
                   }
                   if (res2.data.data == 'ok') {
                     wx.navigateTo({
-                      url: '/pages/msgsuccess/msg_success?jifen='+that.data.point.jifen
+                      url: '/pages/msgsuccess/msg_success'
                     })
                   }
                   

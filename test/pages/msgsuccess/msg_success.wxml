@@ -3,7 +3,7 @@
 		<view class="weui-msg__icon-area"><i class="weui-icon-success weui-icon_msg"></i></view>
 		<view class="weui-msg__text-area">
 			<h2 class="weui-msg__title">打卡成功</h2>
-			<view class="weui-msg__desc">恭喜您 +20积分！ </view>
+			<view class="weui-msg__desc">恭喜您 +{{jifen}}积分！ </view>
 		</view>
 		<view class="weui-msg__opr-area">
 			<view class="weui-btn-area">

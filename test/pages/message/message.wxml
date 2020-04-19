@@ -10,6 +10,7 @@
       </view>
       <view class="weui-media-box__bd">
         <view class="weui-media-box__desc">{{item.description}}</view>
+        <view class="messtime">{{item.time}}</view>
       </view>
     </a>
     </block>

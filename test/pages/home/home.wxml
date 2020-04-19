@@ -47,7 +47,7 @@
       {{item.line.name}}
     </view>
     <view class="active-titlesub">
-      <text class="active-titlesub-text">{{item.line.dianshu}}个点</text>
+      <text class="active-titlesub-text">已打卡{{item.username}}/总计{{item.line.dianshu}}个点</text>
     </view>
   </view>
 </view>

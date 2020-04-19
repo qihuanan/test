@@ -14,7 +14,7 @@
         <view class="active-title-bottom weui-flex">
           <view class="weui-flex__item">
               <view class="">总长</view>
-              <view class="active-title-bottom-item">{{line.changdu}}km</view>
+              <view class="active-title-bottom-item">约{{line.changdu}}km</view>
           </view>
           <view class="weui-flex__item">
               <view class="">打卡点</view>
@@ -52,6 +52,13 @@
       </view>
 
       <view class="active-body">
+
+        <view class="active-title-bottom weui-flex">
+          <view class="weui-flex__item ">
+          <!-- 
+              <navigator url="/pages/detailqiandao2/detail" class="item-liuyanban">临时-2期任务按钮入口</navigator>-->
+          </view>
+        </view>
 
       </view>
 

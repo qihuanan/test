@@ -6,7 +6,7 @@
     <view class="item-title">
       <image class="logoimg" src="/pages/images/logo.png" mode="cover"></image>
     </view>
-    <button class="userinfobtn" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 微信登录 </button>
+    <button class="userinfobtn" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 微信登录 </button>
     
 
    

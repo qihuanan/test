@@ -21,16 +21,12 @@ Page({
 
   qiandaotap: function (e) {
     console.log('qiandaotap ' + JSON.stringify(e))
-    var res1 = e.currentTarget.dataset.res
-    var pages = getCurrentPages()    //获取加载的页面
-    var currentPage = pages[pages.length - 1]    //获取当前页面的对象
-    var jingdu = this.data.point.jingdu // 
+    var jingdu = this.data.point.jingdu
     var weidu = this.data.point.weidu
     var juli = this.data.juli
     console.log('qiandaotap-j-weidu: ' + jingdu + " " + weidu)
     var that = this
     wx.getLocation({
-      //type: 'wgs84',
       type: 'gcj02',
       success(res) {
         console.log('qiandaotap ' + JSON.stringify(res))
@@ -38,58 +34,11 @@ Page({
         console.log("当前位置距离北京故宫：", distance, "米")
         
         if (parseInt(juli) > parseInt(distance)) {//|| res1 == 1
-          console.log("当uploadFile：" + app.globalData.curupimgsrc )
-          wx.uploadFile({
-            url: 'https://jd.yousheng.tech/qihntest/wx/upfile', //  
-            name: 'imagefile',
-            //url: 'https://jd.yousheng.tech/qihntest/upload', //  
-            //name: 'filepath',
-            filePath: app.globalData.curupimgsrc,
-            header: {
-              'Content-Type': 'multipart/form-data'
-            },
-            formData: {
-              'user': 'test'
-            },
-            success(res) {
-              console.log('uploadFile res ' + JSON.stringify(res))
-              var resjson = JSON.parse(res.data)
-              console.log('uploadFile res2 ' + resjson.data)
-              app.globalData.curupimgsrc = resjson.data
-              wx.request({
-                url: 'https://jd.yousheng.tech/qihntest/wx/qiandao', //
-                header: { 'content-type': 'application/json' },
-                data: {
-                  code: 1,
-                  pointid: app.globalData.curpointid,
-                  userid: wx.getStorageSync("userid"),
-                  picture: app.globalData.curupimgsrc
-                }, success(res2) {
-                  console.log("detail qiandao-res  " + JSON.stringify(res2.data))
-                  if(res2.data.data == 'has'){
-                    wx.showToast({
-                      title: '您已签到过此任务点啦，请到下个任务点签到吧！',
-                      icon: 'none',
-                      duration: 2000
-                    })
-                  }
-                  if (res2.data.data == 'ok') {
-                    wx.navigateTo({
-                      url: '/pages/msgsuccess/msg_success?jifen='+that.data.point.jifen
-                    })
-                  }
-                  
-                  that.setData({
-                    //point: res2.data.point,
-                    hasUserInfo: true
-                  })
-                }
-              })
-              
-            },
-            fail(res){
-              console.log('uploadFile fail res ' + JSON.stringify(res))
-            }
+          console.log("签到距离内：" + app.globalData.curupimgsrc )
+          wx.showToast({
+            title: '去任务答题页面',
+            icon: 'none',
+            duration: 3000
           })
           
         }else{
@@ -97,13 +46,7 @@ Page({
             url: '/pages/msgwarn/msg_warn?distance=' + distance
           })
         }
-        
-        // if (distance < jingdu){
-        //   that.setData({
-        //     'curpoint.name': distance+'千米',
-        //   })
-        // }
-        
+      
       },
       fail: () => {
         //不允许打开定位
@@ -182,33 +125,31 @@ Page({
     wx.setNavigationBarTitle({
       title: '任务点打卡'
     })
-    //this.onLoad(options)
-    this.setData({
-      cur: 3,
-    })
-  },
-  onLoad: function (options) {
-    console.log("detailqiandao-onLoad "+ options.lineid)
-    console.log("detailqiandao-onLoad-line " + app.globalData.curlineid)
-    console.log("detailqiandao-onLoad-point " + app.globalData.curpointid)
     var that = this
     wx.request({
-      url: 'https://jd.yousheng.tech/qihntest/wx/tiplist', // 只需要里面的point   
+      url: 'https://jd.yousheng.tech/qihntest/wx/tiplist', //需要里面的point line   
       header: { 'content-type': 'application/json' },
       data: {
-        code: 1,
         pointid: app.globalData.curpointid,
         userid: wx.getStorageSync("userid")
       }, success(res2) {
         console.log("detail onLoad-res  " + JSON.stringify(res2.data))
         that.setData({
           point: res2.data.point,
-          juli: res2.data.line.qiandaojuli,
-          hasUserInfo: true
+          juli: res2.data.line.qiandaojuli
         })
+        that.qiandaotap(options)
       }
     })
-  
+    this.setData({
+      cur: 3,
+    })
+    
+  },
+  onLoad: function (options) {
+    console.log("detailqiandao-onLoad "+ options.lineid)
+    console.log("detailqiandao-onLoad-line " + app.globalData.curlineid)
+    console.log("detailqiandao-onLoad-point " + app.globalData.curpointid)
     
   },
 

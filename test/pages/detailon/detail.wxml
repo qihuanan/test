@@ -39,7 +39,7 @@
           <view wx:if="{{item.lockflag == 0}}" class="weui-flex__item body-item-tips">
               <view class="body-item-tips-name">{{item.name}} </view>
               <view class="body-item-tips-desc">{{item.description}} 
-                <image mode="aspectFit" wx:if="{{item.img != null && item.img != ''}}" bindtap="showimgTap" data-imgsrc="https://jd.yousheng.tech/qihntest/download?filename={{item.img}}"  class="tipimg2" src="https://jd.yousheng.tech/qihntest/download?filename={{item.img}}" ></image>
+                <image mode="heightFix" wx:if="{{item.img != null && item.img != ''}}" bindtap="showimgTap" data-imgsrc="https://jd.yousheng.tech/qihntest/download?filename={{item.img}}"  class="tipimg2" src="https://jd.yousheng.tech/qihntest/download?filename={{item.img}}" ></image>
               </view>
           </view>
           <block wx:if="{{item.lockflag == 1}}" >

@@ -6,6 +6,7 @@ Page({
     longitude: 116.384537,
     latitude: 40.018720,
     scale: 14,
+    scalecur: 14,
     iosDialog1: false,
     unlock: false,
     dakaflag:false,
@@ -15,6 +16,8 @@ Page({
     pointlist:[],
     tipList:[],
     point:{},
+    initmarkers:{},
+    prepoint:'', // 上次的点击点
     kouchujifen:1,
     tipid:0,
     src: '',
@@ -35,7 +38,7 @@ Page({
       id: 1, iconPath: '/pages/images/icon-loc@2x.png', clickable: true,
       position: {left: 0, top: 400 - 50,width: 50, height: 50}
     },{
-        id: 2, iconPath: '/pages/images/icon-loc@2x.png', clickable: true,
+        id: 2, iconPath: '/pages/images/icon-map2@2x.png', clickable: true,
         position: { left: 55, top: 400 - 50, width: 50, height: 50 }
       }],
     
@@ -54,11 +57,30 @@ Page({
     })
   },
   markertap(e) {
+    var that = this
     console.log('markertap ' + JSON.stringify(e) )
     console.log('markertap '+e.markerId)
     app.globalData.curpointid = e.markerId
     console.log('markertap curpointid ' + e.markerId)
-    var that = this
+    
+    var markers = that.data.initmarkers
+    for (var i in markers) {
+      if (markers[i].id == that.data.prepoint) {
+        markers[i].iconPath = "/pages/images/icon-des-d@2x.png"
+        break;
+      }
+    }
+    for (var i in markers){
+      if (markers[i].id == e.markerId){
+        markers[i].iconPath = "/pages/images/icon-flg-ylw@2x.png"
+        break;
+      }
+    }
+    that.setData({
+      markers: markers,
+      prepoint: e.markerId
+    })
+    
     wx.request({
       url: 'https://jd.yousheng.tech/qihntest/wx/tiplist',
       header: { 'content-type': 'application/json' },
@@ -70,7 +92,8 @@ Page({
         that.setData({
           point: res2.data.point,
           unlock:false,
-          scale:20,
+          scale:17,
+          markers:markers,
           'line.jingdu': res2.data.point.jingdu,
           'line.weidu': res2.data.point.weidu,
           tipList: res2.data.tipList
@@ -78,12 +101,6 @@ Page({
       }
     })
     
-    that.setData({
-      'curpoint.name': e.markerId,
-      'curpoint.desc': e.markerId,
-      'curpoint.tips[0].tip': e.markerId,
-      'curpoint.tips[0].desc': e.markerId,
-    })
   },
   controltap(e) {
     var that = this
@@ -95,6 +112,7 @@ Page({
         success(res) {
           console.log('controltap-res ' + JSON.stringify(res))
           that.setData({
+            scale: that.data.scalecur,
             'line.weidu': res.latitude,
             'line.jingdu': res.longitude
           })
@@ -109,6 +127,7 @@ Page({
       })
     }else{
       this.setData({
+        scale: that.data.scalecur,
         'line.weidu': that.data.latitude,
         'line.jingdu': that.data.longitude
       })
@@ -221,6 +240,9 @@ Page({
           longitude: res2.data.line.jingdu,
           latitude: res2.data.line.weidu,
           markers: res2.data.marklist,
+          initmarkers: res2.data.marklist,
+          scale: res2.data.line.ditudaxiao,
+          scalecur: res2.data.line.ditudaxiao,
           hasUserInfo: true
         })
       }

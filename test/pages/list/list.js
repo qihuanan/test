@@ -47,7 +47,7 @@ Page({
     var userid = wx.getStorageSync("userid")
     console.log("onLaunch userid " + userid)
     if (userid == null || userid == '') {
-      return;
+      //return;
     }
     this.setData({
       cur:1
@@ -69,7 +69,7 @@ Page({
     })
   },
   onLoad: function () {
-    this.islogin()
+    //this.islogin()
   },
   getLineList: function(obj){
   },

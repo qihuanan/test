@@ -14,8 +14,21 @@ Page({
     
   },
   //事件处理函数
-
+  islogin: function () {
+    var userid = wx.getStorageSync("userid")
+    if (userid == null || userid == '') {
+      wx.reLaunch({
+        url: '/pages/login/login'
+      })
+    }
+  },
   dakaflagtap: function(e){
+    this.islogin()
+    var userid = wx.getStorageSync("userid")
+    console.log("onLaunch userid " + userid)
+    if (userid == null || userid == '') {
+      return;
+    }
     var that  = this
     var lineid = e.currentTarget.dataset.lineid
     console.log("dakaflagtap par  " + lineid)

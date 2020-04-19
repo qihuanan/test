@@ -29,7 +29,7 @@ Page({
     console.log('markertap ' + JSON.stringify(e))
     console.log('todetail-' + e.currentTarget.dataset.lineid)
     wx.navigateTo({
-      url: "/pages/detail/detail?lineid=" + e.currentTarget.dataset.lineid,
+      url: "/pages/detailon/detail?lineid=" + e.currentTarget.dataset.lineid,
     });
   },
   islogin: function () {

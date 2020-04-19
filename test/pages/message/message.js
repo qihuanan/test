@@ -73,7 +73,16 @@ Page({
       }, 300);
     }, 3000);
   },
+  islogin: function () {
+    var userid = wx.getStorageSync("userid")
+    if (userid == null || userid == '') {
+      wx.reLaunch({
+        url: '/pages/login/login'
+      })
+    }
+  },
   onShow: function (options){
+    this.islogin()
     var that = this
     wx.setNavigationBarTitle({
       title: '留言板'

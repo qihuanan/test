@@ -1,0 +1,50 @@
+<view class="weui-flex ">
+  <view class="weui-flex__item">
+    <view class="item-text">
+      <view class="active-title">
+        <view class="active-title-top">
+          {{point.name}}
+        </view>
+      </view>
+    </view>
+  </view>
+			
+</view>
+
+<!-- camera.wxml  
+<camera class="" device-position="back" flash="off" binderror="error" style="width: 100%; height: 400px;"></camera> -->
+<view class="zhanweifu"></view>
+<image wx:if="{{src}}" src="{{src}}" style="width: 100%; height: 400px;"></image>
+
+<view class="active-title-bottom weui-flex">
+  <view  class="weui-flex__item " bindtap="takePhoto" data-res="1"> 
+    <view class="item-liuyanban2">
+      <image class="liuyanbandaka" src="/pages/images/btm-pht@2x.png" ></image>
+    </view>
+  </view>
+</view>
+<view class="active-title-bottom weui-flex">
+  <view  class="weui-flex__item " bindtap="chooseImage" data-res="0" >
+    <view class="item-liuyanban2" >
+      <image class="liuyanbandaka" src="/pages/images/btm-alb@2x.png" ></image>
+    </view>
+  </view>
+</view>
+
+<!-- 
+<view class="active-title-bottom weui-flex">
+  <view  class="weui-flex__item " bindtap="takePhoto" data-res="1"> 
+      <view class="item-liuyanban">拍照(此按钮签到成功)</view>
+  </view>
+</view>
+<view class="active-title-bottom weui-flex">
+  <view  class="weui-flex__item " bindtap="chooseImage" data-res="0" >
+      <view class="item-liuyanban" >相册(此按钮签到失败)</view>
+  </view>
+</view>
+-->
+
+
+<view class="pretabbar"></view>
+<import src ="/pages/template/tabbar.wxml"/>
+<template is="tabbar" data="{{cur:3}}" />

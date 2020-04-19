@@ -1,7 +1,7 @@
 const app = getApp()
 Page({
   data: {
-
+    jifen:1
   },
   //事件处理函数
   bindViewTap: function () {
@@ -16,7 +16,10 @@ Page({
   },
   
   onLoad: function (options) {
-    console.log("onLoad" + options)
+    console.log("onLoad " + options)
+    this.setData({
+      jifen: options.jifen
+    })
 
   }
 
