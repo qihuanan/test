@@ -36,43 +36,33 @@
   color: #AAAAAA;
   font-size: 35rpx;
 }
-.active-title-bottom-item {
-  color: #8FC400;
+
+.zhanweifu{
+  margin: 10rpx;
 }
 
-.active-body{
+.liuyanbandaka{
+  height: 78px;
+  width: 310px;
+}
+.question {
+  padding: 0 20px;
+}
+.question-name {
+  color: #8FC400;
+  padding: 10px 0px;
+}
+.question-desc{ 
+  padding: 5px 0px;
+}
+.inputclass{
+  border: 1px solid #DDDEDE;
+  height: 25px;
   
 }
-.body-item{
-  border-top: 2rpx solid #DDDEDE;
-  border-bottom: 2rpx solid #DDDEDE;
-  padding: 20rpx;
-  background-color: white;
-}
-.body-item-pointname{
-  color: #8FC400;
-  margin-bottom: 10rpx;
-}
-.body-item-pointdesc{
-  font-weight: 500;
-}
-
-.body-item-tips{
-  margin-top: 40rpx;
-  background-color: white;
-  padding: 20rpx;
-}
-.body-item-tips-name{
-  color: #9DCC6B;
-  font-size: 30rpx;
-}
-.body-item-tips-desc{
-  font-size: 30rpx;
-}
-.img-tips{
-  height: 150rpx;
-  width: 100%;
-  margin-top: 40rpx;
+.fengekuai {
+  padding: 5px 0px;
+  background-color: #F4F4F4;
 }
 .item-liuyanban{
   color:white;
@@ -81,18 +71,7 @@
   border-radius: 10rpx;
   background-color:  #8FC400;
 }
-.zhanweifu{
-  margin: 10rpx;
-}
-
-.viewhidden{
-  display: none;
-}
-.viewshow{
-  display: block;
-}
-
-.liuyanbandaka{
-  height: 78px;
-  width: 310px;
+.cameraclass{
+  margin: 5px 30px;
+  text-align: center;
 }

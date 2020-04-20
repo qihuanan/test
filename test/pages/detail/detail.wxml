@@ -53,12 +53,7 @@
 
       <view class="active-body">
 
-        <view class="active-title-bottom weui-flex">
-          <view class="weui-flex__item ">
-          <!-- 
-              <navigator url="/pages/detailqiandao2/detail" class="item-liuyanban">临时-2期任务按钮入口</navigator>-->
-          </view>
-        </view>
+        
 
       </view>
 

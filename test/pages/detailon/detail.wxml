@@ -20,7 +20,7 @@
               <view class="active-title-bottom-item">{{line.yidaka}}</view>
           </view>
           <view class="weui-flex__item">
-              <view class="">已获积分</view>
+              <view bindtap="totask" class="">已获积分</view>
               <view class="active-title-bottom-item">{{line.yijifen }}</view>
           </view>
         </view>
@@ -29,6 +29,19 @@
 
 
       <view class="active-body">
+
+      <view class="active-title-bottom weui-flex">
+        <view class="weui-flex__item ">
+            <navigator url="/pages/detailqiandao2/detail?cate=1" class="item-liuyanban">
+            临时-跳转到任务点配置的答题页面</navigator>
+        </view>
+      </view>
+      <view class="active-title-bottom weui-flex">
+        <view class="weui-flex__item ">
+            <navigator url="/pages/detailqiandao2/detail?cate=2" class="item-liuyanban">
+            临时-跳转到任务点配置的拍照上传图</navigator>
+        </view>
+      </view>
         
         <view class="weui-flex__item body-item">
             <view class="body-item-pointname">{{point.name}}</view>
@@ -38,8 +51,11 @@
         <block wx:for="{{tipList }}" wx:for-index="index" wx:key="t1">  
           <view wx:if="{{item.lockflag == 0}}" class="weui-flex__item body-item-tips">
               <view class="body-item-tips-name">{{item.name}} </view>
-              <view class="body-item-tips-desc">{{item.description}} 
-                <image mode="heightFix" wx:if="{{item.img != null && item.img != ''}}" bindtap="showimgTap" data-imgsrc="https://jd.yousheng.tech/qihntest/download?filename={{item.img}}"  class="tipimg2" src="https://jd.yousheng.tech/qihntest/download?filename={{item.img}}" ></image>
+              <view class="body-item-tips-desc">
+                <view>{{item.description}} </view>
+                <view class="tipimg">
+                <image mode="scaleToFill" wx:if="{{item.img != null && item.img != ''}}" bindtap="showimgTap" data-imgsrc="https://jd.yousheng.tech/qihntest/download?filename={{item.img}}"   src="https://jd.yousheng.tech/qihntest/download?filename={{item.img}}" ></image>
+                </view>
               </view>
           </view>
           <block wx:if="{{item.lockflag == 1}}" >

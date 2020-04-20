@@ -11,7 +11,7 @@ Page({
     files: [],
     src: '',
     pictureupres:'',
-    
+    cate:'',
     line:{},
     point:{},
     juli: 1
@@ -36,7 +36,7 @@ Page({
         if (parseInt(juli) > parseInt(distance)) {//|| res1 == 1
           console.log("签到距离内：" + app.globalData.curupimgsrc )
           wx.showToast({
-            title: '去任务答题页面',
+            title: '临时-看到此提示，证明距离验证成功，开始答题任务了',
             icon: 'none',
             duration: 3000
           })
@@ -72,6 +72,7 @@ Page({
     })
    
   },
+  
   takePhoto(e) {
     var that = this;
     //setTimeout(function(){},1000) 
@@ -106,11 +107,11 @@ Page({
           icon: 'none',
           duration: 2000
         })
-        
+
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         this.setData({
           //files: that.data.files.concat(res.tempFilePaths),
-          src:  res.tempFilePaths,
+          src: res.tempFilePaths,
         });
         that.qiandaotap(e)
       }
@@ -123,7 +124,7 @@ Page({
   },
   onShow: function (options){
     wx.setNavigationBarTitle({
-      title: '任务点打卡'
+      title: '任务点答题'
     })
     var that = this
     wx.request({
@@ -147,9 +148,11 @@ Page({
     
   },
   onLoad: function (options) {
-    console.log("detailqiandao-onLoad "+ options.lineid)
-    console.log("detailqiandao-onLoad-line " + app.globalData.curlineid)
-    console.log("detailqiandao-onLoad-point " + app.globalData.curpointid)
+    console.log("detailqiandao2-onLoad-cate " + options.cate)
+    this.setData({
+      cate: options.cate,
+    })
+    console.log("detailqiandao2-onLoad-point " + app.globalData.curpointid)
     
   },
 

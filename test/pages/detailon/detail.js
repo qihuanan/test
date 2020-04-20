@@ -48,6 +48,11 @@ Page({
   regionchange(e) {
     console.log(e.type)
   },
+  totask :function(){
+    wx.navigateTo({
+      url: '/pages/detailqiandao2/detail'
+    })
+  },
   showimgTap: function (e) {
     console.log('showimgTap ' + JSON.stringify(e))
     console.log('showimgTap ' + e.currentTarget.dataset.imgsrc)

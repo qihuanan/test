@@ -7,14 +7,61 @@
         </view>
       </view>
     </view>
-  </view>
-			
+  </view>	
 </view>
 
-<!-- camera.wxml  
-<camera class="" device-position="back" flash="off" binderror="error" style="width: 100%; height: 400px;"></camera> -->
+<view class="weui-flex">
+  <view  class="weui-flex__item question" > 
+    <view class="question-name">
+      问题
+    </view>
+    <view class="question-img">
+      <image src="/pages/images/logo.png" ></image>
+    </view>
+    <view wx:if="{{cate == 1}}" class="question-desc">
+      问题描述-这里是什么地方
+    </view>
+    <view wx:if="{{cate == 2}}" class="question-desc">
+      问题描述-请根据图片拍照或上传包含上图的图片
+    </view>
+    <view class="fengekuai"></view>
+    <view class="question-name">
+      答案
+    </view>
+    <view wx:if="{{cate == 1}}" class="question-desc">
+      <input class="inputclass"  placeholder="请输入答案" ></input>
+    </view>
+  </view>
+</view>
+
+<block wx:if="{{cate == 1}}">
+
+<view  class="active-title-bottom weui-flex">
+  <view  class="weui-flex__item "  > 
+    <view class="item-liuyanban">临时-提交按钮-待提供设计图
+      <!--<image class="liuyanbandaka" src="/pages/images/btm-pht@2x.png" ></image>-->
+    </view>
+  </view>
+</view>
+
+<view  class="active-title-bottom weui-flex">
+  <view  class="weui-flex__item item-liuyanban"  > 
+    <navigator url="/pages/examsuccess/examsuccess">临时-去答题成功页面</navigator>
+  </view>
+</view>
+<view  class="active-title-bottom weui-flex">
+  <view  class="weui-flex__item item-liuyanban"  > 
+    <navigator url="/pages/examfail/examfail">临时-去答题失败页面</navigator>
+  </view>
+</view>
+</block>
+
+<block wx:if="{{cate == 2}}">
+<view class="cameraclass">
+<camera class="" device-position="back" flash="off" binderror="error" style="width: 100%; height: 300px;"></camera>
 <view class="zhanweifu"></view>
-<image wx:if="{{src}}" src="{{src}}" style="width: 100%; height: 400px;"></image>
+<image wx:if="{{src}}" src="{{src}}" style="width: 100%; height: 300px;"></image>
+</view>
 
 <view class="active-title-bottom weui-flex">
   <view  class="weui-flex__item " bindtap="takePhoto" data-res="1"> 
@@ -30,20 +77,7 @@
     </view>
   </view>
 </view>
-
-<!-- 
-<view class="active-title-bottom weui-flex">
-  <view  class="weui-flex__item " bindtap="takePhoto" data-res="1"> 
-      <view class="item-liuyanban">拍照(此按钮签到成功)</view>
-  </view>
-</view>
-<view class="active-title-bottom weui-flex">
-  <view  class="weui-flex__item " bindtap="chooseImage" data-res="0" >
-      <view class="item-liuyanban" >相册(此按钮签到失败)</view>
-  </view>
-</view>
--->
-
+</block>
 
 <view class="pretabbar"></view>
 <import src ="/pages/template/tabbar.wxml"/>
