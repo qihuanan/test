@@ -16,20 +16,20 @@
       问题
     </view>
     <view class="question-img">
-      <image src="/pages/images/logo.png" ></image>
+      <image wx:if="{{exam.picture1 != '' }}" src="https://jd.yousheng.tech/qihntest/download?filename={{exam.picture1}}" ></image>
     </view>
     <view wx:if="{{cate == 1}}" class="question-desc">
-      问题描述-这里是什么地方
+      问题描述-这里是什么地方 {{exam.description}}
     </view>
     <view wx:if="{{cate == 2}}" class="question-desc">
-      问题描述-请根据图片拍照或上传包含上图的图片
+      问题描述-请根据图片拍照或上传包含上图的图片 {{exam.description}}
     </view>
     <view class="fengekuai"></view>
     <view class="question-name">
       答案
     </view>
     <view wx:if="{{cate == 1}}" class="question-desc">
-      <input class="inputclass"  placeholder="请输入答案" ></input>
+      <input class="inputclass" bindinput="bindKeyInput"  placeholder="请输入答案" ></input>
     </view>
   </view>
 </view>
@@ -38,8 +38,8 @@
 
 <view  class="active-title-bottom weui-flex">
   <view  class="weui-flex__item "  > 
-    <view class="item-liuyanban">临时-提交按钮-待提供设计图
-      <!--<image class="liuyanbandaka" src="/pages/images/btm-pht@2x.png" ></image>-->
+    <view class="item-liuyanban2" bindtap="qiandaosubmit">
+      <image class="liuyanbandaka" src="/pages/images/tijiao2.png" ></image>
     </view>
   </view>
 </view>

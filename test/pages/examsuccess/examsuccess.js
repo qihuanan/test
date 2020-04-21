@@ -2,7 +2,7 @@ const app = getApp()
 Page({
   data: {
     cur:5,
-   
+    prizeimg:'',
   },
   //事件处理函数
   
@@ -18,7 +18,10 @@ Page({
   onLoad: function (options) {
     console.log('qihndebug-options- ' + options)
     var that = this;
-    
+    that.setData({
+      prizeimg: options.prizeimg,
+      
+    })
   },
 
 })

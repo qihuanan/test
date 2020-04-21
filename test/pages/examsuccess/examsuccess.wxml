@@ -1,8 +1,8 @@
 <view class="container">
   <view class="userinfo">
     
-    <view class="item-title">这里需要提供答题正确的设计图
-      <image class="logoimg" src="/pages/images/logo.png" mode="cover"></image>
+    <view class="item-title">
+      <image wx:if="{{prizeimg != '' }}"  class="logoimg" src="https://jd.yousheng.tech/qihntest/download?filename={{prizeimg}}" mode="cover"></image>
     </view>
     <view class="item-gongxi">恭喜您获得</view>
     <view class="item-huode">藏宝图碎片</view>

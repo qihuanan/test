@@ -14,10 +14,115 @@ Page({
     cate:'',
     line:{},
     point:{},
-    juli: 1
-    
+    exam: { picture1:''},
+    juli: 1,
+    inputValue:'',
+    verify:"0",// 答案是否对
   },
   //事件处理函数
+  bindKeyInput: function (e) {
+    console.log('bindKeyInput  ' + JSON.stringify(e))
+    if (this.data.exam.answer.indexOf(e.detail.value) != -1 ){
+      this.setData({
+        inputValue: e.detail.value,
+        verify:'1',
+      })
+    }
+    
+  }, 
+  qiandaoupfile: function () {
+    var that = this
+    console.log("当uploadFile：" + app.globalData.curupimgsrc)
+    wx.uploadFile({
+      url: 'https://jd.yousheng.tech/qihntest/wx/upfile', //  
+      name: 'imagefile',
+      filePath: app.globalData.curupimgsrc,
+      header: {
+        'Content-Type': 'multipart/form-data'
+      },
+      formData: {
+        'user': 'test'
+      },
+      success(res) {
+        console.log('uploadFile res ' + JSON.stringify(res))
+        var resjson = JSON.parse(res.data)
+        console.log('uploadFile res2 ' + resjson.data)
+        app.globalData.curupimgsrc = resjson.data
+        wx.request({
+          url: 'https://jd.yousheng.tech/qihntest/wx/qiandao', //
+          header: { 'content-type': 'application/json' },
+          data: {
+            examid: 1,
+            answer: '答案1',
+            pointid: app.globalData.curpointid,
+            userid: wx.getStorageSync("userid"),
+            picture: app.globalData.curupimgsrc
+          }, success(res2) {
+            console.log("detail qiandao-res  " + JSON.stringify(res2.data))
+            if (res2.data.data == 'has') {
+              wx.showToast({
+                title: '您已签到过此任务点啦，请到下个任务点签到吧！',
+                icon: 'none',
+                duration: 2000
+              })
+            }
+            if (res2.data.data == 'ok') {
+              wx.navigateTo({
+                // 1期 提示获取积分
+                //url: '/pages/msgsuccess/msg_success?jifen=' + that.data.point.jifen
+                // 2期 碎片奖励
+                url: '/pages/examsuccess/examsuccess?prizeimg=' + res2.data.pointUserinfo.prizeimg
+              })
+            }
+
+          }
+        })
+
+      },
+      fail(res) {
+        console.log('uploadFile fail res ' + JSON.stringify(res))
+      }
+    })
+  },
+  qiandaosubmit: function(){
+    var that = this
+    if (that.data.verify != '1'){
+      console.log("qiandaosubmit-verify  " + that.data.verify)
+      wx.navigateTo({
+        url: '/pages/examfail/examfail'
+      })
+      return;
+    }
+    wx.request({
+      url: 'https://jd.yousheng.tech/qihntest/wx/qiandao', //
+      header: { 'content-type': 'application/json' },
+      data: {
+        examid: that.data.exam.id,
+        answer: that.data.inputValue,
+        pointid: app.globalData.curpointid,
+        userid: wx.getStorageSync("userid"),
+        picture: app.globalData.curupimgsrc
+      }, success(res2) {
+        console.log("detail qiandao-res  " + JSON.stringify(res2.data))
+        if (res2.data.data == 'has') {
+          wx.showToast({
+            title: '您已签到过此任务点啦，请到下个任务点签到吧！',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+        if (res2.data.data == 'ok') {
+          wx.navigateTo({
+            // 1期 提示获取积分
+            //url: '/pages/msgsuccess/msg_success?jifen=' + that.data.point.jifen
+            // 2期 碎片奖励
+            url: '/pages/examsuccess/examsuccess?prizeimg=' + res2.data.pointUserinfo.prizeimg
+          })
+        }
+
+      }
+    })
+  },
 
   qiandaotap: function (e) {
     console.log('qiandaotap ' + JSON.stringify(e))
@@ -39,6 +144,23 @@ Page({
             title: '临时-看到此提示，证明距离验证成功，开始答题任务了',
             icon: 'none',
             duration: 3000
+          })
+          //2期获取 答题信息
+          wx.request({
+            url: 'https://jd.yousheng.tech/qihntest/wx/exam',
+            header: { 'content-type': 'application/json' },
+            data: {
+              pointid: app.globalData.curpointid,
+              userid: wx.getStorageSync("userid")
+            }, success(res2) {
+              console.log("detail qiandaotap-res  " + JSON.stringify(res2.data))
+              that.setData({
+                point: res2.data.point,
+                cate: res2.data.exam.cate,
+                exam: res2.data.exam
+              })
+              
+            }
           })
           
         }else{
@@ -86,7 +208,7 @@ Page({
           icon: 'none',
           duration: 2000
         })
-        that.qiandaotap(e)
+        that.qiandaoupfile()
         this.setData({
           src: res.tempImagePath,
           photoflag: false
@@ -113,7 +235,7 @@ Page({
           //files: that.data.files.concat(res.tempFilePaths),
           src: res.tempFilePaths,
         });
-        that.qiandaotap(e)
+        that.qiandaoupfile()
       }
     })
   },

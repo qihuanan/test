@@ -15,8 +15,8 @@
   justify-content: center;
 }
 .logoimg{
-  width: 200px;
-  height: 200px;
+  width: 126px;
+  height: 367px;
 }
 .item-gongxi{
   font-size: 30px;

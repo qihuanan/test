@@ -42,8 +42,8 @@
 }
 
 .liuyanbandaka{
-  height: 78px;
-  width: 310px;
+  height: 124px;
+  width: 306px;
 }
 .question {
   padding: 0 20px;
@@ -57,7 +57,7 @@
 }
 .inputclass{
   border: 1px solid #DDDEDE;
-  height: 25px;
+  height: 40px;
   
 }
 .fengekuai {
