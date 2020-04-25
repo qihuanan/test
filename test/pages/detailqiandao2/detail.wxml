@@ -44,6 +44,7 @@
   </view>
 </view>
 
+<!-->
 <view  class="active-title-bottom weui-flex">
   <view  class="weui-flex__item item-liuyanban"  > 
     <navigator url="/pages/examsuccess/examsuccess">临时-去答题成功页面</navigator>
@@ -54,6 +55,8 @@
     <navigator url="/pages/examfail/examfail">临时-去答题失败页面</navigator>
   </view>
 </view>
+-->
+
 </block>
 
 <block wx:if="{{cate == 2}}">

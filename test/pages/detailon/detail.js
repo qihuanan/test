@@ -70,6 +70,11 @@ Page({
     
     var markers = that.data.initmarkers
     for (var i in markers) {
+      if (markers[i].iconPath == "/pages/images/icon-flg-ylw@2x.png") {
+        markers[i].iconPath = "/pages/images/icon-des-d@2x.png"
+      }
+    }
+    for (var i in markers) {
       if (markers[i].id == that.data.prepoint) {
         markers[i].iconPath = "/pages/images/icon-des-d@2x.png"
         break;
@@ -78,6 +83,8 @@ Page({
     for (var i in markers){
       if (markers[i].id == e.markerId){
         markers[i].iconPath = "/pages/images/icon-flg-ylw@2x.png"
+        markers[i].width = "30"
+        markers[i].height = "30"
         break;
       }
     }
@@ -263,7 +270,7 @@ Page({
       curlineid = app.globalData.curlineid
       console.log("detailon onLoad-curlineid2 " + curlineid)
     }else{
-      app.globalData.curlineid = 11
+      //app.globalData.curlineid = 11
     }
     
     

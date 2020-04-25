@@ -22,13 +22,14 @@ Page({
   //事件处理函数
   bindKeyInput: function (e) {
     console.log('bindKeyInput  ' + JSON.stringify(e))
-    if (this.data.exam.answer.indexOf(e.detail.value) != -1 ){
-      this.setData({
-        inputValue: e.detail.value,
-        verify:'1',
-      })
-    }
-    
+    this.data.exam.answer.split(';').forEach(v => {
+      if (v == e.detail.value) {
+        this.setData({
+          inputValue: e.detail.value,
+          verify: '1',
+        })
+      }
+    })
   }, 
   qiandaoupfile: function () {
     var that = this
@@ -52,8 +53,8 @@ Page({
           url: 'https://jd.yousheng.tech/qihntest/wx/qiandao', //
           header: { 'content-type': 'application/json' },
           data: {
-            examid: 1,
-            answer: '答案1',
+            examid: that.data.exam.id,
+            answer: '',
             pointid: app.globalData.curpointid,
             userid: wx.getStorageSync("userid"),
             picture: app.globalData.curupimgsrc
@@ -87,11 +88,11 @@ Page({
   qiandaosubmit: function(){
     var that = this
     if (that.data.verify != '1'){
-      console.log("qiandaosubmit-verify  " + that.data.verify)
-      wx.navigateTo({
-        url: '/pages/examfail/examfail'
-      })
-      return;
+      //console.log("qiandaosubmit-verify  " + that.data.verify)
+      //wx.navigateTo({
+      //  url: '/pages/examfail/examfail'
+      //})
+      //return;
     }
     wx.request({
       url: 'https://jd.yousheng.tech/qihntest/wx/qiandao', //
@@ -111,12 +112,24 @@ Page({
             duration: 2000
           })
         }
+        if (res2.data.data == 'err') {
+          wx.navigateTo({
+            url: '/pages/examfail/examfail'
+          })
+        }
+        if (res2.data.data == 'errnochance') {
+          wx.showToast({
+            title: '答题错误，机会用光了，请到下个任务点吧！',
+            icon: 'none',
+            duration: 2000
+          })
+        }
         if (res2.data.data == 'ok') {
           wx.navigateTo({
             // 1期 提示获取积分
             //url: '/pages/msgsuccess/msg_success?jifen=' + that.data.point.jifen
             // 2期 碎片奖励
-            url: '/pages/examsuccess/examsuccess?prizeimg=' + res2.data.pointUserinfo.prizeimg
+            url: '/pages/examsuccess/examsuccess?prizeimg=' + res2.data.pointUserinfo.prizeimg +'&jifen=' + that.data.point.jifen
           })
         }
 

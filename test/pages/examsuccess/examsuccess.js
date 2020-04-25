@@ -3,6 +3,7 @@ Page({
   data: {
     cur:5,
     prizeimg:'',
+    jifen:''
   },
   //事件处理函数
   
@@ -20,7 +21,7 @@ Page({
     var that = this;
     that.setData({
       prizeimg: options.prizeimg,
-      
+      jifen: options.jifen
     })
   },
 
