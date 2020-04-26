@@ -2,7 +2,7 @@
   <view class="weui-flex__item item-top-login">
       <view class="weui-flex item-top-logon">
         <view class="weui-flex__item ">
-          <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+          <image  class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
         </view>
         <view class="weui-flex__item weui-flex__item2">
           <view>

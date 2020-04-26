@@ -42,8 +42,8 @@
 }
 
 .liuyanbandaka{
-  height: 124px;
-  width: 306px;
+  height: 156rpx;
+  width: 620rpx;
 }
 .question {
   padding: 0 20px;
@@ -74,4 +74,8 @@
 .cameraclass{
   margin: 5px 30px;
   text-align: center;
+}
+.liuyanbandaka-tj{
+  width: 306rpx;
+  height: 124rpx;
 }

@@ -91,3 +91,8 @@
   float: right;
   margin-right: 60rpx;
 }
+.inputclass{
+  border: 1px solid #DDDEDE;
+  height: 40px;
+  
+}

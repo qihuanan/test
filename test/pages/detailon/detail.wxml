@@ -55,8 +55,9 @@
               <view class="body-item-tips-name">{{item.name}} </view>
               <view class="body-item-tips-desc">
                 <view>{{item.description}} </view>
+                <view></view>
                 <view class="tipimg">
-                <image mode="scaleToFill" wx:if="{{item.img != null && item.img != ''}}" bindtap="showimgTap" data-imgsrc="https://jd.yousheng.tech/qihntest/download?filename={{item.img}}"   src="https://jd.yousheng.tech/qihntest/download?filename={{item.img}}" ></image>
+                <image mode="aspectFit" wx:if="{{item.img != null && item.img != ''}}" bindtap="showimgTap" data-imgsrc="https://jd.yousheng.tech/qihntest/download?filename={{item.img}}"   src="https://jd.yousheng.tech/qihntest/download?filename={{item.img}}" ></image>
                 </view>
               </view>
           </view>

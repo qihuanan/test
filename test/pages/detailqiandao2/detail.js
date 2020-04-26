@@ -72,7 +72,7 @@ Page({
                 // 1期 提示获取积分
                 //url: '/pages/msgsuccess/msg_success?jifen=' + that.data.point.jifen
                 // 2期 碎片奖励
-                url: '/pages/examsuccess/examsuccess?prizeimg=' + res2.data.pointUserinfo.prizeimg
+                url: '/pages/examsuccess/examsuccess?prizeimg=' + res2.data.pointUserinfo.prizeimg + '&jifen=' + that.data.point.jifen
               })
             }
 
@@ -114,7 +114,7 @@ Page({
         }
         if (res2.data.data == 'err') {
           wx.navigateTo({
-            url: '/pages/examfail/examfail'
+            url: '/pages/examfail/examfail?failmsg=' + that.data.exam.fail
           })
         }
         if (res2.data.data == 'errnochance') {
@@ -122,6 +122,9 @@ Page({
             title: '答题错误，机会用光了，请到下个任务点吧！',
             icon: 'none',
             duration: 2000
+          })
+          wx.navigateTo({
+            url: '/pages/examfail/examfail?failmsg=' + that.data.exam.fail
           })
         }
         if (res2.data.data == 'ok') {
@@ -154,9 +157,9 @@ Page({
         if (parseInt(juli) > parseInt(distance)) {//|| res1 == 1
           console.log("签到距离内：" + app.globalData.curupimgsrc )
           wx.showToast({
-            title: '临时-看到此提示，证明距离验证成功，开始答题任务了',
+            title: '位置验证成功，开始答题任务',
             icon: 'none',
-            duration: 3000
+            duration: 2000
           })
           //2期获取 答题信息
           wx.request({

@@ -8,6 +8,10 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     actvielist: [],
+    iosDialog1: false,
+    verify:'abc',
+    verifyinput: 'a',
+    curlineid:'',
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
@@ -16,6 +20,38 @@ Page({
       url: '../logs/logs'
     })
   },
+  openIOS1: function (e) {
+    console.log("detailon openIOS1 " + JSON.stringify(e))
+    this.setData({
+      iosDialog1: true,
+      curlineid: e.currentTarget.dataset.lineid,
+      verify: e.currentTarget.dataset.verify
+    })
+  },
+  close2: function (e) {
+    var that = this
+    if(this.data.verify == this.data.verifyinput){
+      wx.navigateTo({
+        url: "/pages/detail/detail?lineid=" + that.data.curlineid,
+      });
+    }else{
+      wx.showToast({
+        title: '验证码输入错误',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+    this.setData({
+      unlock: true,
+      iosDialog1: false,
+    })
+  },
+  bindKeyInput: function (e) {
+    console.log('bindKeyInput  ' + JSON.stringify(e))
+    this.setData({
+      verifyinput: e.detail.value,
+    })
+  }, 
   islogin: function () {
     var userid = wx.getStorageSync("userid")
     if(userid == null || userid == ''){
