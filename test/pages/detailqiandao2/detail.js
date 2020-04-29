@@ -156,11 +156,11 @@ Page({
         
         if (parseInt(juli) > parseInt(distance)) {//|| res1 == 1
           console.log("签到距离内：" + app.globalData.curupimgsrc )
-          wx.showToast({
+          /*wx.showToast({
             title: '位置验证成功，开始答题任务',
             icon: 'none',
             duration: 2000
-          })
+          })*/
           //2期获取 答题信息
           wx.request({
             url: 'https://jd.yousheng.tech/qihntest/wx/exam',

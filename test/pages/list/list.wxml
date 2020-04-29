@@ -3,10 +3,13 @@
 <view class="active" class="weui-flex">
   
     <view  class="weui-flex__item view-item">
-        <image class="active-image" src="https://jd.yousheng.tech/qihntest/wx/showimg?filename={{item.picture1}}" data-lineid="{{item.id}}" bindtap="todetail" class="active-image" >
+        <image wx:if="{{item.mima != '' && item.mima != null}}" class="active-image" src="https://jd.yousheng.tech/qihntest/wx/showimg?filename={{item.picture1}}" data-verify="{{item.mima}}" data-lineid="{{item.id}}" bindtap="openIOS1" class="active-image" >
+        </image>
+
+        <image wx:if="{{item.mima == '' || item.mima == null}}" class="active-image" src="https://jd.yousheng.tech/qihntest/wx/showimg?filename={{item.picture1}}" data-verify="{{item.mima}}" data-lineid="{{item.id}}" bindtap="todetail" class="active-image" >
         </image>
         
-        <view class="item-text" bindtap="openIOS1" data-verify="{{item.name}}" data-lineid="{{item.id}}">
+        <view class="item-text" bindtap="openIOS1" data-verify="{{item.mima}}" data-lineid="{{item.id}}">
           <view class="active-title">
             {{item.name}}
             <mp-icon bindtap="taplike" data-lineid="{{item.id}}" data-index="{{index}}" class="active-title-like" icon="like" type="{{item.like == '1' ? 'field' : 'outline' }}" color="#FFBB4C" size="{{40}}"></mp-icon>

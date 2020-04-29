@@ -13,10 +13,10 @@
     </navigator>
   </view>
   <view wx:if="{{showqiandao == 1 }}"   class="weui-tabbar__item {{cur == 3 ? 'weui-bar__item_on' : ''}}">
-    <navigator url="/pages/detailqiandao2/detail" >
+    <view bindtap="verifylocaiton" >
       <image src="../images/icon-chk@2x.png" alt class="weui-tabbar__icon weui-tabbar-img"></image>
       <view class="weui-tabbar__label">签到</view>
-    </navigator>
+    </view>
   </view>
   <view class="weui-tabbar__item {{cur == 4 ? 'weui-bar__item_on' : ''}}">
     <navigator url="/pages/detailmap/detail" >

@@ -21,8 +21,8 @@
               <view class="active-title-bottom-item">{{line.dianshu}}</view>
           </view>
           <view class="weui-flex__item">
-              <view class="">积分奖励</view>
-              <view class="active-title-bottom-item">{{line.jifen}}</view>
+              <view class="">线路积分</view>
+              <view class="active-title-bottom-item">{{line.yijifen }}/{{line.jifen}}</view>
           </view>
         </view>
         <!-- 

@@ -11,7 +11,7 @@ Page({
   },
   goback: function (options) {
     wx.navigateBack({
-      delta: 2
+      delta: 1
     })
   },
 

@@ -24,6 +24,7 @@ Page({
     console.log("detailon openIOS1 " + JSON.stringify(e))
     this.setData({
       iosDialog1: true,
+      verifyinput:'',
       curlineid: e.currentTarget.dataset.lineid,
       verify: e.currentTarget.dataset.verify
     })
@@ -31,6 +32,11 @@ Page({
   close2: function (e) {
     var that = this
     if(this.data.verify == this.data.verifyinput){
+      wx.showToast({
+        title: '验证码正确，即将跳转...',
+        icon: 'none',
+        duration: 2000
+      })
       wx.navigateTo({
         url: "/pages/detail/detail?lineid=" + that.data.curlineid,
       });

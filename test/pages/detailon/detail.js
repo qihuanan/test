@@ -20,6 +20,7 @@ Page({
     prepoint:'', // 上次的点击点
     kouchujifen:1,
     tipid:0,
+    juli: 1,
     src: '',
     curpoint:{id:1,name:'任务点1',desc:'任务描述1', 
       tips:[
@@ -105,7 +106,7 @@ Page({
           point: res2.data.point,
           unlock:false,
           scale:17,
-          markers:markers,
+          markers:markers, // 不导致多次重绘
           'line.jingdu': res2.data.point.jingdu,
           'line.weidu': res2.data.point.weidu,
           tipList: res2.data.tipList
@@ -227,6 +228,52 @@ Page({
       url: '../logs/logs'
     })
   },
+  verifylocaiton: function () {
+    var that = this
+    var jingdu = this.data.point.jingdu
+    var weidu = this.data.point.weidu
+    var juli = this.data.juli
+    wx.getLocation({
+      type: 'gcj02',
+      success(res) {
+        console.log('verifylocaiton ' + JSON.stringify(res))
+        var distance = that.distance(res.latitude, res.longitude, weidu, jingdu);
+        console.log("verifylocaiton当前位置距离北京故宫：", distance, "米")
+        if (parseInt(juli) > parseInt(distance)) {//|| res1 == 1
+          console.log("verifylocaiton签到距离内：" + app.globalData.curupimgsrc)
+          wx.navigateTo({
+            url: '/pages/detailqiandao2/detail'
+          })
+        } else {
+          wx.navigateTo({
+            url: '/pages/msgwarn/msg_warn?distance=' + distance
+          })
+        }
+      },
+      fail: () => {
+        //不允许打开定位
+        wx.showToast({
+          title: '获取定位失败，请前往设置打开定位权限',
+          icon: 'none',
+          duration: 3000
+        })
+
+        wx.getSetting({
+          success: (res) => {
+            if (!res.authSetting['scope.userLocation']) {
+              //打开提示框，提示前往设置页面
+              wx.showToast({
+                title: '获取定位失败，请前往设置打开定位权限',
+                icon: 'none',
+                duration: 1000
+              })
+            }
+          }
+        })
+      }
+
+    })
+  },
   onShow: function (options){
     wx.setNavigationBarTitle({
       title: '线路详情'
@@ -255,6 +302,7 @@ Page({
           initmarkers: res2.data.marklist,
           scale: res2.data.line.ditudaxiao,
           scalecur: res2.data.line.ditudaxiao,
+          juli: res2.data.line.qiandaojuli,
           hasUserInfo: true
         })
       }
@@ -270,7 +318,7 @@ Page({
       curlineid = app.globalData.curlineid
       console.log("detailon onLoad-curlineid2 " + curlineid)
     }else{
-      //app.globalData.curlineid = 11
+      //app.globalData.curlineid = 7
     }
     
     
@@ -285,6 +333,7 @@ Page({
     s = s * 6378.137;
     s = Math.round(s * 10000) / 10000;
     s = s.toFixed(2);
+    s = s * 1000 // 返回米
     return s;
   }
   
