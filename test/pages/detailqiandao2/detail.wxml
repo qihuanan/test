@@ -16,7 +16,7 @@
       {{exam.name}}
     </view>
     <view class="question-img">
-      <image wx:if="{{exam.picture1 != '' }}" src="https://jd.yousheng.tech/qihntest/download?filename={{exam.picture1}}" ></image>
+      <image mode="widthFix" wx:if="{{exam.picture1 != '' }}" src="https://jd.yousheng.tech/qihntest/download?filename={{exam.picture1}}" ></image>
     </view>
     <view wx:if="{{cate == 1}}" class="question-desc">
        {{exam.description}}
@@ -25,7 +25,7 @@
        {{exam.description}}
     </view>
     <view class="fengekuai"></view>
-    <view class="question-name">
+    <view class="question-name" wx:if="{{cate == 1}}">
       答案
     </view>
     <view wx:if="{{cate == 1}}" class="question-desc">

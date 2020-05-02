@@ -72,7 +72,7 @@ Page({
                 // 1期 提示获取积分
                 //url: '/pages/msgsuccess/msg_success?jifen=' + that.data.point.jifen
                 // 2期 碎片奖励
-                url: '/pages/examsuccess/examsuccess?prizeimg=' + res2.data.pointUserinfo.prizeimg + '&jifen=' + that.data.point.jifen
+                url: '/pages/examsuccess/examsuccess?prizeimg=' + res2.data.pointUserinfo.prizeimg + '&jifen=' + that.data.point.jifen + '&success=' + res2.data.pointUserinfo.success
               })
             }
 
@@ -132,7 +132,7 @@ Page({
             // 1期 提示获取积分
             //url: '/pages/msgsuccess/msg_success?jifen=' + that.data.point.jifen
             // 2期 碎片奖励
-            url: '/pages/examsuccess/examsuccess?prizeimg=' + res2.data.pointUserinfo.prizeimg +'&jifen=' + that.data.point.jifen
+            url: '/pages/examsuccess/examsuccess?prizeimg=' + res2.data.pointUserinfo.prizeimg + '&jifen=' + that.data.point.jifen + '&success=' + res2.data.pointUserinfo.success
           })
         }
 

@@ -79,3 +79,6 @@
   width: 306rpx;
   height: 124rpx;
 }
+.question-img{
+  text-align: center;
+}
