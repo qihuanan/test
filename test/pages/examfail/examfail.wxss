@@ -15,11 +15,11 @@
   justify-content: center;
 }
 .logoimg{
-  width: 126px;
-  height: 367px;
+  width: 126rpx;
+  height: 367rpx;
 }
 .item-gongxi{
-  font-size: 30px;
+  font-size: 24px;
   font-weight: bold;
 }
 .item-huode{

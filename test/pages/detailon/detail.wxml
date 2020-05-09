@@ -57,7 +57,7 @@
                 <view>{{item.description}} </view>
                 <view></view>
                 <view class="tipimg">
-                <image mode="widthFix" wx:if="{{item.img != null && item.img != ''}}" bindtap="showimgTap" data-imgsrc="https://jd.yousheng.tech/qihntest/download?filename={{item.img}}"   src="https://jd.yousheng.tech/qihntest/download?filename={{item.img}}" ></image>
+                <image mode="widthFix" wx:if="{{item.img != null && item.img != ''}}" bindtap="showimgTap" data-imgsrc="{{baseurl}}download?filename={{item.img}}"   src="{{baseurl}}download?filename={{item.img}}" ></image>
                 </view>
               </view>
           </view>

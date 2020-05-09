@@ -3,6 +3,7 @@ const app = getApp()
 Page({
   data: {
     motto: 'Hello World',
+    baseurl: 'https://tycaching.cn/qihntest/',
     iosDialog1: false,
     unlock: false,
     dakaflag:false,
@@ -35,7 +36,7 @@ Page({
     var that = this
     console.log("当uploadFile：" + app.globalData.curupimgsrc)
     wx.uploadFile({
-      url: 'https://jd.yousheng.tech/qihntest/wx/upfile', //  
+      url: app.globalData.baseurl +'wx/upfile', //  
       name: 'imagefile',
       filePath: app.globalData.curupimgsrc,
       header: {
@@ -50,7 +51,7 @@ Page({
         console.log('uploadFile res2 ' + resjson.data)
         app.globalData.curupimgsrc = resjson.data
         wx.request({
-          url: 'https://jd.yousheng.tech/qihntest/wx/qiandao', //
+          url: app.globalData.baseurl +'wx/qiandao', //
           header: { 'content-type': 'application/json' },
           data: {
             examid: that.data.exam.id,
@@ -72,7 +73,7 @@ Page({
                 // 1期 提示获取积分
                 //url: '/pages/msgsuccess/msg_success?jifen=' + that.data.point.jifen
                 // 2期 碎片奖励
-                url: '/pages/examsuccess/examsuccess?prizeimg=' + res2.data.pointUserinfo.prizeimg + '&jifen=' + that.data.point.jifen + '&success=' + res2.data.pointUserinfo.success
+                url: '/pages/examsuccess/examsuccess?prizeimg=' + res2.data.pointUserinfo.prizeimg + '&jifen=' + that.data.point.jifen + '&success=' + that.data.exam.success
               })
             }
 
@@ -95,7 +96,7 @@ Page({
       //return;
     }
     wx.request({
-      url: 'https://jd.yousheng.tech/qihntest/wx/qiandao', //
+      url: app.globalData.baseurl +'wx/qiandao', //
       header: { 'content-type': 'application/json' },
       data: {
         examid: that.data.exam.id,
@@ -132,7 +133,7 @@ Page({
             // 1期 提示获取积分
             //url: '/pages/msgsuccess/msg_success?jifen=' + that.data.point.jifen
             // 2期 碎片奖励
-            url: '/pages/examsuccess/examsuccess?prizeimg=' + res2.data.pointUserinfo.prizeimg + '&jifen=' + that.data.point.jifen + '&success=' + res2.data.pointUserinfo.success
+            url: '/pages/examsuccess/examsuccess?prizeimg=' + res2.data.pointUserinfo.prizeimg + '&jifen=' + that.data.point.jifen + '&success=' + that.data.exam.success
           })
         }
 
@@ -163,7 +164,7 @@ Page({
           })*/
           //2期获取 答题信息
           wx.request({
-            url: 'https://jd.yousheng.tech/qihntest/wx/exam',
+            url: app.globalData.baseurl +'wx/exam',
             header: { 'content-type': 'application/json' },
             data: {
               pointid: app.globalData.curpointid,
@@ -266,7 +267,7 @@ Page({
     })
     var that = this
     wx.request({
-      url: 'https://jd.yousheng.tech/qihntest/wx/tiplist', //需要里面的point line   
+      url: app.globalData.baseurl +'wx/tiplist', //需要里面的point line   
       header: { 'content-type': 'application/json' },
       data: {
         pointid: app.globalData.curpointid,

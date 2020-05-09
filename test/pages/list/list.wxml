@@ -3,10 +3,10 @@
 <view class="active" class="weui-flex">
   
     <view  class="weui-flex__item view-item">
-        <image wx:if="{{item.mima != '' && item.mima != null}}" class="active-image" src="https://jd.yousheng.tech/qihntest/wx/showimg?filename={{item.picture1}}" data-verify="{{item.mima}}" data-lineid="{{item.id}}" bindtap="openIOS1" class="active-image" >
+        <image wx:if="{{item.mima != '' && item.mima != null}}" class="active-image" src="{{baseurl}}wx/showimg?filename={{item.picture1}}" data-verify="{{item.mima}}" data-lineid="{{item.id}}" bindtap="openIOS1" class="active-image" >
         </image>
 
-        <image wx:if="{{item.mima == '' || item.mima == null}}" class="active-image" src="https://jd.yousheng.tech/qihntest/wx/showimg?filename={{item.picture1}}" data-verify="{{item.mima}}" data-lineid="{{item.id}}" bindtap="todetail" class="active-image" >
+        <image wx:if="{{item.mima == '' || item.mima == null}}" class="active-image" src="{{baseurl}}wx/showimg?filename={{item.picture1}}" data-verify="{{item.mima}}" data-lineid="{{item.id}}" bindtap="todetail" class="active-image" >
         </image>
         
         <view class="item-text" bindtap="openIOS1" data-verify="{{item.mima}}" data-lineid="{{item.id}}">

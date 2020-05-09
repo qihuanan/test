@@ -1,0 +1,70 @@
+<view>
+<image  wx:if="{{line.picture2}}" mode="widthFix"  bindtap="showimgTap" data-imgsrc="{{baseurl}}download?filename={{line.picture2}}" class="detailimg" src="{{baseurl}}download?filename={{line.picture2}}"></image>
+</view>
+
+<scroll-view scroll-y="true" style="height: 800rpx;" class="weui-flex ">
+  <view class="weui-flex__item">
+    <view class="item-text">
+      <view class="active-title">
+        <view class="active-title-top">
+          {{line.name}}-金符藏宝图
+        </view>
+        
+        <view class="active-title-bottom weui-flex">
+         <view class="weui-flex__item">
+          <swiper indicator-dots="{{indicatorDots}}" class="swiper-class"
+            autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+            <block wx:for="{{background}}" wx:key="*this">
+              <swiper-item >
+                <view class="centeritem">
+                <view class="view_list">
+                  <view class="view_item">        
+                  <image src="/pages/images/a1.jpg" class="navigate_item" alt="a1" />  
+                  </view>
+                  <view class="view_item">      
+                  <image src="/pages/images/a2.jpg" class="navigate_item" alt="a2" />  
+                  </view>
+                  <view class="view_item">     
+                  <image src="/pages/images/a3.jpg" class="navigate_item" alt="a3" />  
+                  </view>
+                </view>
+                <view class="view_list">
+                  <view class="view_item">        
+                  <image src="/pages/images/a4.jpg" class="navigate_item" alt="a1" />  
+                  </view>
+                  <view class="view_item">      
+                  <image src="/pages/images/a5.jpg" class="navigate_item" alt="a2" />  
+                  </view>
+                  <view class="view_item">     
+                  <image src="/pages/images/a6.jpg" class="navigate_item" alt="a3" />  
+                  </view>
+                </view>
+                </view>
+
+              </swiper-item>
+            </block>
+          </swiper>
+          </view>
+        </view>
+
+        <view class="active-title-bottom weui-flex">
+          <view class="weui-flex__item">
+              <view class="">已解锁</view>
+              <view class="active-title-bottom-item">{{line.dianshu}}</view>
+          </view>
+          <view class="weui-flex__item">
+              <view class="">总片数</view>
+              <view class="active-title-bottom-item">{{line.yijifen }}/{{line.jifen}}</view>
+          </view>
+        </view>
+
+      </view>
+
+    </view>
+  </view>
+			
+</scroll-view>
+
+<view class="pretabbar"></view>
+<import src ="/pages/template/tabbar.wxml"/>
+<template is="tabbar"/>

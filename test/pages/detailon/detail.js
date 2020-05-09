@@ -3,6 +3,7 @@ const app = getApp()
 Page({
   data: {
     motto: 'Hello World',
+    baseurl: 'https://tycaching.cn/qihntest/',
     longitude: 116.384537,
     latitude: 40.018720,
     scale: 14,
@@ -95,7 +96,7 @@ Page({
     })
     
     wx.request({
-      url: 'https://jd.yousheng.tech/qihntest/wx/tiplist',
+      url: app.globalData.baseurl +'wx/tiplist',
       header: { 'content-type': 'application/json' },
       data: {
         pointid: e.markerId,
@@ -158,7 +159,7 @@ Page({
     var that = this
     console.log("detailon close2 " + that.data.tipid)
     wx.request({
-      url: 'https://jd.yousheng.tech/qihntest/wx/unlockTip',
+      url: app.globalData.baseurl +'wx/unlockTip',
       header: { 'content-type': 'application/json' },
       data: {
         tipid: that.data.tipid,
@@ -207,7 +208,7 @@ Page({
     console.log('curlineid ' + app.globalData.curlineid)
     var that = this
     wx.request({
-      url: 'https://jd.yousheng.tech/qihntest/wx/linelike',
+      url: app.globalData.baseurl +'wx/linelike',
       header: { 'content-type': 'application/json' },
       data: {
         lineid: app.globalData.curlineid,
@@ -281,7 +282,7 @@ Page({
     var that = this
     //this.getLineList(that)
     wx.request({
-      url: 'https://jd.yousheng.tech/qihntest/wx/linedetailon',
+      url: app.globalData.baseurl +'wx/linedetailon',
       header: { 'content-type': 'application/json' },
       data: {
         code: 1,

@@ -1,5 +1,5 @@
 <view>
-<image  wx:if="{{line.picture2}}" mode="widthFix"  bindtap="showimgTap" data-imgsrc="https://jd.yousheng.tech/qihntest/download?filename={{line.picture2}}" class="detailimg" src="https://jd.yousheng.tech/qihntest/download?filename={{line.picture2}}"></image>
+<image  wx:if="{{line.picture2}}" mode="widthFix"  bindtap="showimgTap" data-imgsrc="{{baseurl}}download?filename={{line.picture2}}" class="detailimg" src="{{baseurl}}download?filename={{line.picture2}}"></image>
 </view>
 
 <scroll-view scroll-y="true" style="height: 500rpx;" class="weui-flex ">

@@ -16,7 +16,7 @@
       {{exam.name}}
     </view>
     <view class="question-img">
-      <image mode="widthFix" wx:if="{{exam.picture1 != '' }}" src="https://jd.yousheng.tech/qihntest/download?filename={{exam.picture1}}" ></image>
+      <image mode="widthFix" wx:if="{{exam.picture1 != '' }}" src="{{baseurl}}download?filename={{exam.picture1}}" ></image>
     </view>
     <view wx:if="{{cate == 1}}" class="question-desc">
        {{exam.description}}
@@ -61,9 +61,9 @@
 
 <block wx:if="{{cate == 2}}">
 <view class="cameraclass">
-<camera class="" device-position="back" flash="off" binderror="error" style="width: 100%; height: 300px;"></camera>
+<camera class="" device-position="back" flash="off" binderror="error" style="width: 100%; height: 300rpx;"></camera>
 <view class="zhanweifu"></view>
-<image wx:if="{{src}}" src="{{src}}" style="width: 100%; height: 300px;"></image>
+
 </view>
 
 <view class="active-title-bottom weui-flex">
@@ -80,6 +80,8 @@
     </view>
   </view>
 </view>
+
+<image wx:if="{{src}}" src="{{src}}" style="width: 100%; height: 300rpx;"></image>
 </block>
 
 <view class="pretabbar"></view>

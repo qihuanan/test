@@ -5,6 +5,7 @@ const app = getApp()
 Page({
   data: {
     motto: 'Hello World',
+    baseurl: 'https://tycaching.cn/qihntest/',
     userInfo: {},
     hasUserInfo: false,
     actvielist: [],
@@ -70,7 +71,7 @@ Page({
     console.log('taplike ' + JSON.stringify(e))
     var that = this
     wx.request({
-      url: 'https://jd.yousheng.tech/qihntest/wx/linelike',
+      url: app.globalData.baseurl +'wx/linelike',
       header: { 'content-type': 'application/json' },
       data: {
         lineid: e.target.dataset.lineid,
@@ -96,7 +97,7 @@ Page({
     })
     var that = this
     wx.request({
-      url: 'https://jd.yousheng.tech/qihntest/wx/getLineList',
+      url: app.globalData.baseurl +'wx/getLineList',
       header: { 'content-type': 'application/json' },
       data: {
         code: 1,

@@ -3,6 +3,7 @@ const app = getApp()
 Page({
   data: {
     motto: 'Hello World',
+    baseurl: 'https://tycaching.cn/qihntest/',
     latitude: 40.018720,
     longitude: 116.384537,
     iosDialog1: false,
@@ -115,7 +116,7 @@ Page({
     var that = this
     
     wx.request({
-      url: 'https://jd.yousheng.tech/qihntest/wx/linedetailon',
+      url: app.globalData.baseurl +'wx/linedetailon',
       header: { 'content-type': 'application/json' },
       data: {
         code: 1,

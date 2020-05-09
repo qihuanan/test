@@ -3,6 +3,7 @@ const app = getApp()
 Page({
   data: {
     motto: 'Hello World',
+    baseurl: 'https://tycaching.cn/qihntest/',
     iosDialog1: false,
     unlock: false,
     dakaflag:false,
@@ -40,7 +41,7 @@ Page({
         if (parseInt(juli) > parseInt(distance)) {//|| res1 == 1
           console.log("当uploadFile：" + app.globalData.curupimgsrc )
           wx.uploadFile({
-            url: 'https://jd.yousheng.tech/qihntest/wx/upfile', //  
+            url: app.globalData.baseurl +'wx/upfile', //  
             name: 'imagefile',
             //url: 'https://jd.yousheng.tech/qihntest/upload', //  
             //name: 'filepath',
@@ -57,7 +58,7 @@ Page({
               console.log('uploadFile res2 ' + resjson.data)
               app.globalData.curupimgsrc = resjson.data
               wx.request({
-                url: 'https://jd.yousheng.tech/qihntest/wx/qiandao', //
+                url: app.globalData.baseurl +'wx/qiandao', //
                 header: { 'content-type': 'application/json' },
                 data: {
                   code: 1,
@@ -193,7 +194,7 @@ Page({
     console.log("detailqiandao-onLoad-point " + app.globalData.curpointid)
     var that = this
     wx.request({
-      url: 'https://jd.yousheng.tech/qihntest/wx/tiplist', // 只需要里面的point   
+      url: app.globalData.baseurl +'wx/tiplist', // 只需要里面的point   
       header: { 'content-type': 'application/json' },
       data: {
         code: 1,

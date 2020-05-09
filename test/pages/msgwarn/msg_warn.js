@@ -1,6 +1,7 @@
 const app = getApp()
 Page({
   data: {
+    baseurl: 'https://tycaching.cn/qihntest/',
     distance: '',
   },
   //事件处理函数

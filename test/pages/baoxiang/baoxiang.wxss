@@ -1,0 +1,119 @@
+.item-text {
+  margin: 20rpx;
+  border-radius: 10rpx;
+  border: 2rpx solid #DDDEDE;
+  border-top: none;
+  background-color: #F4F4F4;
+}
+.active-title {
+  vertical-align: center;
+  
+  font-size: 50rpx;
+  font-weight: 500;
+  
+}
+
+.active-title-like{
+  float: right;
+  margin-right: 60rpx;
+}
+.active-title-top{
+  height: 100rpx;
+  border-radius: 10rpx;
+  margin-top: 1rpx;
+  justify-content:center;
+  padding-top: 20rpx;
+  padding-left: 35rpx;
+  color: white;
+  background-image: url(data:image/png;base64,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) 
+}
+.active-title-bottom{
+  background-color: #E3E5D9;
+  justify-content: center;
+  text-align: center;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  color: #595959;
+  font-size: 35rpx;
+}
+.active-title-bottom-item {
+  color: #5A7B02;
+}
+
+
+.body-item{
+  border-top: 2rpx solid #DDDEDE;
+  border-bottom: 2rpx solid #DDDEDE;
+  padding: 20rpx;
+  background-color: white;
+}
+.body-item-pointname{
+  color: #8FC400;
+  margin-bottom: 10rpx;
+}
+.body-item-pointdesc{
+  font-weight: 500;
+}
+
+.body-item-tips{
+  margin-top: 40rpx;
+  background-color: white;
+  padding: 20rpx;
+}
+.body-item-tips-name{
+  color: #9DCC6B;
+  font-size: 30rpx;
+}
+.body-item-tips-desc{
+  font-size: 30rpx;
+}
+.img-tips{
+  height: 150rpx;
+  width: 100%;
+  margin-top: 40rpx;
+}
+.zhanweifu{
+  margin: 10rpx;
+}
+
+.viewhidden{
+  display: none;
+}
+.viewshow{
+  display: block;
+}
+
+.detailimg{
+  width: 100%;
+  height: 600rpx;
+}
+.swiper-class{
+  height: 550rpx;
+  min-height: 550rpx;
+  text-align: center;
+}
+.centeritem{
+  text-align: center;
+  padding: 10px;
+}
+.view_list {  
+  width: 99%;  height: 240rpx;  
+  column-count: 3; 
+  column-gap: 0px;
+  margin-top: -1px;
+   align-items: center;  justify-content: center;
+   margin-left: 2px;
+   margin-right: 2px;
+}
+
+.view_item {  width: 99%;  height: 240rpx;  
+display: flex;  flex-direction: column; 
+ align-items: center;  justify-content: center;
+ }
+.navigate_item {  
+  width: 233rpx;  height: 240rpx; 
+   padding: 1px;  background-color: gray;  
+   color: white;   display: flex;  
+   flex-direction: column; 
+    align-items: center;  justify-content: center;
+   }

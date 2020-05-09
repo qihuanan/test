@@ -3,6 +3,7 @@ const app = getApp()
 Page({
   data: {
     motto: 'Hello World',
+    baseurl: 'https://tycaching.cn/qihntest/',
     iosDialog1: false,
     unlock: false,
     dakaflag:false,
@@ -32,8 +33,8 @@ Page({
     var that  = this
     var lineid = e.currentTarget.dataset.lineid
     console.log("dakaflagtap par  " + lineid)
-    wx.request({
-      url: 'https://jd.yousheng.tech/qihntest/wx/linedaka',
+    wx.request({ // app.globalData.baseurl
+      url: app.globalData.baseurl+'wx/linedaka',
       header: { 'content-type': 'application/json' },
       data: {
         lineid: lineid,
@@ -69,7 +70,7 @@ Page({
     console.log('curlineid ' + app.globalData.curlineid)
     var that = this
     wx.request({
-      url: 'https://jd.yousheng.tech/qihntest/wx/linelike',
+      url: app.globalData.baseurl +'wx/linelike',
       header: { 'content-type': 'application/json' },
       data: {
         lineid: app.globalData.curlineid,
@@ -95,7 +96,7 @@ Page({
     app.globalData.curlineid = options.lineid
     var that = this
     wx.request({
-      url: 'https://jd.yousheng.tech/qihntest/wx/linedetail',
+      url: app.globalData.baseurl +'wx/linedetail',
       header: { 'content-type': 'application/json' },
       data: {
         code: 1,

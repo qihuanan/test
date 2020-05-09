@@ -5,6 +5,7 @@ const app = getApp()
 Page({
   data: {
     motto: 'Hello World',
+    baseurl: 'https://tycaching.cn/qihntest/',
     userInfo: {},
     score:0,
     activelist:{},
@@ -98,7 +99,7 @@ Page({
         success(res) {
           if (res.code) {
             wx.request({
-              url: 'https://jd.yousheng.tech/qihntest/wx/login',
+              url: app.globalData.baseurl +'wx/login',
               data: {
                 code: res.code,
                 avatarUrl: app.globalData.userInfo.avatarUrl,

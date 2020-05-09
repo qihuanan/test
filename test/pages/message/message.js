@@ -3,6 +3,7 @@ const app = getApp()
 Page({
   data: {
     motto: 'Hello World',
+    baseurl: 'https://tycaching.cn/qihntest/',
     listshow: 1,
     toast: false,
     hideToast: false,
@@ -32,7 +33,7 @@ Page({
     var curlineid = app.globalData.curlineid
     console.log("message onShow-curlineid " + curlineid)
     wx.request({
-      url: 'https://jd.yousheng.tech/qihntest/wx/writeMessage',
+      url: app.globalData.baseurl +'wx/writeMessage',
       header: { 'content-type': 'application/json' },
       data: {
         description: e.detail.value.evaContent,
@@ -97,7 +98,7 @@ Page({
     console.log("message onShow-curlineid " + curlineid)
     var that = obj
     wx.request({
-      url: 'https://jd.yousheng.tech/qihntest/wx/messageList',
+      url: app.globalData.baseurl +'wx/messageList',
       header: { 'content-type': 'application/json' },
       data: {
         lineid: curlineid

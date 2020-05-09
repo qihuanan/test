@@ -41,7 +41,7 @@
 <block wx:if="{{showpanel == 1 }}">
 <block wx:for="{{activelist }}" wx:for-index="index" wx:for-item="item" wx:key="t1">
 <view wx:if="{{item.flag == 1 }}" class="img-view-active " bindtap="todetail" data-lineid="{{item.lineid}}">
-  <image class="xiangche-img-active" src="https://jd.yousheng.tech/qihntest/wx/showimg?filename={{item.line.picture1}}"></image>
+  <image class="xiangche-img-active" src="{{baseurl}}wx/showimg?filename={{item.line.picture1}}"></image>
   <view class="item-text">
     <view class="active-title">
       {{item.line.name}}
@@ -81,7 +81,7 @@
 <block wx:if="{{showpanel == 2 }}">
 <block wx:for="{{activelist }}" wx:for-index="index" wx:for-item="item" wx:key="t1">
 <view wx:if="{{item.flag == 2 }}" class="img-view-active " bindtap="todetail" data-lineid="{{item.lineid}}">
-  <image class="xiangche-img-active" src="https://jd.yousheng.tech/qihntest/wx/showimg?filename={{item.line.picture1}}"></image>
+  <image class="xiangche-img-active" src="{{baseurl}}wx/showimg?filename={{item.line.picture1}}"></image>
   <view class="item-text">
     <view class="active-title">
       {{item.line.name}}
