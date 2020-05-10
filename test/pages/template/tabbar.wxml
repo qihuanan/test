@@ -18,12 +18,22 @@
       <view class="weui-tabbar__label">签到</view>
     </view>
   </view>
+
+  <view class="weui-tabbar__item {{cur == 4 ? 'weui-bar__item_on' : ''}}">
+    <navigator url="/pages/baoxiang/baoxiang" >
+      <image src="../images/icon-puz@2x.png" alt class="weui-tabbar__icon weui-tabbar-img"></image>
+      <view class="weui-tabbar__label">宝箱</view>
+    </navigator>
+  </view>
+<!-- 
   <view class="weui-tabbar__item {{cur == 4 ? 'weui-bar__item_on' : ''}}">
     <navigator url="/pages/detailmap/detail" >
       <image src="../images/icon-map@2x.png" alt class="weui-tabbar__icon weui-tabbar-img"></image>
       <view class="weui-tabbar__label">地图</view>
     </navigator>
   </view>
+  -->
+
   <view class="weui-tabbar__item {{cur == 5 ? 'weui-bar__item_on' : ''}}">
     <navigator url="/pages/home/home" >
       <image src="../images/icon-me@2x.png" alt class="weui-tabbar__icon weui-tabbar-img-2"></image>

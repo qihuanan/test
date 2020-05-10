@@ -2,8 +2,14 @@ const app = getApp()
 
 Page({
   data: {
-    baseurl: 'https://tycaching.cn/qihntest/',
+    baseurl: app.globalData.baseurl,
     line:{},
+    curbaoxiang:{},
+    baoxiangList:{},
+    suipianList:{},
+    yijiesuo:0,
+    zongpianshu:0,
+    cur: 4,
     background: ['demo-text-1', 'demo-text-2', 'demo-text-3'],
     indicatorDots: true,
     vertical: false,
@@ -13,55 +19,42 @@ Page({
     
   },
 
-  changeIndicatorDots() {
+  bindchange: function (options){
+    console.log(" bindchange " + JSON.stringify(options))
+    console.log(" bindchange " + JSON.stringify(options.detail.current) )
+    
     this.setData({
-      indicatorDots: !this.data.indicatorDots
+      curbaoxiang: this.data.baoxiangList[options.detail.current],
     })
   },
 
-  changeAutoplay() {
-    this.setData({
-      autoplay: !this.data.autoplay
-    })
-  },
-
-  intervalChange(e) {
-    this.setData({
-      interval: e.detail.value
-    })
-  },
-
-  durationChange(e) {
-    this.setData({
-      duration: e.detail.value
-    })
-  },
   
   onShow: function (options){
     wx.setNavigationBarTitle({
-      title: '线路详情'
+      title: '宝箱拼图'
     })
   },
   onLoad: function (options) {
-    console.log("onLoad-lineid:"+ options.lineid)
-    app.globalData.curlineid = options.lineid
-    app.globalData.curlineid = 10
+    //console.log("onLoad-lineid:"+ options.lineid)
+    //app.globalData.curlineid = options.lineid
+    //app.globalData.curlineid = 11
     var that = this
     wx.request({
-      url: app.globalData.baseurl +'wx/linedetail',
+      url: app.globalData.baseurl +'wx/baoxiang',
       header: { 'content-type': 'application/json' },
       data: {
         code: 1,
         lineid: app.globalData.curlineid,
         userid: wx.getStorageSync("userid")
       }, success(res2) {
-        //console.log("login getLineList " + res2.data)
-        console.log("detail onLoad  " + JSON.stringify(res2.data.data))
-        //that.actvielist = res2.data.data
+        console.log("baoxiang onLoad  " + JSON.stringify(res2.data))
         that.setData({
-          //line: JSON.stringify(res2.data.data),
-          line: res2.data.data,
-          hasUserInfo: true
+          line: res2.data.line,
+          baoxiangList: res2.data.baoxiangList,
+          suipianList: res2.data.suipianList,
+          curbaoxiang: res2.data.baoxiangList[0],
+          yijiesuo: res2.data.yijiesuo,
+          zongpianshu: res2.data.zongpianshu,
         })
       }
     })

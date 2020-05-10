@@ -1,7 +1,7 @@
 const app = getApp()
 Page({
   data: {
-    baseurl: 'https://tycaching.cn/qihntest/',
+    baseurl: app.globalData.baseurl,
     jifen:1
   },
   //事件处理函数

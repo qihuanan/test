@@ -3,7 +3,7 @@ const app = getApp()
 Page({
   data: {
     motto: 'Hello World',
-    baseurl: 'https://tycaching.cn/qihntest/',
+    baseurl: app.globalData.baseurl,
     latitude: 40.018720,
     longitude: 116.384537,
     iosDialog1: false,

@@ -5,7 +5,7 @@ const app = getApp()
 Page({
   data: {
     motto: 'Hello World',
-    baseurl: 'https://tycaching.cn/qihntest/',
+    baseurl: app.globalData.baseurl,
     userInfo: {},
     score:0,
     activelist:{},

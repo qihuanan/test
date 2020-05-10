@@ -2,7 +2,7 @@ const app = getApp()
 Page({
   data: {
     cur: 5,
-    baseurl: 'https://tycaching.cn/qihntest/',
+    baseurl: app.globalData.baseurl,
     failmsg:'很遗憾，回答错误'
 
   },

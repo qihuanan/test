@@ -3,7 +3,7 @@ Page({
   data: {
     cur:5,
     prizeimg:'',
-    baseurl: 'https://tycaching.cn/qihntest/',
+    baseurl: app.globalData.baseurl,
     success:'',
     jifen:''
   },
