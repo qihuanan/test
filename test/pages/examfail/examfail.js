@@ -10,7 +10,7 @@ Page({
 
   gonext: function (e) {
     wx.navigateBack({
-      delta: 0
+      delta: 2
     })
   },
 

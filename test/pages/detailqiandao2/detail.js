@@ -65,7 +65,7 @@ Page({
               wx.showToast({
                 title: '您已签到过此任务点啦，请到下个任务点签到吧！',
                 icon: 'none',
-                duration: 2000
+                duration: 3000
               })
             }
             if (res2.data.data == 'ok') {
@@ -110,7 +110,7 @@ Page({
           wx.showToast({
             title: '您已签到过此任务点啦，请到下个任务点签到吧！',
             icon: 'none',
-            duration: 2000
+            duration: 3000
           })
         }
         if (res2.data.data == 'err') {
@@ -119,13 +119,9 @@ Page({
           })
         }
         if (res2.data.data == 'errnochance') {
-          wx.showToast({
-            title: '答题错误，机会用光了，请到下个任务点吧！',
-            icon: 'none',
-            duration: 2000
-          })
+          
           wx.navigateTo({
-            url: '/pages/examfail/examfail?failmsg=' + that.data.exam.fail
+            url: '/pages/examfail/examfail?failmsg=机会用光了，请到下个任务点吧！' 
           })
         }
         if (res2.data.data == 'ok') {
