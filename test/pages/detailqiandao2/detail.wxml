@@ -18,23 +18,34 @@
     <view class="question-img">
       <image mode="widthFix" wx:if="{{exam.picture1 != '' }}" src="{{baseurl}}download?filename={{exam.picture1}}" ></image>
     </view>
-    <view wx:if="{{cate == 1}}" class="question-desc">
-       {{exam.description}}
-    </view>
-    <view wx:if="{{cate == 2}}" class="question-desc">
+    <view  class="question-desc">
        {{exam.description}}
     </view>
     <view class="fengekuai"></view>
-    <view class="question-name" wx:if="{{cate == 1}}">
+    <view class="question-name" wx:if="{{cate == 1 || cate == 3}}">
       答案
     </view>
     <view wx:if="{{cate == 1}}" class="question-desc">
       <input class="inputclass" bindinput="bindKeyInput"  placeholder="请输入答案" ></input>
     </view>
+    
+
+    <view wx:if="{{cate == 3}}" class="weui-cells weui-cells_after-title">
+      <radio-group bindchange="radioChange">
+        <label class="weui-cell weui-check__label" wx:for="{{ritems}}" wx:key="{{item.value}}">
+          <view class="weui-cell__hd">
+            <radio value="{{item.value}}" />
+          </view>
+          <view class="weui-cell__bd">{{item.name}}</view>
+        </label>
+      </radio-group>
+    </view>
+
+
   </view>
 </view>
 
-<block wx:if="{{cate == 1}}">
+<block wx:if="{{cate == 1 || cate == 3}}">
 
 <view  class="active-title-bottom weui-flex">
   <view  class="weui-flex__item "  > 
@@ -44,18 +55,6 @@
   </view>
 </view>
 
-<!-->
-<view  class="active-title-bottom weui-flex">
-  <view  class="weui-flex__item item-liuyanban"  > 
-    <navigator url="/pages/examsuccess/examsuccess">临时-去答题成功页面</navigator>
-  </view>
-</view>
-<view  class="active-title-bottom weui-flex">
-  <view  class="weui-flex__item item-liuyanban"  > 
-    <navigator url="/pages/examfail/examfail">临时-去答题失败页面</navigator>
-  </view>
-</view>
--->
 
 </block>
 

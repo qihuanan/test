@@ -18,9 +18,19 @@ Page({
     exam: { picture1:''},
     juli: 1,
     inputValue:'',
+    ritems: [
+      { value: 'USA', name: '北京' },
+      { value: 'FRA', name: '上海' },
+    ],
     verify:"0",// 答案是否对
   },
   //事件处理函数
+  radioChange: function (e) {
+    console.log('radio发生change事件，携带value值为：', e.detail.value)
+    this.setData({
+      inputValue: e.detail.value,
+    })
+  },
   bindKeyInput: function (e) {
     console.log('bindKeyInput  ' + JSON.stringify(e))
     this.data.exam.answer.split(';').forEach(v => {
@@ -34,6 +44,11 @@ Page({
   }, 
   qiandaoupfile: function () {
     var that = this
+    wx.showToast({
+      title: '上传中...',
+      icon: 'none',
+      duration: 2000
+    })
     console.log("当uploadFile：" + app.globalData.curupimgsrc)
     wx.uploadFile({
       url: app.globalData.baseurl +'wx/upfile', //  
@@ -61,15 +76,18 @@ Page({
             picture: app.globalData.curupimgsrc
           }, success(res2) {
             console.log("detail qiandao-res  " + JSON.stringify(res2.data))
-            if (res2.data.data == 'has') {
+            if (res2.data.data != 'ok') {
               wx.showToast({
-                title: '您已签到过此任务点啦，请到下个任务点签到吧！',
+                title: '您已签到过此任务点啦，请到下个任务点吧！',
                 icon: 'none',
                 duration: 3000
               })
+              wx.redirectTo({
+                url: '/pages/examfail/examfail?failmsg=您已签到过此任务点啦，请到下个任务点吧！'
+              })
             }
             if (res2.data.data == 'ok') {
-              wx.navigateTo({
+              wx.redirectTo({
                 // 1期 提示获取积分
                 //url: '/pages/msgsuccess/msg_success?jifen=' + that.data.point.jifen
                 // 2期 碎片奖励
@@ -88,13 +106,12 @@ Page({
   },
   qiandaosubmit: function(){
     var that = this
-    if (that.data.verify != '1'){
-      //console.log("qiandaosubmit-verify  " + that.data.verify)
-      //wx.navigateTo({
-      //  url: '/pages/examfail/examfail'
-      //})
-      //return;
-    }
+    wx.showToast({
+      title: '校验中...',
+      icon: 'none',
+      duration: 2000
+    })
+    
     wx.request({
       url: app.globalData.baseurl +'wx/qiandao', //
       header: { 'content-type': 'application/json' },
@@ -108,24 +125,27 @@ Page({
         console.log("detail qiandao-res  " + JSON.stringify(res2.data))
         if (res2.data.data == 'has') {
           wx.showToast({
-            title: '您已签到过此任务点啦，请到下个任务点签到吧！',
+            title: '您已经在此签到过，请前往下一个签到点吧！',
             icon: 'none',
             duration: 3000
           })
+          wx.redirectTo({
+            url: '/pages/examfail/examfail?failmsg=您已经在此签到过，请前往下一个签到点吧！'
+          })
         }
         if (res2.data.data == 'err') {
-          wx.navigateTo({
+          wx.redirectTo({
             url: '/pages/examfail/examfail?failmsg=' + that.data.exam.fail
           })
         }
         if (res2.data.data == 'errnochance') {
           
-          wx.navigateTo({
-            url: '/pages/examfail/examfail?failmsg=机会用光了，请到下个任务点吧！' 
+          wx.redirectTo({
+            url: '/pages/examfail/examfail?failmsg=机会用光了，请到下一个签到点吧！' 
           })
         }
         if (res2.data.data == 'ok') {
-          wx.navigateTo({
+          wx.redirectTo({ // redirectTo  navigateTo
             // 1期 提示获取积分
             //url: '/pages/msgsuccess/msg_success?jifen=' + that.data.point.jifen
             // 2期 碎片奖励
@@ -170,6 +190,7 @@ Page({
               that.setData({
                 point: res2.data.point,
                 cate: res2.data.exam.cate,
+                ritems: res2.data.radiolist,
                 exam: res2.data.exam
               })
               
@@ -177,7 +198,7 @@ Page({
           })
           
         }else{
-          wx.navigateTo({
+          wx.redirectTo({
             url: '/pages/msgwarn/msg_warn?distance=' + distance
           })
         }
@@ -259,7 +280,7 @@ Page({
   },
   onShow: function (options){
     wx.setNavigationBarTitle({
-      title: '任务点答题'
+      title: '签到点任务'
     })
     var that = this
     wx.request({

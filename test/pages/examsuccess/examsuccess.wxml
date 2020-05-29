@@ -4,7 +4,7 @@
     <view class="item-title">
       <image wx:if="{{prizeimg != '' }}"  class="logoimg" src="{{baseurl}}download?filename={{prizeimg}}" mode="cover"></image>
     </view>
-    <view class="item-gongxi">恭喜您获得</view>
+    <view class="item-gongxi">恭喜您</view>
     <view class="item-huode">{{success}}</view>
     <view wx:if="{{jifen != '' }}" class="item-huode">+{{jifen}}积分</view>
     <button class="userinfobtn" bindtap="gonext"> 继续探秘 </button>

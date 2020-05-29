@@ -9,7 +9,7 @@
         <image wx:if="{{item.mima == '' || item.mima == null}}" class="active-image" src="{{baseurl}}wx/showimg?filename={{item.picture1}}" data-verify="{{item.mima}}" data-lineid="{{item.id}}" bindtap="todetail" class="active-image" >
         </image>
         
-        <view class="item-text" bindtap="openIOS1" data-verify="{{item.mima}}" data-lineid="{{item.id}}">
+        <view class="item-text"  data-verify="{{item.mima}}" data-lineid="{{item.id}}">
           <view class="active-title">
             {{item.name}}
             <mp-icon bindtap="taplike" data-lineid="{{item.id}}" data-index="{{index}}" class="active-title-like" icon="like" type="{{item.like == '1' ? 'field' : 'outline' }}" color="#FFBB4C" size="{{40}}"></mp-icon>

@@ -27,4 +27,6 @@
   font-size: 24px;
   color: #8FC400;
   font-weight: bold;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
 }

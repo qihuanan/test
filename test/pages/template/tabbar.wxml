@@ -6,12 +6,21 @@
       <view class="weui-tabbar__label">首页</view>
     </navigator>
   </view>
+  <!-->
   <view class="weui-tabbar__item {{cur == 2 ? 'weui-bar__item_on' : ''}}">
     <navigator url="/pages/message/message" >
       <image src="../images/icon-mes@2x.png" alt class="weui-tabbar__icon weui-tabbar-img"></image>
       <view class="weui-tabbar__label">留言</view>
     </navigator>
   </view>
+  -->
+<view class="weui-tabbar__item {{cur == 2 ? 'weui-bar__item_on' : ''}}">
+    <navigator url="/pages/detailon/detail" >
+      <image src="../images/icon-map@2x.png" alt class="weui-tabbar__icon weui-tabbar-img"></image>
+      <view class="weui-tabbar__label">地图</view>
+    </navigator>
+  </view>
+
   <view wx:if="{{showqiandao == 1 }}"   class="weui-tabbar__item {{cur == 3 ? 'weui-bar__item_on' : ''}}">
     <view bindtap="verifylocaiton" >
       <image src="../images/icon-chk@2x.png" alt class="weui-tabbar__icon weui-tabbar-img"></image>

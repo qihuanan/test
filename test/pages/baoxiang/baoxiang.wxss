@@ -98,24 +98,24 @@
 }
 .centeritem{
   text-align: center;
-  padding: 10px;
+  padding: 1px;
 }
 .view_list {  
-  width: 99%;  height: 240rpx;  
+  width: 100%;  height: 240rpx;  
   column-count: 3; 
   column-gap: 0px;
   margin-top: -1px;
    align-items: center;  justify-content: center;
-   margin-left: 2px;
-   margin-right: 2px;
+   margin-left: 1px;
+   margin-right: 1px;
 }
 
-.view_item {  width: 99%;  height: 240rpx;  
+.view_item {  width: 240rpx;  height: 240rpx;  
 display: flex;  flex-direction: column; 
  align-items: center;  justify-content: center;
  }
 .navigate_item {  
-  width: 233rpx;  height: 240rpx; 
+  width: 240rpx;  height: 240rpx; 
    padding: 1px;  background-color: gray;  
    color: white;   display: flex;  
    flex-direction: column; 

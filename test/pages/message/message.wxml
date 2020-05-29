@@ -59,7 +59,7 @@
   <view class="weui-mask_transparent"></view>
   <view class="weui-toast">
     <i class="weui-icon-success-no-circle weui-icon_toast"></i>
-    <view class="weui-toast__content">已完成</view>
+    <view class="weui-toast__content">待人工审核通过后显示！</view>
   </view>
 </view>
 

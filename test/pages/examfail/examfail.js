@@ -9,9 +9,12 @@ Page({
   //事件处理函数
 
   gonext: function (e) {
-    wx.navigateBack({
-      delta: 2
-    })
+    wx.redirectTo({
+      url: "/pages/detailon/detail",
+    });
+    //wx.navigateBack({
+    //  delta: 2
+    //})
   },
 
   onShow: function () {

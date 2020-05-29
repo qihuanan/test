@@ -1,5 +1,5 @@
 const app = getApp()
-
+//事件处理函数  已废弃，第一个版本使用的。
 Page({
   data: {
     motto: 'Hello World',

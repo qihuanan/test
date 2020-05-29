@@ -36,12 +36,16 @@
         </view>
         -->
 
+       
         <view class="active-title-bottom weui-flex">
+         <!-- 
           <view class="weui-flex__item ">
               <navigator url="/pages/message/message" >
                 <image mode="aspectFit" src="/pages/images/btm-mes@3x.png" class="liuyanbandaka"></image>
               </navigator>
           </view>
+          -->
+
           <view  class="weui-flex__item " bindtap="dakaflagtap" data-lineid="{{line.id}}"> 
               <view >
                 <image mode="aspectFit" src="/pages/images/btm-str@3x.png" class="liuyanbandaka"></image>

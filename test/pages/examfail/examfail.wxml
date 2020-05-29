@@ -4,12 +4,10 @@
     <view class="item-title">
       <image class="logoimg" src="/pages/images/ils-nuli@2x.png" mode="cover"></image>
     </view>
-    <view class="item-gongxi">{{failmsg}}</view>
-    <!-- 
-    <view class="item-gongxi">继续努力哦！</view>
+    <view class="item-gongxi">很遗憾！</view>
+  
+    <view class="item-huode">{{failmsg}}</view>
     
-    <view class="item-huode">再试试别的答案吧</view>
-    -->
     <button class="userinfobtn" bindtap="gonext"> 继续探秘 </button>
   </view>
   

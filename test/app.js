@@ -14,7 +14,7 @@ App({
         
       }
     })
-    // 获取用户信息
+    // 获取用户信息 
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
@@ -37,6 +37,8 @@ App({
   },
   globalData: {
     userInfo: null,
+    //baseurl:'https://tycaching.cn/qihntest/',
+    baseurl: 'https://jd.yousheng.tech/qihntest/', 
     score:0,
     curlineid:0,
     curpointid: 0,

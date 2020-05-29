@@ -1,10 +1,18 @@
 {
   "pages": [
-    "pages/list/list",
+   
+    
+
+   "pages/list/list",
+    "pages/detailon/detail",
+    
+    "pages/baoxiang/baoxiang",
+    
     "pages/login/login",
     
-    "pages/detailon/detail",
-     
+    "pages/examsuccess/examsuccess",
+    "pages/examfail/examfail",
+    
     "pages/message/message",
     
     "pages/home/home",
@@ -12,24 +20,21 @@
     "pages/detailmap/detail",
     "pages/detail/detail",
     "pages/detailqiandao/detail",
-    
+    "pages/detailqiandao2/detail",
+    "pages/detailexam/detail",
    
     "pages/index/index",
 
     "pages/msgsuccess/msg_success",
     "pages/msgwarn/msg_warn",
-    "pages/uploader/uploader",
-
-    "pages/listtest/list",
-    "pages/list3/list",
-    "pages/homebak/home",
+ 
     
     "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "定向闯关",
+    "navigationBarTitleText": "空间探秘",
     "navigationBarTextStyle": "black"
   },
   "style": "v2",

@@ -6,7 +6,7 @@
     <view class="item-text">
       <view class="active-title">
         <view class="active-title-top">
-          {{line.name}}
+          {{point.name}}
           <mp-icon bindtap="taplike" data-lineid="{{line.id}}"  class="active-title-like" icon="like" type="{{line.like == '1' ? 'field' : 'outline' }}" color="red" size="{{35}}"></mp-icon>
         </view>
         
@@ -46,7 +46,7 @@
       -->
         
         <view class="weui-flex__item body-item">
-            <view class="body-item-pointname">{{point.name}}</view>
+            <view class="body-item-pointname">{{line.name}}</view>
             <view class="body-item-pointdesc">{{point.description}}</view>
         </view>
 

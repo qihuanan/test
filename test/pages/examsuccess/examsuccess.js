@@ -9,8 +9,9 @@ Page({
   },
   //事件处理函数
   
-  gonext: function (e) {
-    wx.navigateTo({
+  gonext: function (e) { //redirectTo navigateTo 
+  // pages/detailqiandao2/detail /pages/detailon/detail
+    wx.redirectTo({
       url: "/pages/detailon/detail",
     });
   },

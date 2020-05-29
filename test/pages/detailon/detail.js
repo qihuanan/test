@@ -75,18 +75,20 @@ Page({
       if (markers[i].iconPath == "/pages/images/icon-flg-ylw@2x.png") {
         markers[i].iconPath = "/pages/images/icon-des-d@2x.png"
       }
+      markers[i].width = "30"
+      markers[i].height = "30"
     }
     for (var i in markers) {
       if (markers[i].id == that.data.prepoint) {
-        markers[i].iconPath = "/pages/images/icon-des-d@2x.png"
+        //markers[i].iconPath = "/pages/images/icon-des-d@2x.png"
         break;
       }
     }
     for (var i in markers){
       if (markers[i].id == e.markerId){
         markers[i].iconPath = "/pages/images/icon-flg-ylw@2x.png"
-        markers[i].width = "30"
-        markers[i].height = "30"
+        markers[i].width = "40"
+        markers[i].height = "40"
         break;
       }
     }
@@ -157,7 +159,7 @@ Page({
   close2: function (e) { //unlockTip 
     
     var that = this
-    console.log("detailon close2 " + that.data.tipid)
+    console.log("detailon close2 " + that.data.tipid + ' ' + wx.getStorageSync("userid"))
     wx.request({
       url: app.globalData.baseurl +'wx/unlockTip',
       header: { 'content-type': 'application/json' },
@@ -165,7 +167,7 @@ Page({
         tipid: that.data.tipid,
         userid: wx.getStorageSync("userid")
       }, success(res2) {
-        console.log("unlockTip " + JSON.stringify(res2.data.data))
+        console.log("unlockTip " + JSON.stringify(res2.data))
         that.setData({
           mess: '',
           tipList: res2.data.tipList
@@ -242,11 +244,11 @@ Page({
         console.log("verifylocaiton当前位置距离北京故宫：", distance, "米")
         if (parseInt(juli) > parseInt(distance)) {//|| res1 == 1
           console.log("verifylocaiton签到距离内：" + app.globalData.curupimgsrc)
-          wx.navigateTo({
+          wx.redirectTo({ // reLaunch redirectTo
             url: '/pages/detailqiandao2/detail'
           })
         } else {
-          wx.navigateTo({
+          wx.redirectTo({
             url: '/pages/msgwarn/msg_warn?distance=' + distance
           })
         }
