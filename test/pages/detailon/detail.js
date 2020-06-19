@@ -1,3 +1,4 @@
+const util = require('../../utils/util.js')
 const app = getApp()
 
 Page({
@@ -67,13 +68,24 @@ Page({
     var that = this
     console.log('markertap ' + JSON.stringify(e) )
     console.log('markertap '+e.markerId)
+    if(this.data.line.orderflag == '1'){
+      if(app.globalData.curpointid != e.markerId){
+        e.markerId = app.globalData.curpointid
+        wx.showToast({
+          title: '顺序限制！请先完成当前签到点！',
+          icon: 'none',
+          duration: 4000
+        })
+      }
+    }
     app.globalData.curpointid = e.markerId
     console.log('markertap curpointid ' + e.markerId)
     
     var markers = that.data.initmarkers
     for (var i in markers) {
-      if (markers[i].iconPath == "/pages/images/icon-flg-ylw@2x.png") {
-        markers[i].iconPath = "/pages/images/icon-des-d@2x.png"
+      if (markers[i].iconPath.indexOf("select")) {
+        //markers[i].iconPath = "/pages/images/icon-des-d@2x.png"
+        markers[i].iconPath = markers[i].iconPath.replace("select","unchecked")
       }
       markers[i].width = "30"
       markers[i].height = "30"
@@ -86,7 +98,9 @@ Page({
     }
     for (var i in markers){
       if (markers[i].id == e.markerId){
-        markers[i].iconPath = "/pages/images/icon-flg-ylw@2x.png"
+        //markers[i].iconPath = "/pages/images/icon-flg-ylw@2x.png"
+        //markers[i].iconPath = "/pages/images/svg/unchecked/point-unchecked02.svg"
+        markers[i].iconPath = markers[i].iconPath.replace("unchecked","select")
         markers[i].width = "40"
         markers[i].height = "40"
         break;
@@ -108,7 +122,7 @@ Page({
         that.setData({
           point: res2.data.point,
           unlock:false,
-          scale:17,
+          scale:res2.data.line.qizhidaxiao,
           markers:markers, // 不导致多次重绘
           'line.jingdu': res2.data.point.jingdu,
           'line.weidu': res2.data.point.weidu,
@@ -227,7 +241,7 @@ Page({
 
   },
   bindViewTap: function() {
-    wx.navigateTo({
+    util.navigateTo({
       url: '../logs/logs'
     })
   },
@@ -244,11 +258,11 @@ Page({
         console.log("verifylocaiton当前位置距离北京故宫：", distance, "米")
         if (parseInt(juli) > parseInt(distance)) {//|| res1 == 1
           console.log("verifylocaiton签到距离内：" + app.globalData.curupimgsrc)
-          wx.redirectTo({ // reLaunch redirectTo
+          util.navigateTo({ // reLaunch redirectTo
             url: '/pages/detailqiandao2/detail'
           })
         } else {
-          wx.redirectTo({
+          util.navigateTo({
             url: '/pages/msgwarn/msg_warn?distance=' + distance
           })
         }

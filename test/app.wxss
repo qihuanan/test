@@ -12,8 +12,8 @@
 } 
 
 .pretabbar{
-  height: 10rpx;
-  margin-bottom: 100rpx;
+  height: 20rpx;
+  margin-bottom: 180rpx;
 }
 .weui-tabbar {
   position: fixed;

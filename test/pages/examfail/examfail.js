@@ -1,3 +1,4 @@
+const util = require('../../utils/util.js')
 const app = getApp()
 Page({
   data: {
@@ -9,7 +10,7 @@ Page({
   //事件处理函数
 
   gonext: function (e) {
-    wx.redirectTo({
+    util.navigateTo({
       url: "/pages/detailon/detail",
     });
     //wx.navigateBack({

@@ -15,5 +15,14 @@ const formatNumber = n => {
 }
 
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  navigateTo(object) {
+    console.log("getCurrentPages: " + getCurrentPages().length)
+    if (getCurrentPages().length > 9) {
+      wx.redirectTo(object)
+      // this.reLaunch(object)
+    } else {
+      wx.navigateTo(object)
+    }
+  }
 }

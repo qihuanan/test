@@ -1,5 +1,6 @@
 //index.js
 //获取应用实例
+const util = require('../../utils/util.js')
 const app = getApp()
 
 Page({
@@ -13,6 +14,7 @@ Page({
     showpanel: 1,
     user:{},
     cur:5,
+    goto: '',
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
@@ -43,7 +45,12 @@ Page({
     })
   },
   onLoad: function (options) {
-    console.log('qihndebug-options- ' + options)
+    //console.log('qihndebug-options- ' + options)
+    console.log('onLoad options ' + JSON.stringify(options))
+    if (options && options.goto) { // /pages/detail / detail ? lineid =
+      app.globalData.goto = options.goto,
+        app.globalData.curlineid = options.lineid
+    }
     var that = this;
     if (app.globalData.userInfo) {
       console.log('qihndebug-1-app.globalData.score ' + app.globalData.score)
@@ -111,9 +118,17 @@ Page({
                 wx.setStorageSync("userid", res2.data.data.id)
                 app.globalData.score = res2.data.data.score
                 console.log('qihndebug-4-app.globalData.score ' + app.globalData.score)
-                wx.redirectTo({
-                  url: "/pages/list/list",
-                });
+                
+                if (app.globalData.goto = 'detail' && app.globalData.curlineid !=0){
+                  util.navigateTo({
+                    url: '/pages/detail/detail?lineid=' + app.globalData.curlineid
+                  });
+                }else{
+                  util.navigateTo({
+                    url: "/pages/list/list",
+                  });
+                }
+                
                
               }
             })

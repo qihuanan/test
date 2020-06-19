@@ -1,3 +1,4 @@
+const util = require('../../utils/util.js')
 const app = getApp()
 Page({
   data: {
@@ -11,7 +12,7 @@ Page({
   
   gonext: function (e) { //redirectTo navigateTo 
   // pages/detailqiandao2/detail /pages/detailon/detail
-    wx.redirectTo({
+    util.navigateTo({
       url: "/pages/detailon/detail",
     });
   },

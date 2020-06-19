@@ -1,3 +1,4 @@
+const util = require('../../utils/util.js')
 const app = getApp()
 
 Page({
@@ -33,12 +34,13 @@ Page({
   },
   bindKeyInput: function (e) {
     console.log('bindKeyInput  ' + JSON.stringify(e))
+    this.setData({
+      inputValue: e.detail.value,
+      //verify: '1', 
+    })
     this.data.exam.answer.split(';').forEach(v => {
       if (v == e.detail.value) {
-        this.setData({
-          inputValue: e.detail.value,
-          verify: '1',
-        })
+        
       }
     })
   }, 
@@ -82,12 +84,12 @@ Page({
                 icon: 'none',
                 duration: 3000
               })
-              wx.redirectTo({
+              util.navigateTo({
                 url: '/pages/examfail/examfail?failmsg=您已签到过此任务点啦，请到下个任务点吧！'
               })
             }
             if (res2.data.data == 'ok') {
-              wx.redirectTo({
+              util.navigateTo({
                 // 1期 提示获取积分
                 //url: '/pages/msgsuccess/msg_success?jifen=' + that.data.point.jifen
                 // 2期 碎片奖励
@@ -111,7 +113,15 @@ Page({
       icon: 'none',
       duration: 2000
     })
-    
+    if(that.data.inputValue.trim() == ''){
+      wx.showToast({
+        title: '请填写答案...',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    }
+
     wx.request({
       url: app.globalData.baseurl +'wx/qiandao', //
       header: { 'content-type': 'application/json' },
@@ -129,23 +139,23 @@ Page({
             icon: 'none',
             duration: 3000
           })
-          wx.redirectTo({
+          util.navigateTo({
             url: '/pages/examfail/examfail?failmsg=您已经在此签到过，请前往下一个签到点吧！'
           })
         }
         if (res2.data.data == 'err') {
-          wx.redirectTo({
+          util.navigateTo({
             url: '/pages/examfail/examfail?failmsg=' + that.data.exam.fail
           })
         }
         if (res2.data.data == 'errnochance') {
           
-          wx.redirectTo({
+          util.navigateTo({
             url: '/pages/examfail/examfail?failmsg=机会用光了，请到下一个签到点吧！' 
           })
         }
         if (res2.data.data == 'ok') {
-          wx.redirectTo({ // redirectTo  navigateTo
+          util.navigateTo({ // redirectTo  navigateTo
             // 1期 提示获取积分
             //url: '/pages/msgsuccess/msg_success?jifen=' + that.data.point.jifen
             // 2期 碎片奖励
@@ -198,7 +208,7 @@ Page({
           })
           
         }else{
-          wx.redirectTo({
+          util.navigateTo({
             url: '/pages/msgwarn/msg_warn?distance=' + distance
           })
         }
@@ -274,7 +284,7 @@ Page({
     })
   },
   bindViewTap: function() {
-    wx.navigateTo({
+    util.navigateTo({
       url: '../logs/logs'
     })
   },

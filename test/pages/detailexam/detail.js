@@ -1,3 +1,4 @@
+const util = require('../../utils/util.js')
 const app = getApp()
 //事件处理函数  已废弃，第一个版本使用的。
 Page({
@@ -75,7 +76,7 @@ Page({
                     })
                   }
                   if (res2.data.data == 'ok') {
-                    wx.navigateTo({
+                    util.navigateTo({
                       url: '/pages/msgsuccess/msg_success'
                     })
                   }
@@ -94,7 +95,7 @@ Page({
           })
           
         }else{
-          wx.navigateTo({
+          util.navigateTo({
             url: '/pages/msgwarn/msg_warn?distance=' + distance
           })
         }
@@ -175,7 +176,7 @@ Page({
     })
   },
   bindViewTap: function() {
-    wx.navigateTo({
+    util.navigateTo({
       url: '../logs/logs'
     })
   },

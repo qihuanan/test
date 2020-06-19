@@ -42,6 +42,7 @@ App({
     score:0,
     curlineid:0,
     curpointid: 0,
-    curupimgsrc:''
+    curupimgsrc:'',
+    goto:''
   }
 })

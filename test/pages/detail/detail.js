@@ -1,3 +1,4 @@
+const util = require('../../utils/util.js')
 const app = getApp()
 
 Page({
@@ -10,7 +11,7 @@ Page({
     photoflag:false,
     files: [],
     src: '',
-    line:{},
+    line:'',
     
     
   },
@@ -18,8 +19,8 @@ Page({
   islogin: function () {
     var userid = wx.getStorageSync("userid")
     if (userid == null || userid == '') {
-      wx.reLaunch({
-        url: '/pages/login/login'
+      util.navigateTo({
+        url: '/pages/login/login?goto=detail&lineid=' + app.globalData.curlineid
       })
     }
   },
@@ -41,7 +42,7 @@ Page({
         userid: wx.getStorageSync("userid")
       }, success(res2) {
         console.log("dakaflagtap res  " + JSON.stringify(res2.data.data))
-        wx.navigateTo({
+        util.navigateTo({
           url: '/pages/detailon/detail?lineid=' + lineid
         })
       }
@@ -53,7 +54,7 @@ Page({
   },
 
   bindViewTap: function() {
-    wx.navigateTo({
+    util.navigateTo({
       url: '../logs/logs'
     })
   },
@@ -90,10 +91,30 @@ Page({
     wx.setNavigationBarTitle({
       title: '线路详情'
     })
+    var that = this
+    wx.request({
+      url: app.globalData.baseurl + 'wx/linedetail',
+      header: { 'content-type': 'application/json' },
+      data: {
+        code: 1,
+        lineid: app.globalData.curlineid,
+        userid: wx.getStorageSync("userid")
+      }, success(res2) {
+        console.log("detail onShow2 " + app.globalData.curlineid)
+        console.log("detail onShow  " + JSON.stringify(res2.data.data))
+        //that.actvielist = res2.data.data
+        that.setData({
+          //line: JSON.stringify(res2.data.data),
+          line: res2.data.data,
+          hasUserInfo: true
+        })
+      }
+    })
   },
   onLoad: function (options) {
     console.log("onLoad-lineid:"+ options.lineid)
     app.globalData.curlineid = options.lineid
+    return 
     var that = this
     wx.request({
       url: app.globalData.baseurl +'wx/linedetail',
