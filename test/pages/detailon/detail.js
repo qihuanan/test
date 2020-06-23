@@ -38,11 +38,11 @@ Page({
     }],
     polyline: [],
     controls: [{
-      id: 1, iconPath: '/pages/images/icon-loc@2x.png', clickable: true,
-      position: {left: 0, top: 400 - 50,width: 50, height: 50}
+      id: 1, iconPath: '/pages/images/icon_my_location.png', clickable: true,
+      position: {left: 10, top: 410 - 50,width: 30, height: 30}
     },{
-        id: 2, iconPath: '/pages/images/icon-map2@2x.png', clickable: true,
-        position: { left: 55, top: 400 - 50, width: 50, height: 50 }
+        id: 2, iconPath: '/pages/images/icon_zoom_out.png', clickable: true,
+        position: { left: 45, top: 410 - 50, width: 30, height: 30 }
       }],
     
     
@@ -89,6 +89,7 @@ Page({
       }
       markers[i].width = "30"
       markers[i].height = "30"
+      markers[i].title = ""
     }
     for (var i in markers) {
       if (markers[i].id == that.data.prepoint) {
@@ -143,8 +144,8 @@ Page({
           console.log('controltap-res ' + JSON.stringify(res))
           that.setData({
             scale: that.data.scalecur,
-            'line.weidu': res.latitude,
-            'line.jingdu': res.longitude
+            'point.weidu': res.latitude,
+            'point.jingdu': res.longitude
           })
         },
         fail(res) {
@@ -158,8 +159,8 @@ Page({
     }else{
       this.setData({
         scale: that.data.scalecur,
-        'line.weidu': that.data.latitude,
-        'line.jingdu': that.data.longitude
+        'point.weidu': that.data.latitude,
+        'point.jingdu': that.data.longitude
       })
     }
     
@@ -349,7 +350,7 @@ Page({
     var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(La3 / 2), 2) + Math.cos(La1) * Math.cos(La2) * Math.pow(Math.sin(Lb3 / 2), 2)));
     s = s * 6378.137;
     s = Math.round(s * 10000) / 10000;
-    s = s.toFixed(2);
+    s = s.toFixed(3);
     s = s * 1000 // 返回米
     return s;
   }

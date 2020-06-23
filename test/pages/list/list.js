@@ -21,6 +21,8 @@ Page({
       url: '../logs/logs'
     })
   },
+  onShareAppMessage: function () {
+  },
   openIOS1: function (e) {
     console.log("detailon openIOS1 " + JSON.stringify(e))
     this.setData({

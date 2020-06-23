@@ -2,11 +2,11 @@
 <view class="weui-tabbar">
   <view class="weui-tabbar__item {{cur == 1 ? 'weui-bar__item_on' : ''}}">
     <navigator url="/pages/list/list" open-type="reLaunch">
-      <image src="../images/icon-hom@2x.png" alt class="weui-tabbar__icon weui-tabbar-img"></image>
+      <image src="../images/home.svg" alt class="weui-tabbar__icon weui-tabbar-img"></image>
       <view class="weui-tabbar__label">首页</view>
     </navigator>
   </view>
-  <!-->
+  <!--
   <view class="weui-tabbar__item {{cur == 2 ? 'weui-bar__item_on' : ''}}">
     <navigator url="/pages/message/message" >
       <image src="../images/icon-mes@2x.png" alt class="weui-tabbar__icon weui-tabbar-img"></image>
@@ -16,21 +16,21 @@
   -->
 <view class="weui-tabbar__item {{cur == 2 ? 'weui-bar__item_on' : ''}}">
     <navigator url="/pages/detailon/detail" >
-      <image src="../images/icon-map@2x.png" alt class="weui-tabbar__icon weui-tabbar-img"></image>
+      <image src="../images/map.svg" alt class="weui-tabbar__icon weui-tabbar-img"></image>
       <view class="weui-tabbar__label">地图</view>
     </navigator>
   </view>
 
   <view wx:if="{{showqiandao == 1 }}"   class="weui-tabbar__item {{cur == 3 ? 'weui-bar__item_on' : ''}}">
     <view bindtap="verifylocaiton" >
-      <image src="../images/icon-chk@2x.png" alt class="weui-tabbar__icon weui-tabbar-img"></image>
+      <image src="../images/mark.svg" alt class="weui-tabbar__icon weui-tabbar-img"></image>
       <view class="weui-tabbar__label">签到</view>
     </view>
   </view>
 
   <view class="weui-tabbar__item {{cur == 4 ? 'weui-bar__item_on' : ''}}">
     <navigator url="/pages/baoxiang/baoxiang" >
-      <image src="../images/icon-puz@2x.png" alt class="weui-tabbar__icon weui-tabbar-img"></image>
+      <image src="../images/box.svg" alt class="weui-tabbar__icon weui-tabbar-img"></image>
       <view class="weui-tabbar__label">宝箱</view>
     </navigator>
   </view>
@@ -45,7 +45,7 @@
 
   <view class="weui-tabbar__item {{cur == 5 ? 'weui-bar__item_on' : ''}}">
     <navigator url="/pages/home/home" >
-      <image src="../images/icon-me@2x.png" alt class="weui-tabbar__icon weui-tabbar-img-2"></image>
+      <image src="../images/my.svg" alt class="weui-tabbar__icon weui-tabbar-img"></image>
       <view class="weui-tabbar__label">我</view>
     </navigator>
   </view>

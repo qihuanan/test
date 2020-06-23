@@ -58,6 +58,8 @@ Page({
       url: '../logs/logs'
     })
   },
+  onShareAppMessage: function () {
+  },
   showimgTap:function(e){
     console.log('showimgTap ' + JSON.stringify(e))
     console.log('showimgTap ' + e.currentTarget.dataset.imgsrc)

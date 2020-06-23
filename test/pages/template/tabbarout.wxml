@@ -2,13 +2,13 @@
 <view class="weui-tabbar">
   <view class="weui-tabbar__item {{cur == 1 ? 'weui-bar__item_on' : ''}}">
     <navigator url="/pages/list/list" open-type="reLaunch">
-      <image src="../images/icon-hom@2x.png" alt class="weui-tabbar__icon weui-tabbar-img"></image>
+      <image src="../images/home.svg" alt class="weui-tabbar__icon weui-tabbar-img"></image>
       <view class="weui-tabbar__label">首页</view>
     </navigator>
   </view>
   <view class="weui-tabbar__item {{cur == 5 ? 'weui-bar__item_on' : ''}}">
     <navigator url="/pages/home/home" >
-      <image src="../images/icon-me@2x.png" alt class="weui-tabbar__icon weui-tabbar-img-2"></image>
+      <image src="../images/my.svg" alt class="weui-tabbar__icon weui-tabbar-img"></image>
       <view class="weui-tabbar__label">我</view>
     </navigator>
   </view>

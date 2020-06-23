@@ -1,5 +1,5 @@
 <!-- map.wxml -->
-<map id="map" longitude="{{line.jingdu}}" latitude="{{line.weidu}}" scale="{{scale}}" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange"  style="width: 100%; height: 400px;" show-location="true" ></map>
+<map id="myMap" longitude="{{point.jingdu}}" latitude="{{point.weidu}}" scale="{{scale}}" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange"  style="width: 100%; height: 400px;" show-location="true" subkey="IDRBZ-RP53R-WI7WN-W3BAI-HFUU5-JIBEY" ></map>
 
 <view class="weui-flex ">
   <view class="weui-flex__item">
@@ -7,7 +7,9 @@
       <view class="active-title">
         <view class="active-title-top">
           {{point.name}}
-          <mp-icon bindtap="taplike" data-lineid="{{line.id}}"  class="active-title-like" icon="like" type="{{line.like == '1' ? 'field' : 'outline' }}" color="red" size="{{35}}"></mp-icon>
+         <!-- 
+            <mp-icon bindtap="taplike" data-lineid="{{line.id}}"  class="active-title-like" icon="like" type="{{line.like == '1' ? 'field' : 'outline' }}" color="red" size="{{35}}"></mp-icon>
+            -->
         </view>
         
         <view class="active-title-bottom weui-flex">
@@ -43,13 +45,13 @@
             临时-跳转到任务点配置的拍照上传图</navigator>
         </view>
       </view>
-      -->
+      
         
         <view class="weui-flex__item body-item">
             <view class="body-item-pointname">{{line.name}}</view>
             <view class="body-item-pointdesc">{{point.description}}</view>
         </view>
-
+        -->
         <block wx:for="{{tipList }}" wx:for-index="index" wx:key="t1">  
           <view wx:if="{{item.lockflag == 0}}" class="weui-flex__item body-item-tips">
               <view class="body-item-tips-name">{{item.name}} </view>
@@ -98,7 +100,10 @@
         </view>
     </view>
 </view>
-
+<view class='list'>
+    <view class='li' wx:for='{{list}}' wx:key=''>{{item}}</view>
+</view>
+<view class='placeholder-view'></view>
 <view class="pretabbar"></view>
 <import src ="/pages/template/tabbar.wxml"/>
 <template is="tabbar" data="{{cur:3, showqiandao:1 }}" />

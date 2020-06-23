@@ -3,7 +3,7 @@
   border-radius: 10rpx;
   border: 2rpx solid #DDDEDE;
   border-top: none;
-  background-color: #F4F4F4;
+  background-color: #FFFFFF;
 }
 .active-title {
   vertical-align: center;
@@ -25,10 +25,11 @@
   padding-top: 20rpx;
   padding-left: 35rpx;
   color: white;
-  background-image: url(data:image/png;base64,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) 
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' opacity='.85' fill='%2364d753' height='55.35' width='343.412'%3E%3Crect rx='6' height='55.593' width='343'/%3E%3Cg fill='%234094fd' opacity='.3'%3E%3Cpath d='M303.246 22.54a60.949 64.594 0 01-47.454 23.99 61.067 64.72 0 1059.73-78.17 60.945 64.59 0 01-12.276 54.18z' opacity='.5'/%3E%3Cpath d='M229.482 42.515a60.788 64.424 0 0038.43 14.415 60.94 64.585 0 0112.274-54.18 60.944 64.589 0 0147.453-23.99 61.063 64.715 0 10-98.156 63.755z' opacity='.2'/%3E%3Cpath d='M268.068-7.65a60.944 64.589 0 00-12.275 54.18 61.064 64.716 0 0059.73-78.17 60.94 64.585 0 00-47.455 23.99z' opacity='.5'/%3E%3C/g%3E%3Cg opacity='.2'%3E%3Cpath d='M-22.144 57.713a112.697 109.574 0 0196.266-13.917 113.002 109.871 0 10-145.6 95.487 112.69 109.568 0 0149.334-81.57z' fill='%234094fd' opacity='.67'/%3E%3Cpath d='M118.677 64.225A112.853 109.726 0 0057.953 20.49 112.68 109.559 0 018.62 102.06a112.688 109.566 0 01-96.265 13.918 113.091 109.958 0 10206.324-51.754z' fill='%23fd934a' opacity='.3'/%3E%3Cpath d='M24.788 125.365a112.688 109.566 0 0049.333-81.57 112.851 109.725 0 00-145.6 95.486 112.68 109.559 0 0096.266-13.917z' fill='%234094fd' opacity='.67'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 100%; 
 }
 .active-title-bottom{
-  background-color: #F4F4F4;
+  background-color: #FFFFFF;
   justify-content: center;
   text-align: center;
   padding-top: 20rpx;
@@ -42,14 +43,15 @@
 }
 
 .liuyanbandaka{
-  height: 156rpx;
-  width: 620rpx;
+  height: 117rpx;
+  width: 465rpx;
 }
 .question {
   padding: 0 20px;
 }
 .question-name {
-  color: #8FC400;
+  color: #33aa55;
+  font-size: 30rpx;
   padding: 10px 0px;
 }
 .question-desc{ 
@@ -62,7 +64,7 @@
 }
 .fengekuai {
   padding: 5px 0px;
-  background-color: #F4F4F4;
+  background-color: #FFFFFF;
 }
 .item-liuyanban{
   color:white;
@@ -81,4 +83,8 @@
 }
 .question-img{
   text-align: center;
+}
+.placeholder-view {
+  width: 100%;
+  height: 150rpx;
 }

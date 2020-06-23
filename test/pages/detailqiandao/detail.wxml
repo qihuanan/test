@@ -19,14 +19,14 @@
 <view class="active-title-bottom weui-flex">
   <view  class="weui-flex__item " bindtap="takePhoto" data-res="1"> 
     <view class="item-liuyanban2">
-      <image class="liuyanbandaka" src="/pages/images/btm-pht@2x.png" ></image>
+      <image class="liuyanbandaka" src="/pages/images/btm-pht.svg" ></image>
     </view>
   </view>
 </view>
 <view class="active-title-bottom weui-flex">
   <view  class="weui-flex__item " bindtap="chooseImage" data-res="0" >
     <view class="item-liuyanban2" >
-      <image class="liuyanbandaka" src="/pages/images/btm-alb@2x.png" ></image>
+      <image class="liuyanbandaka" src="/pages/images/btm-alb.svg" ></image>
     </view>
   </view>
 </view>
@@ -43,7 +43,10 @@
   </view>
 </view>
 -->
-
+<view class='list'>
+    <view class='li' wx:for='{{list}}' wx:key=''>{{item}}</view>
+</view>
+<view class='placeholder-view'></view>
 
 <view class="pretabbar"></view>
 <import src ="/pages/template/tabbar.wxml"/>

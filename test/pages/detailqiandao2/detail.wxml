@@ -50,7 +50,7 @@
 <view  class="active-title-bottom weui-flex">
   <view  class="weui-flex__item "  > 
     <view class="item-liuyanban2" bindtap="qiandaosubmit">
-      <image class="liuyanbandaka-tj" src="/pages/images/tijiao2.png" ></image>
+      <image class="liuyanbandaka-tj" src="/pages/images/tijiao.svg" ></image>
     </view>
   </view>
 </view>
@@ -68,21 +68,24 @@
 <view class="active-title-bottom weui-flex">
   <view  class="weui-flex__item " bindtap="takePhoto" data-res="1"> 
     <view class="item-liuyanban2">
-      <image class="liuyanbandaka" src="/pages/images/btm-pht@2x.png" ></image>
+      <image class="liuyanbandaka" src="/pages/images/btm-pht.svg" ></image>
     </view>
   </view>
 </view>
 <view class="active-title-bottom weui-flex">
   <view  class="weui-flex__item " bindtap="chooseImage" data-res="0" >
     <view class="item-liuyanban2" >
-      <image class="liuyanbandaka" src="/pages/images/btm-alb@2x.png" ></image>
+      <image class="liuyanbandaka" src="/pages/images/btm-alb.svg" ></image>
     </view>
   </view>
 </view>
 
 <image wx:if="{{src}}" src="{{src}}" style="width: 100%; height: 300rpx;"></image>
 </block>
-
+<view class='list'>
+    <view class='li' wx:for='{{list}}' wx:key=''>{{item}}</view>
+</view>
+<view class='placeholder-view'></view>
 <view class="pretabbar"></view>
 <import src ="/pages/template/tabbar.wxml"/>
 <template is="tabbar" data="{{cur:3}}" />
